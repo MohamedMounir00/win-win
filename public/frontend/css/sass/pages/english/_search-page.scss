@@ -1,0 +1,236 @@
+/* Start Global Styles */
+body {
+    background-color: #f7f7f7;
+    font-family: 'Roboto', sans-serif;
+    background-image: url(../images/O.png);
+    background-repeat: repeat-y;
+    background-position: top right;
+}
+.navbar {
+    background-color: #FFF;
+    box-shadow: 1px 2px 3px #D8D8D8;
+}
+/* End Global Styles */
+
+
+/* Start Introduction Section */
+
+.search-page {
+    padding: 50px 0;
+    .serch-input {
+        margin-bottom: 20px;
+        &:active , &:focus {
+            box-shadow: none;
+            border: 1px solid #3787E0;
+        }
+    }
+    .latest-search-units {
+        margin-bottom: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 5px #56555566;
+        background-color: #FFF;
+        padding: 25px 10px;
+        margin-bottom: 20px;
+        @media (max-width: 575.98px) { 
+            text-align: center;
+         }
+        @media (min-width: 576px) and (max-width: 767.98px) { 
+            text-align: center;
+         }
+
+        .unit-img {
+            text-align: right;
+            text-align: center;
+            @media (min-width: 992px) and (max-width: 1199.98px) { text-align: right; }
+
+            margin-top: 8px;
+            img {
+                width: 120px;
+                height: 120px;
+                border: 1px solid #707070;
+            }
+        }
+        .unit-description {
+            margin-top: 21px;
+            margin-left: 20px;
+            h2 {
+                font-size: 20px;
+                color: #3787E0;
+                letter-spacing: 1px;
+            }   
+            p {
+                font-size: 17px;
+                color: #545871;
+                margin-bottom: 10px;
+                font-weight: 300;
+                span {
+                    font-weight: bold;
+                    font-size: 18px;
+                    color: #545871;
+                }
+            }
+            span {
+                color: #9597A6;
+                i {
+                    color: rgba( #3787E0,  22%);
+                    margin-right: 5px;
+                }
+            }
+        }
+        .price {
+            margin-top: 30px;
+            text-align: center;
+            color: #9597A6;
+            border-left: 1px solid #F0F1F7;
+            span {
+                font-size: 25px;
+                margin-bottom: 0;
+                font-weight: 100;
+            }
+            p {
+                font-size: 14px;
+                font-weight: bold;
+            }
+        }
+    }
+    .serch-form-title {
+        
+        color: #9597A6;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        display: inline-block;
+        margin-bottom: 15px;
+        
+    }
+    .search-form {
+       
+        box-shadow: 0px 0px 5px #56555566;
+        border-radius: 8px;
+        background-color: #FFF;
+        .chose , .finish{
+            padding: 20px;
+            border-bottom: 1px solid #D3E5F8;
+            margin-bottom: 10px;
+            .mychose {
+                margin-right: 100px;
+            }
+        }
+        .chose {
+            .custom-control-label {
+                color: #3787E0;
+                font-weight: 800;
+            }
+        }
+        
+        .city-select , .state-select , .bedrooms , .floor , .area , .price , .finish{
+            border-bottom: 1px solid #D3E5F8;
+            padding: 10px ;
+            margin-bottom: 20px;
+            .title {
+                color: #9597A6;
+                letter-spacing: 1px;
+                font-weight: 500;
+            }
+            label {
+                color: #D3D3D3;
+                letter-spacing: 1px;
+            }
+            .custom-control-label {
+                color: #3787E0;
+                font-weight: 800;
+            }
+            .custom-select , .form-control {
+                border: 1px solid #D3E5F8;
+                margin-bottom: 10px;
+                &:active , &:focus {
+                    box-shadow: none;
+                }
+            }
+            .form-control {
+                &:active , &:focus {
+                    box-shadow: none;
+                }
+            }
+        }
+        .finish {
+            padding-bottom: 25px;
+        }
+        .price {
+            margin-bottom: 0;
+            border-bottom: 0;
+        }
+        .btn {
+            background-color: #3787E0;
+            border: 1px solid #3787E0;
+            border-radius: 0 0 8px 8px;
+            &:active , &:focus {
+                box-shadow: none;
+            }
+        }
+    }
+}
+
+/* End Introduction Section */
+
+
+/* Start Dealing Section */
+
+.homepage-deal {
+    padding: 100px;
+    @media (max-width: 575.98px) {
+            padding-bottom: 40px;
+        }
+    background-color: #FFF;
+    .main {
+        &:hover {
+            text-decoration: none !important;
+        }
+        .deal-section {
+            position: relative;
+            width: 100%;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 16px #ddd;
+            background-color: #FFF;
+            @media (max-width: 575.98px) {
+                margin-bottom: 60px;
+            }
+            @media (max-width: 767.98px) {
+                margin-bottom: 60px;
+            }
+            .fa {
+                width: 70px;
+                height: 70px;
+                top: -30px;
+                left: 0;
+                right: 0;
+                margin: auto;
+                position: absolute;
+                padding: 20px;
+                background-color: $main_blue_color;
+                color: #FFF;
+                border-radius: 50%;
+                font-size: 30px;
+                text-align: center;
+            }
+            .sell-i {
+                @include prefix(transform, rotate(45deg), webkit ms);
+            }
+            h3 {
+                margin-top: 30px;
+                font-weight: 700;
+                color: #545871;
+            }
+            p {
+                letter-spacing: 1px;
+                line-height: 35px;
+                font-size: 17px;
+                margin-bottom: 20px;
+                color: #9597a6;
+            }
+        }
+    }
+}
+
+/* End Dealing Section */
+

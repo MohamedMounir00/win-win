@@ -1,0 +1,109 @@
+
+footer {
+    border-top: 1px solid #e9e9ef;
+     @media (max-width: 767.98px) {
+                text-align: center;
+            }
+    .about {
+        padding: 30px 0;
+        h2 {
+            text-transform: uppercase;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .about-para {
+            color: #a2a2a2;
+            letter-spacing: 1px;
+            line-height: 35px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+        .social-media {
+            @media (max-width: 767.98px) {
+                margin-bottom: 40px;
+            }
+            h2 {
+                margin-bottom: 30px;
+            }
+            a {
+                margin-top: 20px;
+                padding: 4px;
+                border: 1px solid #333;
+                border-radius: 50%;
+                margin-right: 10px;
+                background-color: $social_media_color;
+                color: #FFF;
+                transition: all .7s ease-in-out;
+                &:hover {
+                    background-color: #FFF;
+                    color: $social_media_color;
+                }
+                i {
+                    width: 28px;
+                    text-align: center;
+                    line-height: 20px;
+                }
+            } 
+        }
+        .top-brokers {
+            ul {
+                li {
+                    margin-left: 19px;
+                    margin-bottom: 10px;
+                    display: inline-block;
+                    img {
+                        width: 38px;
+                        height: 38px;
+                        border-radius: 50%;
+                    }
+                    .img-thumbnail {
+                        padding: 0.05em
+                    }
+                }
+            }
+        }
+    }
+    .contact {
+        background-color: #FFF;
+        padding: 30px;
+        font-size: 12px;
+        h2 {
+            text-transform: uppercase;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .form-control {
+            font-size: 12px;
+            padding: 20px;
+            border-radius: 0;
+            border: 1px solid #84a5d0;
+            margin-bottom: 15px;
+            @include prefix(transition, all .5s ease-in-out, webkit ms);
+            &:focus , &:active {
+                box-shadow: none;
+                border: 1px solid $main_blue_color;
+            }
+        }
+        textarea {
+            resize: none;
+            margin-bottom: 0
+        }
+    }
+    .copr-right {
+        @media (max-width: 991.98px) {
+            text-align: center;
+            float: none;
+            font-size: 11px;
+        }
+
+        padding: 40px 20px 20px 20px;
+        overflow: hidden;
+        background-color: #f7f7f7;
+        .title , .copyRight {
+           color: #a8a8a8; 
+            font-size: 14px;
+            line-height: 5px;
+        }
+         
+    }
+}

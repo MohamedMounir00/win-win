@@ -1,0 +1,14 @@
+.my-btn {
+    border-radius: 50px;
+    font-size: 14px;
+    padding: 10px 40px;
+    background-color: $main_blue_color;
+    transition: all .5s ease-in-out;
+    &:focus , &:active {
+        box-shadow: none !important;
+    }
+    &:hover {
+        background-color: #FFF;
+        color: $main_blue_color;
+    }
+}

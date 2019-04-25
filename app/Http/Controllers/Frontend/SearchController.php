@@ -1,0 +1,75 @@
+<?php
+
+namespace App\Http\Controllers\Frontend;
+
+use App\City;
+use App\Http\Resources\Frontend\UnitCollection;
+use App\State;
+use App\Unit;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Route;
+
+class SearchController extends Controller
+{
+    //
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except('advanced_search');
+        $this->middleware('NotActive')->except('advanced_search');
+
+    }
+
+    public function search_view(Request $request)
+    {
+        $units=Unit::where('activation_admin','active')->where('title','LIKE','%'.$request->title.'%')->get();
+        $city=City::all();
+        $state=State::all();
+
+        return view('frontend.pages.search',compact('units','city','state'));
+    }
+
+    public function advanced_search(Request $request)
+    {
+        $units=Unit::where('activation_admin','active');
+        if ($request->title != null)
+
+            $units -> where('title','LIKE','%'.$request->title.'%');
+        if ($request->status != null)
+            $units->where('status', $request->status);
+        if ($request->finishing != null)
+            $units->where('finishing', $request->finishing);
+        if ($request->city != null)
+            $units->where('city_id', $request->city);
+        if ($request->state != null)
+            $units->where('state_id', $request->state);
+        if ($request->bedrooms_from != null)
+            $units->where('rooms','>=', $request->bedrooms_from);
+        if ($request->bedrooms_to != null)
+            $units->where('rooms','<=', $request->bedrooms_to);
+
+        if ($request->floor_from != null)
+            $units->where('floor','>=', $request->floor_from);
+        if ($request->floor_to != null)
+            $units->where('floor','<=', $request->floor_to);
+        if ($request->price_from != null)
+            $units->where('price','>=', $request->price_from);
+        if ($request->price_to != null)
+            $units->where('price','<=', $request->price_to);
+        if ($request->area_from != null)
+            $units->where('area','>=', $request->area_from);
+        if ($request->area_to != null)
+            $units->where('area','<=', $request->area_to);
+
+
+        return UnitCollection::collection($units->get()) ;
+
+    }
+    public  function  unit_details($id)
+    {
+        $unit= Unit::findOrFail($id);
+        return view('frontend.pages.unit_details',compact('unit'));
+    }
+
+}

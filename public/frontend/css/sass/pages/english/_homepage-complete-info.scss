@@ -1,0 +1,246 @@
+/* Start Global Styles */
+body {
+    background-color: #f7f7f7;
+    font-family: 'Roboto', sans-serif;
+    background-image: url(../images/O.png);
+    background-repeat: repeat-y;
+    background-position: top right;
+}
+/* End Global Styles */
+
+
+/* Start Introduction Section */
+
+.home-complete-info {
+    margin-bottom: 50px;
+    background-color: #FFF;
+    .contain {
+        box-shadow: 0px 0px 6px #9597a670;
+    }
+    overflow: hidden;
+    padding: 40px;
+    .tolpit {
+        background-color: $logo_color;
+        min-height: 100%;
+        position: relative;
+        @media (max-width: 575.98px) {
+            min-height: 400px;
+        }
+
+        .logo {
+            width: 100%;
+            padding: 50px 0 20px 50px;
+            @media (max-width: 575.98px) {
+                padding-bottom: 0;
+            }
+            @media (max-width: 767.98px) {
+                padding-bottom: 0;
+            }
+        }
+
+        ul {
+            margin: 40px 65px 20px 65px;
+            border-left: 1px solid $second_main_color;
+            li {
+                position: relative;
+                margin-bottom: 30px;
+                margin-left: 30px;
+
+                a {
+                    color: $second_main_color;
+                    text-decoration: none;
+                    &:before {
+                        display: block;
+                        position: absolute;
+                        content: '';
+                        top: 4px;
+                        left: -40px;
+                        width: 18px;
+                        height: 18px;
+                        background-color: $second_main_color;
+                        border-radius: 50%;
+                        
+                    }
+                }
+            }
+        }
+        .hand-img {
+            width: 500px;
+            height: 300px;
+            position: absolute;
+            right: 0;
+            top: 350px;
+            @media (max-width: 991.98px) {
+                top: 400px;
+            }
+        }
+        
+        .active {
+            color: #FFF;
+        }
+        .contact-information-page {
+            &:before {
+                padding: 10px;
+                border: 4px solid #FFF;
+                left: -45px;
+            }
+        }
+
+    }
+
+    .info {
+        background-color: $second_backdround;
+        padding-top: 10px;
+        .section-head {
+            padding: 40px 50px 0 50px;
+            @media (max-width: 575.98px) {
+                text-align: center;
+            }
+            @media (max-width: 767.98px) {
+                text-align: center;
+            }
+
+            h2 {
+                color: $second_main_color;
+                font-size: 30px;
+                font-weight: bold;
+                @media (max-width: 767.98px) {
+                font-size: 30px;
+            }
+                @media (max-width: 991.98px) {
+                font-size: 30px;
+            }
+            }
+
+            p {
+                color: $second_main_color;
+                font-size: 18px;
+            }
+        }
+
+        form {
+            padding: 20px 50px 50px 50px;
+            label {
+                color: #9597A6;
+            }
+            ::placeholder {
+                color: #b3aeae;
+            }
+            .form-control {
+                margin-bottom: 20px;
+                font-size: 12px;
+                padding: 20px 5px;
+                border-radius: 5px;
+                border: 1px solid transparent;
+                @include prefix(transition, all .5s ease-in-out, webkit ms);
+                &:focus , &:active {
+                    box-shadow: none;
+                    border: 1px solid transparent;
+                }
+            }
+            .custom-select {
+                padding: 0 5px;
+                height: 40px !important;
+                color: #b3aeae;
+            }
+            .click-btn {
+                background-color: #FFF;
+                overflow: hidden;
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                width: 100%;
+            }
+        }
+        .my-btn {
+                margin: 9px 0;
+                background-color: $second_main_color;
+                border: 1px solid $second_main_color;
+                width: 115px;
+                text-align: center;
+                float: right;
+                @media (max-width: 575.98px) {
+                    float: none;
+                    margin: 9px auto;
+            }
+            @media (max-width: 767.98px) {
+                    float: none;
+                    margin: 9px auto;
+            }
+            @media (max-width: 991.98px) {
+                    float: none;
+                    margin: 9px auto;
+            }
+
+                &:hover {
+                background-color: #FFF;
+                color: $second_main_color;
+             }
+    }
+    }
+}
+
+/* End Introduction Section */
+
+
+/* Start Dealing Section */
+
+.deal {
+    padding: 100px;
+    @media (max-width: 575.98px) {
+            padding-bottom: 40px;
+        }
+    background-color: #FFF;
+    .main {
+        &:hover {
+            text-decoration: none !important;
+        }
+        .deal-section {
+            position: relative;
+            width: 100%;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 16px #ddd;
+            background-color: #FFF;
+            @media (max-width: 575.98px) {
+                margin-bottom: 60px;
+            }
+            @media (max-width: 767.98px) {
+                margin-bottom: 60px;
+            }
+            .fa {
+                width: 70px;
+                height: 70px;
+                top: -30px;
+                left: 0;
+                right: 0;
+                margin: auto;
+                position: absolute;
+                padding: 20px;
+                background-color: $main_blue_color;
+                color: #FFF;
+                border-radius: 50%;
+                font-size: 30px;
+                text-align: center;
+            }
+            .sell-i {
+                @include prefix(transform, rotate(45deg), webkit ms);
+            }
+            h3 {
+                margin-top: 30px;
+                font-weight: 700;
+                color: #545871;
+            }
+            p {
+                letter-spacing: 1px;
+                line-height: 35px;
+                font-size: 17px;
+                margin-bottom: 20px;
+                color: #9597a6;
+            }
+        }
+    }
+}
+
+/* End Dealing Section */
+
