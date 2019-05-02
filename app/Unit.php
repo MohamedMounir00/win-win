@@ -30,19 +30,19 @@ class Unit extends Model
 
     public function  city()
     {
-        return $this->belongsTo(City::class,'city_id');
+        return $this->belongsTo(City::class,'city_id')->withTrashed();
     }
     public function  state()
     {
-        return $this->belongsTo(State::class,'state_id');
+        return $this->belongsTo(State::class,'state_id')->withTrashed();
     }
 
     public function  unit_type()
     {
-        return $this->belongsTo(Type_estate::class,'type_id');
+        return $this->belongsTo(Type_estate::class,'type_id')->withTrashed();
     }
     public function realtor()
     {
-        return $this->belongsTo(User::class ,'user_id');
+        return $this->belongsTo(User::class ,'user_id')->withTrashed();
     }
 }

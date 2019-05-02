@@ -27,21 +27,28 @@ Route::group([
     'middleware' => ['auth','localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
 ], function () {
 ////////////////////////////////////////////////////////////  frontend  //////////////////////////////////////////////////////////////
-    Route::get('/complete-information-page', 'Frontend\UserController@seciend_step_view')->name('complete-information-page');
-    Route::PUT('/complete-information', 'Frontend\UserController@seciend_step')->name('complete-information');
+////////////////////////////////////insaid main
 
-    Route::get('/thank-you-page', 'Frontend\UserController@thank_view')->name('thank-you-page');
     Route::post('/search-form', 'HomeController@search')->name('search-form');
     Route::get('/search', 'Frontend\SearchController@search_view')->name('search');
     Route::get('/details/{id}', 'Frontend\SearchController@unit_details')->name('details');
+    Route::get('/get_data_view', 'Frontend\MainUnitController@get_data_view')->name('get_data_view');
+    Route::post('add-unit-main', 'Frontend\MainUnitController@AddUnit')->name('add-main-main');
+       /////////////////////////////////////////// rating
+    Route::post('/rating_user', 'Frontend\MainProfileController@addRating')->name('rating_user');
 
-
+    Route::get('/get_profile_view/{id}', 'Frontend\MainProfileController@profile')->name('get_profile_view');
+    Route::post('/add_report', 'Frontend\MainProfileController@add_report')->name('add_report');
+/////////////////////////////for outside main
     Route::get('/add-unit-page', 'Frontend\AddUnitController@get_unit_view')->name('add-unit-page');
     Route::post('add-unit', 'Frontend\AddUnitController@AddUnit')->name('add-unit');
 
     Route::get('/all-my-unit-page', 'Frontend\AddUnitController@all_my_units_view')->name('all-my-unit-page');
     Route::get('/all-my-unit', 'Frontend\AddUnitController@all_my_units')->name('all-my-unit');
+    Route::get('/thank-you-page', 'Frontend\UserController@thank_view')->name('thank-you-page');
 
+    Route::get('/complete-information-page', 'Frontend\UserController@seciend_step_view')->name('complete-information-page');
+    Route::PUT('/complete-information', 'Frontend\UserController@seciend_step')->name('complete-information');
 
 
 ////////////////////////////////////////////////////////////  Backend  //////////////////////////////////////////////////////////////
@@ -76,7 +83,10 @@ Route::group([
         Route::post('post_settings','Backend\AppSettingController@post_settings')->name('post_settings');
 
         Route::post('/rating', 'Backend\RealtorController@addRating')->name('rating');
+              ////////////////////////////////////////////////////report
 
+        Route::get('report/get_report','Backend\ReportControler@getAnyDate')->name('report.get_report');
+        Route::resource('report','Backend\ReportControler');
 
     });
 

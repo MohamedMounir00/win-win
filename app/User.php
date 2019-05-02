@@ -2,12 +2,13 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable ,SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -30,19 +31,19 @@ class User extends Authenticatable
 
     public function admins()
     {
-        return $this->hasOne(Admin::class ,'user_id');
+        return $this->hasOne(Admin::class ,'user_id')->withTrashed();
     }
     public function realtor()
     {
-        return $this->hasOne(Realtor::class ,'user_id');
+        return $this->hasOne(Realtor::class ,'user_id')->withTrashed();
     }
 
     public function  city()
     {
-        return $this->belongsTo(City::class,'city_id');
+        return $this->belongsTo(City::class,'city_id')->withTrashed();
     }
     public function  state()
     {
-        return $this->belongsTo(State::class,'state_id');
+        return $this->belongsTo(State::class,'state_id')->withTrashed();
     }
 }

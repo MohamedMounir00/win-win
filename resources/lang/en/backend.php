@@ -111,6 +111,11 @@ return[
 
     'close2'=>'close',
 
+    'ask_update'=>'Do you want to change the status of the message',
+    'unseen'=>'Un Seen',
+    'seen'=>'seen',
+    'report'=>'Message',
+    'get_report'=>'message'
 
 
 

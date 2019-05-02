@@ -81,6 +81,13 @@
 
                         </ul>
                     </li>
+                    <li><a><i class="fa fa-edit"></i> {{trans('backend.get_report')}} <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{route('report.index')}}">{{trans('backend.get_report')}} </a></li>
+
+
+                        </ul>
+                    </li>
                     <li><a><i class="fa fa-edit"></i> {{trans('backend.get_settings')}} <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{route('get_settings')}}">{{trans('backend.get_settingsr_controller')}} </a></li>

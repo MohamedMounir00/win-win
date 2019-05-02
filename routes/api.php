@@ -22,3 +22,5 @@ Route::post('/advanced_search', 'Frontend\SearchController@advanced_search')->na
 Route::post('/upload', 'Frontend\UploadController@Upload')->name('upload');
 Route::post('/change_status', 'Frontend\AddUnitController@change_status');
 Route::post('/state_by_id', 'Frontend\UserController@stateByid')->name('stateByid');
+Route::post('/get_all_units', 'Frontend\AddUnitController@get_all_units')->name('get_all_units');
+Route::post('/get_all_comment', 'Frontend\MainProfileController@get_all_comment')->name('get_all_comment');

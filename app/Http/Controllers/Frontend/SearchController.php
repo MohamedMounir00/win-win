@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\City;
 use App\Http\Resources\Frontend\UnitCollection;
+use App\Rating;
 use App\State;
 use App\Unit;
 use Illuminate\Http\Request;
@@ -69,7 +70,12 @@ class SearchController extends Controller
     public  function  unit_details($id)
     {
         $unit= Unit::findOrFail($id);
-        return view('frontend.pages.unit_details',compact('unit'));
+
+        $rating= Rating::where('realtor_id',$unit->user_id)->where('type','admin')->get();
+        $rating_time=floatval($rating->avg('rating_stars'));
+        $rating2= Rating::where('realtor_id',$unit->user_id)->where('type','user')->get();
+        $rating_time_user=floatval($rating2->avg('rating_stars'));
+        return view('frontend.pages.unit_details',compact('unit','rating_time','rating_time_user'));
     }
 
 }

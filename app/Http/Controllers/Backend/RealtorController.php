@@ -211,7 +211,8 @@ class RealtorController extends Controller
         $rating->user_id = auth()->user()->id;
         $rating->realtor_id = $request->realtor_id;
         $rating->rating_stars = $request->star;
+        $rating->comment = $request->comment;
         $rating->save();
-        return response()->json(['rating' => $rating->rating_stars]);
+        return $rating;
     }
 }

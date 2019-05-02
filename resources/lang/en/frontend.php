@@ -66,7 +66,7 @@ return [
     'search'=>'search',
     'my_units'=>'My All Units',
     'list_units'=>'My Latest Units',
-       'unit_type'=>'Unit Type',
+    'unit_type'=>'Unit Type',
 
    'verify_account'=>'Verify Account',
     'Contact_Us'=>'Contact Us',
@@ -75,7 +75,33 @@ return [
     'Top_Brokers'=>'Top Brokers',
     'desc_lorm'=>' is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley ',
     'save'=>'Save',
-    'admin-panel'=>'admin-panel'
+    'admin-panel'=>'admin-panel',
+    'add-your-unit'=>'Add Your Units',
+    'last_unit'=>'LATEST 10 UNITS',
+    'details'=>'Details',
+    'add_unit'=>'Add Unit',
+    'unit_details'=>'Details of the unit',
+    'reating_site'=>'Site Rating',
+    'Public_Rating'=>'Public Rating',
+    'Unit_Images'=>'Unit Images',
+    'no_unit'=>'No Units',
+    'report_send'=>'We will reply you asap',
+    'close'=>'close',
+    'send_report'=>'You Can Send Report To Management',
+
+    'send'=>'Send',
+    'report'=>'Send a report',
+    'add_rating'=>'Add rating',
+    'add_rating_comment'=>'Rating This User By Write comment',
+    'load_more'=>'Load More',
+    'last_rating'=>'Latest Rating'
+
+
+
+
+
+
+
 
 
 

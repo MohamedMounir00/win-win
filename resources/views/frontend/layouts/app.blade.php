@@ -18,3 +18,6 @@
 <!-- Start Footer -->
 
 @include('frontend.partials.footer')
+</body>
+
+</html>

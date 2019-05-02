@@ -1,5 +1,7 @@
 <footer>
-
+@php
+    $users=  App\User::whereHas('realtor', function ($q) {})->take(10)->get();
+    @endphp
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-lg-8">
@@ -25,16 +27,14 @@
                             <div class="top-brokers">
                                 <h2> {{trans('frontend.Top_Brokers')}}</h2>
                                 <ul class="list-unstyled">
-                                    <li><img class="img-thumbnail" src="{{asset('frontend')}}/images/brokerr.jpg" alt=""></li>
-                                    <li><img class="img-thumbnail" src="{{asset('frontend')}}/images/broker2.jpg" alt=""></li>
-                                    <li><img class="img-thumbnail" src="{{asset('frontend')}}/images/brokerr.jpg" alt=""></li>
-                                    <li><img class="img-thumbnail" src="{{asset('frontend')}}/images/broker2.jpg" alt=""></li>
-                                    <li><img class="img-thumbnail" src="{{asset('frontend')}}/images/brokerr.jpg" alt=""></li>
-                                    <li><img class="img-thumbnail" src="{{asset('frontend')}}/images/broker2.jpg" alt=""></li>
-                                    <li><img class="img-thumbnail" src="{{asset('frontend')}}/images/brokerr.jpg" alt=""></li>
-                                    <li><img class="img-thumbnail" src="{{asset('frontend')}}/images/broker2.jpg" alt=""></li>
-                                    <li><img class="img-thumbnail" src="{{asset('frontend')}}/images/brokerr.jpg" alt=""></li>
-                                    <li><img class="img-thumbnail" src="{{asset('frontend')}}/images/brokerr.jpg" alt=""></li>
+                                    @foreach($users as $image)
+                                        @if($image->image==null)
+                                            <li><img class="img-thumbnail" src="https://www.mycustomer.com/sites/all/modules/custom/sm_pp_user_profile/img/default-user.png" alt=""></li>
+
+                                        @else
+                                         <li><img class="img-thumbnail" src="{{url($image->image)}}" alt=""></li>
+                                        @endif
+                                        @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -87,7 +87,18 @@
 <script src="{{asset('frontend')}}/js/plugin.js"></script>
 <script src="{{asset('frontend')}}/js/fakeLoader.min.js"></script>
 <script src="{{asset('frontend')}}/js/tilt.jquery.js"></script>
-@yield('scripts')
-</body>
+<script src="{{asset('frontend')}}/js/jquery.uploadfile.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-</html>
+<script src="{{asset('frontend')}}/js/lightbox.js"></script>
+<script type="text/javascript">
+    lightbox.option({
+        'resizeDuration': 200,
+        'wrapAround': true
+    })
+
+</script>
+@include('sweet::alert')
+
+@yield('scripts')
+
