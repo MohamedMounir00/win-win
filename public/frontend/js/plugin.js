@@ -10,18 +10,11 @@ $(document).ready(function () {
     $('.content').click(function () {
         $(this).addClass('active').siblings().removeClass('active');
     });
-    
-    // Nice Scroll 
-
-
-
     // Page Loading 
     $.fakeLoader({
         spinner : 'spinner3',
         bgColor : '#3787E0'
     });
-    
-
 
     
     

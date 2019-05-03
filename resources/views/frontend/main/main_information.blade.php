@@ -27,7 +27,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="{{asset('frontend')}}/css/fakeLoader.min.css">
-    <link rel="stylesheet" href="{{asset('frontend')}}/css/dropify.css">
+    <link href="https://cdn.jsdelivr.net/npm/dropify@0.2.2/dist/css/dropify.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="{{asset('frontend')}}/css/custom.css">
+
 </head>
 
 <body>
@@ -99,7 +101,7 @@
                                     <div class="row">
                                         <div class="col-xl-3 col-lg-3 col-sm-12">
                                             <div class="upload-image">
-                                                <input id="profileImage" type="file" name="image" class="dropify" data-max-width="1000" data-errors-position="outside" autocomplete="off">
+                                                <input id="profileImage" type="file" name="image" class="dropify"  data-errors-position="outside" autocomplete="off">
                                             </div>
                                         </div>
 
@@ -157,16 +159,19 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="{{asset('frontend')}}/js/fakeLoader.min.js"></script>
 <script src="{{asset('frontend')}}/js/plugin.js"></script>
-<script src="{{asset('frontend')}}/js/dropify.js"></script>
+</script><script src="https://cdn.jsdelivr.net/npm/dropify@0.2.2/dist/js/dropify.min.js"></script>
+
 <script>
 
     $('.dropify').dropify({
         tpl: {
-            message:         '<div class="dropify-message"><span class="file-icon" /></div>',
-            preview:         '<div class="dropify-preview"><span class="dropify-render"></span><div class="dropify-infos"><div class="dropify-infos-inner"><p class="dropify-infos-message">bb</p></div></div></div>',
-            filename:        '',
-            clearButton:     '',
-            errorLine:       '<p class="dropify-error"></p>',
+            wrap:            '<div class="dropify-wrapper"></div>',
+            loader:          '<div class="dropify-loader"></div>',
+            message:         '<div class="dropify-message"><span class="file-icon" /> <p>  {{trans("backend.upload_image")}}  </p></div>',
+            preview:         '<div class="dropify-preview"><span class="dropify-render"></span><div class="dropify-infos"><div class="dropify-infos-inner"><p class="dropify-infos-message">delete</p></div></div></div>',
+            filename:        '<p class="dropify-filename"><span class="file-icon"></span> <span class="dropify-filename-inner"></span></p>',
+            clearButton:     '<button type="button" class="dropify-clear">delete</button>',
+            errorLine:       '<p class="dropify-error"> error</p>',
             errorsContainer: '<div class="dropify-errors-container"><ul></ul></div>'
         }
     });

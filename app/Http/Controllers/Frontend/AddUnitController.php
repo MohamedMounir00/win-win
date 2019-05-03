@@ -12,6 +12,7 @@ use App\Unit;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Alert;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class AddUnitController extends Controller
 {
@@ -21,8 +22,8 @@ class AddUnitController extends Controller
     {
 
 
-       $this->middleware('active')->except('getInputByType', 'change_status');
-        $this->middleware('auth')->except('getInputByType', 'change_status');
+       $this->middleware('active')->except('getInputByType', 'change_status','get_all_units');
+        $this->middleware('auth')->except('getInputByType', 'change_status','get_all_units');
 
     }
 
@@ -36,9 +37,8 @@ class AddUnitController extends Controller
     }
 
     ///add unit
-    public function AddUnit(Request $request)
+    public function AddUnit(AddUnitRequest $request)
     {
-        //return$request->all();
 
         $unit = new Unit();
         $unit->title = $request->title;
@@ -60,7 +60,7 @@ class AddUnitController extends Controller
         if ($request->photos != null)
             $unit->storge()->sync($photos);
         if ($unit)
-            Alert::success(trans('backend.created'))->persistent("Close");
+            Alert::success(trans('backend.created'))->persistent(trans('frontend.close'));
 
         return redirect()->route('add-unit-page');
 
@@ -106,6 +106,7 @@ class AddUnitController extends Controller
     ///////get units by offset and user_id
     public function get_all_units(Request $request)
     {
+
         $offset=$request->offset_id;
         $user_id=$request->user_id;
 

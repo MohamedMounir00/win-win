@@ -24,6 +24,7 @@ class SearchController extends Controller
 
     public function search_view(Request $request)
     {
+
         $units=Unit::where('activation_admin','active')->where('title','LIKE','%'.$request->title.'%')->get();
         $city=City::all();
         $state=State::all();

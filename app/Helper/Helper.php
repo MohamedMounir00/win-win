@@ -8,6 +8,7 @@
 
 namespace App\Helper;
 
+use App\AppSetting;
 use App\Unit;
 use App\User;
 use Illuminate\Support\Facades\File;
@@ -65,6 +66,10 @@ public static function UpdateImage($request,$path,$input,$model)
  }
 
 
+    public  static  function get_setting($data)
+    {
+        return AppSetting::where('key',$data)->first();
+    }
 
 }
 

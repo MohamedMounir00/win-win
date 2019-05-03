@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\City;
+use App\Http\Requests\Frontend\AddUnitRequest;
 use App\State;
 use App\Type_estate;
 use App\Unit;
@@ -33,9 +34,8 @@ class MainUnitController extends Controller
     }
 
     ///add unit
-    public function AddUnit(Request $request)
+    public function AddUnit(AddUnitRequest $request)
     {
-        //return$request->all();
 
         $unit = new Unit();
         $unit->title = $request->title;
@@ -57,7 +57,7 @@ class MainUnitController extends Controller
         if ($request->photos != null)
             $unit->storge()->sync($photos);
         if ($unit)
-            Alert::success(trans('backend.created'))->persistent("Close");
+            Alert::success(trans('backend.created'))->persistent(trans('frontend.close'));
 
         return redirect()->route('get_data_view');
 

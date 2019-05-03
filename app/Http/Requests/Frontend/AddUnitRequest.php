@@ -26,11 +26,12 @@ class AddUnitRequest extends FormRequest
     public function rules(Request $request)
     {
         $type=Type_estate::find($request->type_id);
-        $questions= $type->questions;
-        foreach ($questions as $value)
-        return [
-            //
-            $value->name='required'
-        ];
+$data=[];
+        foreach ($type->questions as $value)
+        {
+            $data[$value->key]='required';
+
+        }
+return $data;
     }
 }

@@ -115,7 +115,13 @@ return[
     'unseen'=>'Un Seen',
     'seen'=>'seen',
     'report'=>'Message',
-    'get_report'=>'message'
+    'get_report'=>'message',
+    'facebook'=>'facebook',
+    'google'=>'google',
+    'twitter'=>'twitter',
+    'insta'=>'insta',
+    'desc_web_ar'=>'dedcription home ar',
+    'desc_web_en'=>'description home en',
 
 
 

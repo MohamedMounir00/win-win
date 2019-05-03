@@ -17,26 +17,32 @@ class MainProfileController extends Controller
     {
 
 
-      //  $this->middleware('active')->except('getInputByType', 'change_status');
-        $this->middleware('auth');
+        $this->middleware('NotActive')->except('get_all_comment');
+        $this->middleware('auth')->except('get_all_comment');
 
     }
 
 
     public function profile($id)
     {
-        $ratingcount = Rating::where('realtor_id', $id)->where('user_id', auth()->user()->id)->where('type', 'user')->count();
-        $ratingme = Rating::where('realtor_id', $id)->where('user_id', auth()->user()->id)->where('type', 'user')->first();
-
-        $rating = Rating::where('realtor_id', $id)->where('type', 'admin')->get();
-        $rating_time = floatval($rating->avg('rating_stars'));
-        $rating2 = Rating::where('realtor_id', $id)->where('type', 'user')->get();
-        $rating_time_user = floatval($rating2->avg('rating_stars'));
         $user = User::findOrFail($id);
-        $units = Unit::where('user_id', $id)->where('activation_admin', 'active')->where('activation_user', 'active')->get();
-        $rating_10= Rating::where('realtor_id', $id)->where('type', 'user')->take(10)->get();
+       if ($user->realtor)
+       {
+           $ratingcount = Rating::where('realtor_id', $id)->where('user_id', auth()->user()->id)->where('type', 'user')->count();
+           $ratingme = Rating::where('realtor_id', $id)->where('user_id', auth()->user()->id)->where('type', 'user')->first();
 
-        return view('frontend.pages.profile', compact('user', 'units', 'rating_time', 'rating_time_user', 'rating2', 'ratingcount', 'ratingme','rating_10'));
+           $rating = Rating::where('realtor_id', $id)->where('type', 'admin')->get();
+           $rating_time = floatval($rating->avg('rating_stars'));
+           $rating2 = Rating::where('realtor_id', $id)->where('type', 'user')->get();
+           $rating_time_user = floatval($rating2->avg('rating_stars'));
+           $units = Unit::where('user_id', $id)->where('activation_admin', 'active')->where('activation_user', 'active')->get();
+           $rating_10= Rating::where('realtor_id', $id)->where('type', 'user')->take(10)->get();
+
+           return view('frontend.pages.profile', compact('user', 'units', 'rating_time', 'rating_time_user', 'rating2', 'ratingcount', 'ratingme','rating_10'));
+       }
+       else
+           return redirect()->route('home');
+
     }
 
 
@@ -79,5 +85,15 @@ class MainProfileController extends Controller
 
         $comment= Rating::where('realtor_id',$user_id)->where('type', 'user')->skip($offset)->take(10)->get();
         return response()->json(['data'=>$comment]);
+    }
+
+    public function get_all_comment_view($id)
+    {
+        $rating = Rating::where('realtor_id', $id)->where('type', 'admin')->get();
+        $rating_time = floatval($rating->avg('rating_stars'));
+        $rating2 = Rating::where('realtor_id', $id)->where('type', 'user')->get();
+        $rating_time_user = floatval($rating2->avg('rating_stars'));
+        $user = User::findOrFail($id);
+        return view('frontend.pages.all_comment',compact('id','user', 'rating_time', 'rating_time_user'));
     }
 }

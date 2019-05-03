@@ -7,6 +7,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class UnitCollection extends JsonResource
 {
+
     /**
      * Transform the resource collection into an array.
      *
@@ -15,7 +16,8 @@ class UnitCollection extends JsonResource
      */
     public function toArray($request)
     {
-        $lang = LaravelLocalization::getCurrentLocale();
+        $lang = isset($request->lang)?$request->lang:'ar';
+
         if ($this->finishing=='without')
             $finishing=trans('backend.without');
         elseif ($this->finishing=='yes')
@@ -47,7 +49,7 @@ class UnitCollection extends JsonResource
             'title'=>$this->title,
             'desc'=>$this->desc,
             'username'=>$this->realtor->name,
-            'userimage'=>isset($this->realtor->image)?url($this->realtor->image):'',
+            'userimage'=>($this->realtor->image!='')?url($this->realtor->image):null,
             'phone'=>$this->realtor->phone,
             'type'=>unserialize($this->unit_type->name)[$lang],
             'rooms'=>$this->rooms,
@@ -65,7 +67,7 @@ class UnitCollection extends JsonResource
             'url'=>route('details',$this->id),
             'storge'=>StorgeCollection::collection($this->storge),
             'activation'=>$this->activation_user,
-
+          'lang'=>$lang
         ];
     }
 }

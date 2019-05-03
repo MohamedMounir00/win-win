@@ -1,12 +1,20 @@
 @extends('frontend.layouts.app')
 
 @section('content')
+    @php
 
+        $lang = LaravelLocalization::getCurrentLocale();
+
+    @endphp
     <section class="intro text-center">
         <div class="container">
             <h1>Win Win</h1>
             <p class="lead">
-                {{trans('frontend.desc_home1')}} . <br> {{trans('frontend.desc_home2')}}
+                @if($lang=='ar')
+                    {{\App\Helper\Helper::get_setting('desc_web_ar')->value}}
+                @else
+                    {{\App\Helper\Helper::get_setting('desc_web_en')->value}}
+                @endif
             </p>
             {!! Form::open(['route'=>['search-form'],'method'=>'POST','class'=>'form-inline','novalidate','files'=>true]) !!}
 

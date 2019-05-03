@@ -32,6 +32,7 @@
                                 @endif
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{route('get_profile_view',auth()->user()->id)}}">{{trans('frontend.profile')}}</a>
 
 
                                 <a class="dropdown-item" href="{{ route('logout') }}"

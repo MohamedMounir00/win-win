@@ -94,7 +94,12 @@ return [
     'add_rating'=>'Add rating',
     'add_rating_comment'=>'Rating This User By Write comment',
     'load_more'=>'Load More',
-    'last_rating'=>'Latest Rating'
+    'last_rating'=>'Latest Rating',
+    'no_rating'=>'No Rating',
+    'profile'=>' My profile',
+    'validate_image'=>'image Required'
+
+
 
 
 

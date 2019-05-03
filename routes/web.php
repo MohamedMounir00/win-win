@@ -39,6 +39,7 @@ Route::group([
 
     Route::get('/get_profile_view/{id}', 'Frontend\MainProfileController@profile')->name('get_profile_view');
     Route::post('/add_report', 'Frontend\MainProfileController@add_report')->name('add_report');
+    Route::get('/get_all_comment_view/{id}', 'Frontend\MainProfileController@get_all_comment_view')->name('get_all_comment_view');
 /////////////////////////////for outside main
     Route::get('/add-unit-page', 'Frontend\AddUnitController@get_unit_view')->name('add-unit-page');
     Route::post('add-unit', 'Frontend\AddUnitController@AddUnit')->name('add-unit');

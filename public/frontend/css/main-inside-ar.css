@@ -1084,3 +1084,23 @@ body {
   color: #545871;
 }
 /*# sourceMappingURL=main-inside-ar.css.map */
+@media (max-width: 575.98px) { 
+  .main-info .info form .upload-image {
+    margin-right: 0;
+    margin-top: 40px;
+  }
+  
+  .dropify-wrapper {
+    min-height: 60px !important;
+    width: 175px;
+  }
+ }
+
+.main-info .info form .upload-image {
+  margin-right: 0;
+  margin-top: 40px;
+}
+
+.dropify-wrapper {
+  height: 60px !important;
+}

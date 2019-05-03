@@ -13,6 +13,20 @@
 
     <div class="add-new-unit">
         <div class="container">
+            @if(isset($errors) > 0)
+                @if(Session::has('errors'))
+
+                    <div class="alert alert-danger " >
+                        <ul >
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+            @endif
             <div class="row no-gutters">
                 <div class="col-xl-3 col-lg-4 col-md-12">
                     <span>{{trans('frontend.last_unit')}}</span>
@@ -67,7 +81,7 @@
                                 <div class="col-xl-6 col-lg-12 col-sm-12">
                                     <div class="upload-image">
                                         <i id="profileImage" class="fa fa-camera" aria-hidden="true"></i>
-                                        <input id="imageUpload" type="file" name="image" placeholder="Photo" required="" capture>
+                                        <input id="imageUpload" type="file" name="image" placeholder="Photo"  capture>
                                         <p>{{trans('frontend.upload_image_unit')}}<span> {{trans('frontend.upload_max')}}</span></p>
                                     </div>
                                 </div>
@@ -88,7 +102,7 @@
                                     <div class="form-group transition">
                                         <label> {{trans('frontend.Select_Type')}} </label>
                                         <select  name="type_id" class="form-control " required>
-                                            <option disabled selected>Please Select Type</option>
+                                            <option  value="" disabled selected>Please Select Type</option>
 
                                             @foreach($type as $t)
                                                 <option value="{{$t->id}}">{{unserialize($t->name)[$lang]}}</option>
@@ -279,6 +293,9 @@
 
     <script>
         $(document).ready(function() {
+          
+
+        
             hideAllInputs();
             var max_photos = 8;
             var current_photos = 0;
@@ -291,7 +308,13 @@
             });
 
             var photosArray = [];
-            $("#form").submit( function(eventObj) {
+            $("#form").submit( function(e) {
+                if (current_photos == 0) {
+                    swal("{{trans('frontend.validate_image')}}");;
+                    e.preventDefault(e);
+                }
+                
+
                 $('<input />').attr('type', 'hidden')
                     .attr('name', "photos")
                     .attr('value', photosArray)
@@ -303,7 +326,7 @@
 
 
                 if (current_photos >= max_photos) {
-                    return alert('test');
+                    return swal("You can add up to 8 photos.");;
                 }
 
                 var form_data = new FormData();
@@ -317,14 +340,17 @@
                     contentType: false,
                     processData: false,
                     success: function (data) {
+                        if (current_photos >= max_photos) {
+                            return swal("You can add up to 8 photos.");;
+                        }
                         photosArray.push(data.id);
                         imageContainer.fadeIn("slow");
-                        $('.show-images').append('<img class="img-fluid img-thumbnail" src="'+'{{asset('/')}}'+data.url+'" alt="">');
+                        $('.show-images').append('<a  href="{{url('')}}/'+data.url+'" data-lightbox="image-1"><img class="img-fluid img-thumbnail" src="{{url('')}}/'+data.url+'" alt=""></a>');
                         current_photos++;
                     },
                     error: function(data) {
                         var errors = $.parseJSON(data.responseText);
-                        alert(errors.errors.image)
+                     swal('' + errors.errors.image);
 
                     }
                 });

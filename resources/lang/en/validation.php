@@ -173,6 +173,13 @@ return [
         'name.en'=>'Name Of English',
                 'address'=>'address',
         'bio'=>'bio',
+        'rooms'=>' rooms',
+        'floor'=>'floor',
+        'bathroom'=>'bathroom',
+        'area'=>'area ',
+        'status'=>'status',
+        'finishing'=>'finishing',
+        'payment_method'=>'payment_method',
     ],
 
 

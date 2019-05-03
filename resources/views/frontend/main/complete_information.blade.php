@@ -12,12 +12,11 @@
 
 
     @if($lang=='ar')
-     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css" integrity="sha384-vus3nQHTD+5mpDiZ4rkEPlnkcyTP+49BhJ4wJeJunw06ZAp+wzzeBPUXr42fi8If" crossorigin="anonymous">    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="{{asset('frontend')}}/css/main-inside-ar.css">
-
     @else
-     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="{{asset('frontend')}}/css/main-inside-en.css">
 
@@ -26,6 +25,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="{{asset('frontend')}}/css/fakeLoader.min.css">
     <link rel="stylesheet" href="{{asset('frontend')}}/css/dropify.css">
+        <link rel="stylesheet" href="{{asset('frontend')}}/css/custom.css">
 </head>
 <body>
 
@@ -95,7 +95,7 @@
                             <div class="col-lg-12 col-md-12">
                                 <div class="form-group">
                                     <label> {{trans('frontend.Company_Bio')}}</label>
-                                    <textarea class="form-control {{ $errors->has('bio') ? ' is-invalid' : '' }}" name="bio" value="{{ old('bio') }}" ></textarea>
+                                    <textarea class="form-control {{ $errors->has('bio') ? ' is-invalid' : '' }}" name="bio" value="{{ old('bio') }}"  maxlength="200"></textarea>
                                     @if ($errors->has('bio'))
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('bio') }}</strong>

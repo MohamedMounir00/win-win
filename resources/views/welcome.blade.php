@@ -120,9 +120,9 @@
         @if(!Auth::check())
         <a style="font-weight: bold;width: 190px;margin: auto;"  href="{{route('register')}}" class="my-btn btn btn-primary btn-block" >{{trans('frontend.register')}}</a>
             @elseif( Auth::check()&& auth()->user()->register=='first_step')
-            <a  href="{{route('complete-information-page')}}" class="my-btn btn btn-primary btn-block" >{{trans('frontend.complete-information')}}</a>
+            <a  href="{{route('complete-information-page')}}" class="my-btn btn btn-primary" >{{trans('frontend.complete-information')}}</a>
 @else
-            <a  href="{{route('add-unit-page')}}" class="my-btn btn btn-primary btn-block" >{{trans('frontend.add-unit')}}</a>
+            <a  href="{{route('add-unit-page')}}" class="my-btn btn btn-primary" >{{trans('frontend.add-unit')}}</a>
 
         @endif
     </div>

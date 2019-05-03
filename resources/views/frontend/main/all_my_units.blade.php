@@ -29,6 +29,8 @@
     <link rel="stylesheet" href="{{asset('frontend')}}/css/fakeLoader.min.css">
     <link rel="stylesheet" href="{{asset('frontend')}}/css/dropify.css">
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('frontend')}}/css/custom.css">
+
 </head>
 <!-- Page Loading -->
 <div class="fakeLoader"></div>
@@ -391,7 +393,11 @@
                 unit_id = value.id;
                 $("#unit_title").text(value.title);
                 $("#unit_type").html('<i class="fa fa-cog" aria-hidden="true"></i> '+value.type);
+                if (value.userimage!=null)
                 $(".user-img img").attr('src', value.userimage);
+                else
+                    $(".user-img img").attr('src', 'https://www.mycustomer.com/sites/all/modules/custom/sm_pp_user_profile/img/default-user.png');
+
                 $("#phone").html(value.phone);
                 $("#username").html(value.username);
                 $("#desc").text(value.desc);

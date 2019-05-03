@@ -91,9 +91,12 @@ return [
     'send'=>'ارسال',
     'report'=>'ارسل تقرير',
     'add_rating'=>'اضف تقيم',
-    'add_rating_comment'=>'اشف تقيم وتعليق',
+    'add_rating_comment'=>'اضف تقيم وتعليق',
     'load_more'=>'تحميل المزيد',
-    'last_rating'=>'أحدث تقييم'
+    'last_rating'=>'أحدث تقييم',
+    'no_rating'=>'لا يوجد تقيمات بعد',
+    'profile'=>'الصفحه الشخصيه',
+    'validate_image'=>'يجب رفع صوره للوحده'
 
 
 

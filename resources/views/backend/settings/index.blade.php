@@ -51,16 +51,35 @@
                                         {{trans('backend.about_us_en')}}
                                 @elseif($setting->key=='contact_us')
                                         {{trans('backend.contact_us')}}
-
+                                    @elseif($setting->key=='facebook')
+                                        {{trans('backend.facebook')}}
+                                    @elseif($setting->key=='google')
+                                        {{trans('backend.google')}}
+                                    @elseif($setting->key=='twitter')
+                                        {{trans('backend.twitter')}}
+                                    @elseif($setting->key=='insta')
+                                        {{trans('backend.insta')}}
+                                    @elseif($setting->key=='desc_web_en')
+                                        {{trans('backend.desc_web_en')}}
+                                    @elseif($setting->key=='desc_web_ar')
+                                        {{trans('backend.desc_web_ar')}}
                                 @endif
                                 </div>
                             </th>
                             <td>
+                                @if($setting->key=='about_us_ar'||$setting->key=='about_us_en'||$setting->key=='contact_us'||$setting->key=='desc_web_ar'||$setting->key=='desc_web_en')
                                 <div class="col-md-6 col-sm-6 col-xs-12">
 
                                         <textarea name="{{ $setting->key }}" class="form-control form-control-line" rows="5" required >{{ $setting->value  }}</textarea>
 
                                 </div>
+                                    @else
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                        <input name="{{ $setting->key }}" class="form-control form-control-line"  required value="{{ $setting->value  }}" >
+
+                                    </div>
+                                @endif
                             </td>
                         </tr>
 

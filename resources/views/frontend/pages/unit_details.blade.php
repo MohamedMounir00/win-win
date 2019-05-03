@@ -88,6 +88,19 @@
                     <div class="container">
 
                         <div class="latest-units">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6">
+                                      <p class="unit-intro">{{$unit->title}}</p>
+                                </div>
+
+                                <div class="col-md-6">
+                                      <p class="unit-intro"> {{unserialize($unit->unit_type->name)[$lang]}}</p>
+                                </div>
+                            </div>
+                            </div>
+                            <hr>
+
                         @if($unit->storge->count() > 0)
                            <div class="container">
                                 <h2>{{trans('frontend.Unit_Images')}}</h2>
@@ -101,8 +114,8 @@
                                             
                                         <div class="show-images">
                                             @foreach($unit->storge as $item)
-                                                <img class="img-fluid img-thumbnail" src="{{url($item->url)}}"
-                                                    alt="">
+                                                <a  href="{{url($item->url)}}" data-lightbox="image-1"><img class="img-fluid img-thumbnail" src="{{url($item->url)}}"
+                                                    alt=""></a>
                                             @endforeach
 
                                 </div>
@@ -119,7 +132,6 @@
 
                             <div class="container">
                                 <h2>{{trans('frontend.unit_details')}}</h2>
-
                             </div>
                            <!-- Statistcs -->
                             <div class="statistics text-center">

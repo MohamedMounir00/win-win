@@ -1528,7 +1528,7 @@ body {
   .user-profile .contact-info {
     text-align: center; } }
 .user-profile .contact-info span {
-  color: #D3D3D3;
+  color: #c8c6c6 !important;
   display: inline-block;
   margin-bottom: 10px; }
 .user-profile .contact-info ul li {
@@ -1760,7 +1760,8 @@ body {
   box-shadow: 0px 3px 13px #ddd; }
 .user-profile .user-rating-box .stars button:active, .user-profile .user-rating-box .stars button:focus {
   background-color: #3787E0 !important;
-  border: 1px solid #3787E0 !important; }
+  border: 1px solid #3787E0 !important; 
+color:#FFF;}
 .user-profile .user-rating-box .stars small {
   color: #9597A6;
   letter-spacing: 1px; }
@@ -1779,7 +1780,7 @@ body {
     text-align: center; } }
 .user-profile .box-show-comments .fa {
   margin-right: 5px;
-  color: #545871; }
+  color: #3787E0; }
 .user-profile .box-show-comments .one, .user-profile .box-show-comments .two, .user-profile .box-show-comments .three {
   color: #3787E0; }
 .user-profile .box-show-comments p {
@@ -2936,7 +2937,33 @@ footer .copr-right .title, footer .copr-right .copyRight {
   font-size: 18px;
   margin-bottom: 0;
   letter-spacing: 1px;
-  font-weight: 400; }
+  position: relative;
+  font-weight: 700; }
+  .display-page .latest-units h2:after {
+    position: absolute;
+    content: '';
+    top: 30px;
+    right: 0px;
+    width: 60px;
+    height: 2px;
+    background-color: #545871;
+  }
+  @media (max-width: 575.98px) { 
+    .display-page .latest-units h2:after {
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+   }
+
+@media (min-width: 576px) and (max-width: 767.98px) { 
+  .display-page .latest-units h2:after {
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+ }
+
 .display-page .latest-units .units-galary .show-images {
   border: 1px solid rgb(172, 189, 207);
   margin-top: 30px;
@@ -3026,3 +3053,38 @@ footer .copr-right .title, footer .copr-right .copyRight {
   color: #9597A6;
   padding-bottom: 20px;
 }
+
+.latest-units .rating-stars .fa {
+  margin-left: 5px;
+  color: #3787E0;
+  margin-bottom: 15px;
+ }
+
+  .latest-units .one {
+    color: #3787E0;
+}
+.latest-units .rating-comment p {
+  margin-bottom: 0;
+  color: #7A7A7A;
+  font-size: 14px; }
+
+.bttn {
+  display: block;
+  margin: 0 auto; }
+
+  .mysmall {
+    float: right;
+    margin-top: 10px;
+  }
+
+  .reportParagraph {
+    text-align: right !important;
+  }
+
+.unit-intro { 
+  margin-bottom: 0 !important;
+  font-weight: 500;
+  font-size: 14px;
+  color: #545871;
+}
+

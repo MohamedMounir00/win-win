@@ -26,6 +26,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="{{asset('frontend')}}/css/fakeLoader.min.css">
     <link rel="stylesheet" href="{{asset('frontend')}}/css/dropify.css">
+        <link rel="stylesheet" href="{{asset('frontend')}}/css/custom.css">
+
 </head>
 
 <!-- PAge Loading -->

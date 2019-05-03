@@ -28,6 +28,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="{{asset('frontend')}}/css/fakeLoader.min.css">
     <link rel="stylesheet" href="{{asset('frontend')}}/css/dropify.css">
+
     <style>
         .transition {
             -webkit-transition: all 3s ease-in-out;
@@ -35,10 +36,42 @@
             -o-transition: all 3s ease-in-out;
             transition: all 3s ease-in-out;
         }
+         /* Start by setting display:none to make this hidden.
+           Then we position it in relation to the viewport window
+           with position:fixed. Width, height, top and left speak
+           for themselves. Background we set to 80% white with
+           our animation centered, and no-repeating */
+        .modal {
+            display:    none;
+            position:   fixed;
+            z-index:    1000;
+            top:        0;
+            left:       0;
+            height:     100%;
+            width:      100%;
+            background: rgba( 255, 255, 255, .8 ) 
+                        url('{{asset('frontend/images/loading.gif')}}') 
+                        50% 50% 
+                        no-repeat;
+        }
+
+        /* When the body has the loading class, we turn
+           the scrollbar off with overflow:hidden */
+        body.loading .modal {
+            overflow: hidden;   
+        }
+
+        /* Anytime the body has the loading class, our
+           modal element will be visible */
+        body.loading .modal {
+            display: block;
+        }
     </style>
+
 </head>
 
 <body>
+
 <!-- Page Loading -->
 <div class="fakeLoader"></div>
 
@@ -51,6 +84,20 @@
             <div class="col-xl-9 col-lg-8 col-md-7">
                 <div class="info">
                     <div class="container">
+                        @if(isset($errors) > 0)
+                            @if(Session::has('errors'))
+
+                                <div class="alert alert-danger " >
+                                    <ul >
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                        @endif
                         <div class="section-head">
                             <h2>{{trans('frontend.Add_Your_Units')}}</h2>
                             <p> {{trans('frontend.You_must_add_more')}}</p>
@@ -62,7 +109,7 @@
                                 <div class="col-xl-6 col-lg-12 col-sm-12">
                                     <div class="upload-image">
                                         <i id="profileImage" class="fa fa-camera" aria-hidden="true"></i>
-                                        <input id="imageUpload" type="file" name="image" placeholder="Photo" required="" capture>
+                                        <input id="imageUpload" type="file" name="image" placeholder="Photo" capture>
                                         <p>{{trans('frontend.upload_image_unit')}}<span> {{trans('frontend.upload_max')}}</span></p>
                                     </div>
                                 </div>
@@ -84,7 +131,7 @@
                                 </div>
 
                                 <!--Select Type -->
-                                <div class="col-sm-12">
+                                <div class="col-sm-6">
                                     <div class="form-group transition">
                                         <label> {{trans('frontend.Select_Type')}} </label>
                                         <select  name="type_id" class="form-control " required>
@@ -265,6 +312,8 @@
     </div>
 
 </section>
+<div class="modal"><!-- Place at bottom of page --></div>
+
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -273,7 +322,15 @@
 
 
 <script>
+    $body = $("body");
+
+        $(document).on({
+            ajaxStart: function() { $body.addClass("loading");    },
+             ajaxStop: function() { $body.removeClass("loading"); }    
+        });
     $(document).ready(function() {
+        
+
         hideAllInputs();
         var max_photos = 8;
         var current_photos = 0;
@@ -286,7 +343,12 @@
         });
 
         var photosArray = [];
-        $("#form").submit( function(eventObj) {
+        $("#form").submit( function(e) {
+            if (current_photos == 0) {
+                swal("{{trans('frontend.validate_image')}}");;
+                e.preventDefault(e);
+            }
+
             $('<input />').attr('type', 'hidden')
                 .attr('name', "photos")
                 .attr('value', photosArray)
@@ -298,7 +360,7 @@
 
 
             if (current_photos >= max_photos) {
-                 return alert('test');
+                 return swal("You can add up to 8 photos.");;
             }
 
             var form_data = new FormData();
@@ -312,15 +374,17 @@
                 contentType: false,
                 processData: false,
                 success: function (data) {
+                    if (current_photos >= max_photos) {
+                        return swal("You can add up to 8 photos.");
+                    }
                     photosArray.push(data.id);
                     imageContainer.fadeIn("slow");
-                    $('.show-images').append('<img class="img-fluid img-thumbnail" src="'+'{{asset('/')}}'+data.url+'" alt="">');
+                    $('.show-images').append('<a  href="{{url('')}}/'+data.url+'" data-lightbox="image-1"><img class="img-fluid img-thumbnail" src="{{url('')}}/'+data.url+'" alt=""></a>');
                     current_photos++;
                 },
                 error: function(data) {
                     var errors = $.parseJSON(data.responseText);
-                    alert(errors.errors.image)
-
+                    swal('' + errors.errors.image);
                 }
             });
         }

@@ -184,33 +184,35 @@
 
 <!-- Start Dealing Section -->
 
-<section class="homepage-deal">
-    <div class="container">
-        <div class="row text-center justify-content-md-center">
+    <section class="homepage-deal">
+        <div class="container">
+            <div class="row text-center justify-content-md-center">
 
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <a href="#" class="main">
-                    <div data-tilt class="deal-section">
-                        <i class="sell-i fa fa-hand-paper-o"></i>
-                        <h3>Sell</h3>
-                        <p>We`ll Stop by to sunggle, feed, any play with your pets in the comfort of their own home</p>
-                    </div>
-                </a>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <a href="#" class="main">
+                        <div data-tilt class="deal-section">
+                            <i class="sell-i fa fa-hand-paper-o"></i>
+                            <h3> {{trans('frontend.Buy')}}</h3>
+
+                            <p>{{trans('frontend.desc_lorm')}}</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <a href="#" class="main">
+                        <div data-tilt class="deal-section">
+                            <i class="fa fa-home"></i>
+                            <h3> {{trans('frontend.Rent')}}</h3>
+                            <p>{{trans('frontend.desc_lorm')}}</p>
+                        </div>
+                    </a>
+                </div>
+
             </div>
-
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <a href="#" class="main">
-                    <div data-tilt class="deal-section">
-                        <i class="fa fa-home"></i>
-                        <h3>Rent</h3>
-                        <p class="lead">We`ll Stop by to sunggle, feed, any play with your pets in the comfort of their own home</p>
-                    </div>
-                </a>
-            </div>
-
         </div>
-    </div>
-</section>
+    </section>
+
 @endsection
 
 @section('scripts')
@@ -242,7 +244,8 @@
 
 
         function goSearch() {
-            searchEngine($("#search").value,
+            searchEngine(
+                $("input[id=search]").val(),
                 $("input[name=legend]:checked").val(),
                 $("input[name=finishing]:checked").val(),
                 $('select[name=city]').val(),
@@ -258,7 +261,7 @@
 
             );
         }
-        function searchEngine(string, legend = "",finishing = "", city = "", state = "", bedrooms_from = "",
+        function searchEngine(string="", legend = "",finishing = "", city = "", state = "", bedrooms_from = "",
                               bedrooms_to = "",  floor_from = "", floor_to = "", area_from = "",
                               area_to = "", price_from = "", price_to = "") {
             $.ajax({

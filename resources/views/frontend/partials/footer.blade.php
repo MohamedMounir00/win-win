@@ -1,6 +1,8 @@
 <footer>
 @php
     $users=  App\User::whereHas('realtor', function ($q) {})->take(10)->get();
+    $lang = LaravelLocalization::getCurrentLocale();
+
     @endphp
     <div class="container">
         <div class="row">
@@ -12,15 +14,20 @@
 
                             <h2>{{trans('frontend.About_Us')}}</h2>
                             <div class="about-para">
-                              {{trans('frontend.desc_lorm')}}
+                              @if($lang=='ar')
+                                  {{\App\Helper\Helper::get_setting('about_us_ar')->value}}
+                                  @else
+                                    {{\App\Helper\Helper::get_setting('about_us_en')->value}}
+                                @endif
+
                             </div>
                             <div class="social-media">
                                 <h2>{{trans('frontend.Slocial_Media')}}</h2>
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-google-plus"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                
+                                <a href=" {{\App\Helper\Helper::get_setting('facebook')->value}}"><i class="fa fa-facebook"></i></a>
+                                <a href="{{\App\Helper\Helper::get_setting('google')->value}}"><i class="fa fa-google"></i></a>
+                                <a href="{{\App\Helper\Helper::get_setting('insta')->value}}"><i class="fa fa-instagram"></i></a>
+                                <a href="{{\App\Helper\Helper::get_setting('twitter')->value}}"><i class="fa fa-twitter"></i></a>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -79,6 +86,7 @@
 
 <!-- End Footer -->
 
+<div class="modal"><!-- Place at bottom of page --></div>
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js">
 </script>
@@ -86,12 +94,28 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="{{asset('frontend')}}/js/plugin.js"></script>
 <script src="{{asset('frontend')}}/js/fakeLoader.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        // Page Loading 
+        $.fakeLoader({
+            spinner : 'spinner3',
+            bgColor : '#3787E0'
+        });
+    });
+</script>
 <script src="{{asset('frontend')}}/js/tilt.jquery.js"></script>
 <script src="{{asset('frontend')}}/js/jquery.uploadfile.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script src="{{asset('frontend')}}/js/lightbox.js"></script>
 <script type="text/javascript">
+    $body = $("body");
+
+    $(document).on({
+        ajaxStart: function() { $body.addClass("loading");    },
+         ajaxStop: function() { $body.removeClass("loading"); }    
+    });
+        
     lightbox.option({
         'resizeDuration': 200,
         'wrapAround': true

@@ -3,7 +3,7 @@
         <div class="tolpit">
                 <div class="container">
                         <div class="logo">
-                                <img class="img-fluid" src="{{asset('frontend')}}/images/logo2.png" alt="">
+                                <a href="{{url('/')}}"><img class="img-fluid" src="{{asset('frontend')}}/images/logo2.png" alt=""></a>
                         </div>
 
 
