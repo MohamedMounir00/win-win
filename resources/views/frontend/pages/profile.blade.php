@@ -588,7 +588,7 @@ $(document).ready(function () {
 '	          </g>'+
 '          </svg>'+
 '        </i>'+
-'        <span>+{{trans('frontend.details')}}+</span>'+
+'        <span>{{trans('frontend.details')}}</span>'+
 '      </a>'+
 '      <div class="contentt">'+
 '            <div class="container">'+
