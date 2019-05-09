@@ -16,10 +16,10 @@ class UploadController extends Controller
 
     public function upload(Request $request){
         $image = $request->file('image');
-        $slug= "bgh-dsd";
+       // $slug= "bgh-dsd";
         $key=time() . rand(99999, 999999999);
-        $fileName = "img-".$slug."-".$key. "." . strtolower($image->getClientOriginalExtension());
-        $destinationPath = 'uploads/units';
+        $fileName = $key. "." . strtolower($image->getClientOriginalExtension());
+        $destinationPath = '/uploads/units';
 
 
 
