@@ -123,8 +123,10 @@
                                 <div class="col-sm-12">
                                     <div class="show-images transition">
                                         @foreach($unit->storge as $item)
-                                            <a  href="{{url($item->url)}}" data-lightbox="image-1"><img class="img-fluid img-thumbnail" src="{{url($item->url)}}"
-                                                                                                        alt=""></a>
+                                            <div class="col-sm-3">
+                                                <a  href="{{url($item->url)}}" data-lightbox="image-1"><img class="img-fluid img-thumbnail boxImg" src="{{url($item->url)}}" alt=""></a>
+                                                <button id="remove_photo" class="btn btn-danger" image-id="{{$item->id}}"><i class="fa fa-close"></i></button>
+                                            </div>
                                         @endforeach
                                     </div>
                                 </div>
@@ -329,11 +331,14 @@
     $(document).ready(function() {
         
 
+            
         hideAllInputs();
         var max_photos = 8;
         var current_photos = 0;
         var imageContainer = $('.show-images');
+
         getInputsByType($('select[name=type_id]').val())
+
         $('select[name=type_id]').change(function () {
             console.log("hgjg")
             getInputsByType($('select[name=type_id]').val())
@@ -373,7 +378,7 @@
                     }
                     photosArray.push(data.id);
                     imageContainer.fadeIn("slow");
-                    $('.show-images').append('<a  href="{{url('')}}/'+data.url+'" data-lightbox="image-1"><img class="img-fluid img-thumbnail" src="{{url('')}}/'+data.url+'" alt=""></a>');
+                    $('.show-images').children().append('<div class="col-sm-3"><a  href="{{url('')}}/'+data.url+'" data-lightbox="image-1"><img class="img-fluid img-thumbnail" src="{{url('')}}/'+data.url+'" alt=""><button id="remove_photo" class="btn btn-danger" image-id="'+data.id+'"><i class="fa fa-close"></i></button></a></div>');
                     current_photos++;
                 },
                 error: function(data) {
@@ -392,7 +397,6 @@
                 processData: false,
                 success: function (data) {
                     console.log(data)
-
 
                     $.each( data.questions, function( key, value ) {
                         $('.' + value.name).css("display", "block");

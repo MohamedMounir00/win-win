@@ -35,6 +35,11 @@ body.loading .modal {
   } 
 }
 
+.add-new-unit .add-new-info form .show-images .row {
+  width: 100%
+}
+
+
 /* override unit card style */
 .food {
   min-height: 280px !important;
@@ -48,7 +53,31 @@ body.loading .modal {
 
 .food > .info > .recipe > i {
   margin: 25px 0 15px !important;
+  font-size: 30px;
 }
+
+.download.available-button {
+    text-align: center;
+    color: #fff;
+    line-height: 11px;
+    font-size: 25px;
+    padding-top: 10px;
+}
+
+.download.available-button.active {
+  background: #c0392b;
+}
+.download.available-button.active:hover {
+  background: #e74c3c;
+}
+
+.download.available-button.not_active {
+  background: #27ae60;
+}
+.download.available-button.not_active:hover {
+  background: #2ecc71;
+}
+
 
 
 /* override chat inputs */
@@ -60,6 +89,20 @@ body.loading .modal {
 
 .right-section-bottom input {
   width: calc(100% - 86px) !important;
+}
+
+.no-conversations {
+  width: 99%!important;
+  text-align: center;
+}
+
+.no-conversations img {
+  width: 30%!important;
+}
+
+.no-conversations p {
+  font-weight: bold !important;
+
 }
 
 /* override  chat page */

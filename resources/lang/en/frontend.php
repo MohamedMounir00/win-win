@@ -30,7 +30,7 @@ return [
     'complete'=>'Complete Information',
     'right_way'=>'You are in the right way',
     'Add_Your_Units'=>'Add Your Units',
-    'You_must_add_more'=>'You must add more than 20 unit for activation',
+    'You_must_add_more'=>'You must add more than 10 unit for activation',
     'upload_image_unit'=>'Upload Image',
     'upload_max'=>'Max 8 photos of unit',
     'show_All_Unit'=>'Show All Your Units',
@@ -124,7 +124,15 @@ return [
 
     'conversations' => 'Conversations',
     'conversations_description' => 'Start your conversations.',
-    'chosse_conversation'=>'Please open a conversation first'
+    'chosse_conversation'=>'Please open a conversation first',
+
+
+    'not_active_unit'=>'Disactive Unit',
+    'active_unit'=>'Active',
+    'you_can_upload_image_more'=>'Sorry, you can not add more than 8 photos'
+
+
+
 
 
 

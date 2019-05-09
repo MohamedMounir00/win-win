@@ -109,6 +109,10 @@ class MainUnitController extends Controller
             Alert::success(trans('frontend.you_cant_remove_image'))->persistent(trans('frontend.close'));
             return back();
         }
+        if ($total>8){
+            Alert::success(trans('frontend.you_can_upload_image_more'))->persistent(trans('frontend.close'));
+            return back();
+        }
         $allQuestions = Question::all();
         $type=Type_estate::find($request->type_id)->questions;
         $data=[];

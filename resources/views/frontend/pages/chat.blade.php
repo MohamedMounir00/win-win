@@ -28,64 +28,12 @@
         <div class="right-section">
             <div class="message mCustomScrollbar" data-mcs-theme="minimal-dark" data-simplebar>
                <ul>
-                  <li class="msg-left">
-                     <div class="msg-left-sub">
-                      <img src="https://www.nicesnippets.com/demo/man03.png">
-                      <div class="msg-desc">
-                       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                       tempor incididunt ut labore et dolore magna aliqua.
-                   </div>
-                   <small>05:25 am</small>
-               </div>
-           </li>
-           <li class="msg-right">
-             <div class="msg-left-sub">
-              <img src="https://www.nicesnippets.com/demo/man03.png">
-              <div class="msg-desc">
-               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-               tempor incididunt ut labore et dolore magna aliqua.
-           </div>
-           <small>05:25 am</small>
-       </div>
-   </li>
-   <li class="msg-left">
-     <div class="msg-left-sub">
-      <img src="https://www.nicesnippets.com/demo/man03.png">
-      <div class="msg-desc">
-       Lorem ipsum dolor sit amet, consectetur adipisicing elit
-   </div>
-   <small>05:25 am</small>
-</div>
-</li>
-<li class="msg-right">
- <div class="msg-left-sub">
-  <img src="https://www.nicesnippets.com/demo/man03.png">
-  <div class="msg-desc">
-   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-   tempor incididunt ut labore et dolore magna aliqua.
-</div>
-<small>05:25 am</small>
-</div>
-</li>
-<li class="msg-left">
- <div class="msg-left-sub">
-  <img src="https://www.nicesnippets.com/demo/man03.png">
-  <div class="msg-desc">
-   Lorem ipsum dolor sit amet, consectetur adipisicing elit
-</div>
-<small>05:25 am</small>
-</div>
-</li>
-<li class="msg-right">
- <div class="msg-left-sub">
-  <img src="https://www.nicesnippets.com/demo/man03.png">
-  <div class="msg-desc">
-   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-   tempor incididunt ut labore et dolore magna aliqua.
-</div>
-<small>05:25 am</small>
-</div>
-</li>
+                  <li class="no-conversations">
+                      <img src="{{url('frontend/images/no-conversations.svg')}}">
+                      <h1>{{trans('frontend.conversations')}}</h1>
+                      <p>{{trans('frontend.conversations_description')}}</p>
+                  </li>
+           
 </ul>
 </div>
 <div class="right-section-bottom">
@@ -109,6 +57,7 @@
     $(document).ready(function() {
 
     $(".left-section").niceScroll();
+    $('.right-section-bottom').hide();
     // $(".message").niceScroll();
 
 
@@ -193,6 +142,9 @@
 
         // get all messages of conversation
         getAllMessage($(this).attr('conv_id'));
+
+        $('.right-section-bottom').show('slow');
+
     });
     
 
@@ -249,8 +201,8 @@
         }
 
         if (typeof reciver_id == 'undefined') {
-            swal('Please choose conversation!')
-            alert('ss')
+            swal('{{trans('frontend.chosse_conversation')}}')
+
             return false
         }
 
@@ -269,7 +221,7 @@
             success: function (value) {
                 value = value.data
                 if (value.sender_id == '{{auth()->user()->id}}') {
-                    $('#mCSB_2_container ul').append(
+                    $('.message ul').append(
                         '<li class="msg-right">'+
                         '<div class="msg-left-sub">'+
                         '<img src="'+value.sender_image+'">'+
@@ -278,7 +230,7 @@
                         '</div>'+
                         '</li>');
                 } else  {
-                    $('#mCSB_2_container ul').append(
+                    $('.message ul').append(
                         ' <li class="msg-left">' +
                         '<div class="msg-left-sub">'+
                         '<img src="'+ value.receiver_image +'">'+
@@ -288,6 +240,8 @@
                         '</li>');
                 }
                 $('.right-section-bottom input').val('');
+                $(".right-section .message").animate({ scrollTop: $('.right-section .message').prop("scrollHeight")}, 1000);
+
             }
         });
     }

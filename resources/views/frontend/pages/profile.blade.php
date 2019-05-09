@@ -358,11 +358,11 @@
                     else {
                         var stringStars =   '<div class="myBoxx box-show-comments">' +
                                             '<div class="container">';
-                        for (i = 1; i <= 5; i++) { 
+                        for (i = 1; i <= 5; i++) {
                             if(data.rating_stars >= i) {
                                 stringStars += '<i class="one fa fa-star"></i>';
                             } else{
-                                stringStars += '<i class="fa fa-star"></i>';
+                                stringStars += '<i class="fa fa-star-o"></i>';
                             }   
                         }
                         stringStars +=      '<p>' + data.comment + '</p>' +
@@ -407,22 +407,26 @@ $(document).ready(function () {
                 $('.spinner').hide();
             },
             success: function (data) {
-                $(item).replaceWith(appendActivationButtons(data));
+                $(item).replaceWith(appendActivationButtons(data.id, data.activation));
                 {{--swal('{{trans('frontend.status_changed_successfully')}}')--}}
 
             }
         });
     }
 
-    function appendActivationButtons(data) {
+    function appendActivationButtons(id, activationBtn) {
 
-        if (data.activation == 'not_active') {
-            return '<button class="btn btn-primary available-button"activation="active"  unit-id="'+data.id+'"><i class="fa fa-check" aria-hidden="true"></i>{{trans('backend.active')}}</button>';
-        } 
-        
-        if (data.activation == 'active') {
-            return '<button class="btn btn-danger available-button" activation="not_active" unit-id="'+data.id+'"><i class="fa fa-check" aria-hidden="true"></i> {{trans('backend.not_active')}}</button>';
-        } 
+        if (activationBtn == "active") {
+                return  '      <a href="#" class="download available-button active" unit-id="'+id+'" activation="not_active" data-toggle="tooltip" title="{{trans('frontend.not_active_unit')}}">'+
+                                                '<i class="fa fa-times"></i>'+
+                            '      </a>';
+            }
+
+            if (activationBtn == "not_active") {
+                 return  '      <a href="#" class="download available-button not_active" unit-id="'+id+'" activation="active" data-toggle="tooltip" title="{{trans('frontend.active_unit')}}">'+
+                                                '<i class="fa fa-check"></i>'+
+                                '      </a>';
+            } 
     }
 
     // Function To Get 10 Rating Data From Database 
@@ -451,7 +455,7 @@ $(document).ready(function () {
                     } 
 
                     var html = '<div class="latest-units"> <div class="row no-gutters"> <div class="col-md-3"> <div class="unit-img"> <img class="img-fluid rounded-circle" src="'+imgUrl+'" alt=""> </div> </div> <div class="col-md-6"> <div  class="unit-description"> <h2 style="word-break: break-word;"><a class="text-decoration-none" href="'+value.url+'"> '+value.title+'</a></h2> <p>'+value.date+'</p> <span><i class="fa fa-gear"></i> '+value.type+'</span> <span style="margin-right:40px"><i class="fa fa-map-marker"></i> '+value.type+'</span> </div> </div> <div class="col-md-3"> <div class="price"> <span>'+value.price+'</span> '+appendActivationButtons(value)+'<p>'+value.string_prics+'</p> </div> </div> </div></div>';
-                        $('#data-container').append(printUnitCard(imgUrl, value.type, value.price, value.activation,value.title,value.date,value.url, value.state));
+                        $('#data-container').append(printUnitCard(value.id, imgUrl, value.type, value.price, value.activation,value.title,value.date,value.url, value.state));
                         offset ++;
                 });
                 if (data.data.length == 0) {
@@ -459,6 +463,8 @@ $(document).ready(function () {
                 } else {
                     indicator('stop');
                 }
+                $('[data-toggle="tooltip"]').tooltip();   
+
            },
            error : function () {
                alert('Error');
@@ -530,7 +536,7 @@ $(document).ready(function () {
 
     // Pring Unit Card Function .......
 
-    function printUnitCard(imageUrl, unitType, unitPrice, activationBtn, unitTitle, unitDate, detailsUrl, detailState) {
+    function printUnitCard(id, imageUrl, unitType, unitPrice, activationBtn, unitTitle, unitDate, detailsUrl, detailState) {
         var price = ""
         var activation = ""
         if (unitPrice != null) {
@@ -542,29 +548,7 @@ $(document).ready(function () {
             unitTitle = unitTitle.slice(0, 100)
         }
         if (activationBtn != null) {
-            if (activationBtn == "active") {
-                activation =    '      <a href="#" class="download">'+
-                            '		          <a href="#" class="download">'+
-       ' <svg x="0px" y="0px" width="27px" height="22px">'+
-	      '  <g>'+
-		        '<path d="M 12.5625 0 C 12.0102 0 11.5625 0.4477 11.5625 1 L 11.565 8.69 L 9.0625 8.6875 L 12 16 L 14 16 L 17.0625 8.6875 L 14.5 8.69 L 14.5 1 C 14.5 0.4477 14.0523 0 13.5 0 L 12.5625 0 ZM 1 19 L 1 14 L 0 14 L 0 19 C 0 20.6569 1.3431 22 3 22 L 24 22 C 25.6569 22 27 20.6569 27 19 L 27 14 L 26 14 L 26 19 C 26 20.1046 25.1046 21 24 21 L 3 21 C 1.8954 21 1 20.1046 1 19 Z" fill="#ffffff"/>'+
-	       ' </g>'+
-       ' </svg>'+
-      '</a>'+
-                            '      </a>';
-            }
-
-            if (activationBtn == "not_active") {
-                activation =    '      <a href="#" class="download">'+
-                            '		         <a href="#" class="download">'+
-       ' <svg x="0px" y="0px" width="27px" height="22px">'+
-	      '  <g>'+
-		        '<path d="M 12.5625 0 C 12.0102 0 11.5625 0.4477 11.5625 1 L 11.565 8.69 L 9.0625 8.6875 L 12 16 L 14 16 L 17.0625 8.6875 L 14.5 8.69 L 14.5 1 C 14.5 0.4477 14.0523 0 13.5 0 L 12.5625 0 ZM 1 19 L 1 14 L 0 14 L 0 19 C 0 20.6569 1.3431 22 3 22 L 24 22 C 25.6569 22 27 20.6569 27 19 L 27 14 L 26 14 L 26 19 C 26 20.1046 25.1046 21 24 21 L 3 21 C 1.8954 21 1 20.1046 1 19 Z" fill="#ffffff"/>'+
-	       ' </g>'+
-       ' </svg>'+
-      '</a>'+
-                            '      </a>';
-            }
+           activation = appendActivationButtons(id, activationBtn)
             
         }
         return '<div class="food">'+
@@ -580,13 +564,8 @@ $(document).ready(function () {
 '    </div>'+
 '    <div class="info">'+
 '      <a href="'+detailsUrl+'" class="recipe">'+
-'        <i>'+
-'          <svg x="0px" y="0px" width="26px" height="28px"'+
-'>'+
-'	          <g>'+
-'		          <path d="M 8.5 20 L 8.5 21 L 17.5 21 L 17.5 20 L 8.5 20 ZM 8.5 16 L 8.5 17 L 17.5 17 L 17.5 16 L 8.5 16 ZM 8.5 12 L 8.5 13 L 17.5 13 L 17.5 12 L 8.5 12 ZM 20 0 C 19.4477 0 19 0.4477 19 1 L 19 6 C 19 6.5523 19.4477 7 20 7 C 20.5523 7 21 6.5523 21 6 L 21 1 C 21 0.4477 20.5523 0 20 0 ZM 13 0 C 12.4477 0 12 0.4477 12 1 L 12 6 C 12 6.5523 12.4477 7 13 7 C 13.5523 7 14 6.5523 14 6 L 14 1 C 14 0.4477 13.5523 0 13 0 ZM 6 0 C 5.4477 0 5 0.4477 5 1 L 5 6 C 5 6.5523 5.4477 7 6 7 C 6.5523 7 7 6.5523 7 6 L 7 1 C 7 0.4477 6.5523 0 6 0 ZM 15 4 L 18 4 L 18 3 L 15 3 L 15 4 ZM 8 4 L 11 4 L 11 3 L 8 3 L 8 4 ZM 3 4 L 4 4 L 4 3 L 3 3 C 1.3431 3 0 4.3431 0 6 L 0 25 C 0 26.6569 1.3431 28 3 28 L 23 28 C 24.6569 28 26 26.6569 26 25 L 26 6 C 26 4.3431 24.6569 3 23 3 L 22 3 L 22 4 L 23 4 C 24.1046 4 25 4.8954 25 6 L 25 25 C 25 26.1046 24.1046 27 23 27 L 3 27 C 1.8954 27 1 26.1046 1 25 L 1 6 C 1 4.8954 1.8954 4 3 4 Z" fill="#ffffff"/>'+
-'	          </g>'+
-'          </svg>'+
+'        <i class="fa fa-info-circle">'+
+
 '        </i>'+
 '        <span>{{trans('frontend.details')}}</span>'+
 '      </a>'+

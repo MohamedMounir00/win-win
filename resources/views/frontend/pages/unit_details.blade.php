@@ -25,16 +25,12 @@
                             <img class="img-fluid img-thumbnail rounded-circle" src="https://www.mycustomer.com/sites/all/modules/custom/sm_pp_user_profile/img/default-user.png" alt="">
 
                         @endif
-                        <h2 style="word-break: break-word;"><a href="{{route('get_profile_view',$unit->user_id)}}">{{$unit->realtor->name}}</a></h2>
+                        <h2 style="word-break: break-word;"><a href="{{route('get_profile_view',$unit->user_id)}}">{{$unit->realtor->realtor->company_name}}</a></h2>
                         <!-- <span style="word-break: break-word;">{{$unit->realtor->email}}</span> -->
                             @if($unit->realtor->realtor)
 
                             <p>{{$unit->realtor->realtor->bio}}</p>
-                        <hr>
-                        <div class="manager-info">
-                            <h2>{{trans('frontend.Company_Name')}}</h2>
-                            <span>{{$unit->realtor->realtor->company_name}}</span>
-                        </div>
+                        
                         <hr>
                         <div class="adress">
                             <div class="row no-gutters">

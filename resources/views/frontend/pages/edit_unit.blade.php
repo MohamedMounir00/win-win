@@ -57,7 +57,7 @@
                                     <div class="show-images transition">
                                         <div class="row">
                                         @foreach($unit->storge as $item)
-                                            <div class="col-sm-3">
+                                            <div class="col-sm-6 col-md-4 col-lg-3">
                                                 <a  href="{{url($item->url)}}" data-lightbox="image-1"><img class="img-fluid img-thumbnail boxImg" src="{{url($item->url)}}" alt=""></a>
                                                 <button id="remove_photo" class="btn btn-danger" image-id="{{$item->id}}"><i class="fa fa-close"></i></button>
                                             </div>
@@ -277,8 +277,11 @@
 
             var photosArray = [];
             var deletedphotosArray = [];
-            $("#form").submit( function(e) {
 
+            $("#form").submit( function(e) {
+                if (checkPhotosCount() > 8) 
+                    e.preventDefault(e);
+    
                 $('<input />').attr('type', 'hidden')
                     .attr('name', "photos")
                     .attr('value', photosArray)
@@ -294,17 +297,23 @@
 
             $('.show-images').on('click', '#remove_photo',function() {
                 deletedphotosArray.push($(this).attr('image-id'))
-                alert(deletedphotosArray)
+              //  alert(deletedphotosArray)
                 var $target = $(this).parent();
                 $target.hide('slow', function(){ $target.remove(); });
                 checkImages()
                 return false;
             });
 
+            function checkPhotosCount() {
+                return ((parseInt(old_photos) + current_photos) - deletedphotosArray.length)
+            }
+
             function upload(img) {
                 if (current_photos >= max_photos) {
                     return swal("{{trans('frontend.you_can_upload')}}")
                 }
+                if (checkPhotosCount() >= 8)
+                    return swal('{{trans('frontend.you_can_upload_image_more')}}');
 
                 var form_data = new FormData();
                 form_data.append('image', img.files[0]);
@@ -322,7 +331,7 @@
                         }
                         photosArray.push(data.id);
                         imageContainer.fadeIn("slow");
-                        $('.show-images').append('<a  href="{{url('')}}/'+data.url+'" data-lightbox="image-1"><img class="img-fluid img-thumbnail" src="{{url('')}}/'+data.url+'" alt=""><button id="remove_photo" class="btn btn-danger" image-id="{{$item->id}}"><i class="fa fa-close"></i></button></a>');
+                        $('.show-images').children().append('<div class="col-sm-6 col-md-4 col-lg-3"><a  href="{{url('')}}/'+data.url+'" data-lightbox="image-1"><img class="img-fluid img-thumbnail" src="{{url('')}}/'+data.url+'" alt=""><button id="remove_photo" class="btn btn-danger" image-id="'+data.id+'"><i class="fa fa-close"></i></button></a></div>');
                         current_photos++;
                         checkImages()
                     },

@@ -409,7 +409,7 @@
                 setTextOrRemove("rooms", value.rooms);
                 setTextOrRemove("bathroom", value.bathroom);
                 setTextOrRemove("payment_method", value.payment_method);
-                $('#unit-buttons').append('<a id="for-edit-unit" href="'+value.route_update+'" class="btn my-btn edit-button"> <i  class="fa fa-pencil" aria-hidden="true"></i> {{trans("frontend.edit-your-unit")}} </a>');
+                // $('#unit-buttons').append('<a id="for-edit-unit" href="'+value.route_update+'" class="btn my-btn edit-button"> <i  class="fa fa-pencil" aria-hidden="true"></i> {{trans("frontend.edit-your-unit")}} </a>');
                 
 
                 $('.show-images').empty()

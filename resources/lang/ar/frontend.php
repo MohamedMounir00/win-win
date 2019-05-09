@@ -121,4 +121,8 @@ return [
     'conversations_description' => 'ابدا في صنع المحادثات',
     'chosse_conversation'=>'برجاء فتح محادثه اولا',
 
+    'not_active_unit'=>'الغاء تفعيل الوحدة',
+    'active_unit'=>'تفعيل الوحدة',
+    'you_can_upload_image_more'=>'عفوا! لا يمكنك اضافة اكثر من ٨ صور'
+
 ];
