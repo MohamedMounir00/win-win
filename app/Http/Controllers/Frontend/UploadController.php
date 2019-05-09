@@ -16,10 +16,10 @@ class UploadController extends Controller
 
     public function upload(Request $request){
         $image = $request->file('image');
-       // $slug= "bgh-dsd";
+        $slug= "bgh-dsd";
         $key=time() . rand(99999, 999999999);
-        $fileName = $key. "." . strtolower($image->getClientOriginalExtension());
-        $destinationPath = '/uploads/units';
+        $fileName = "img-".$slug."-".$key. "." . strtolower($image->getClientOriginalExtension());
+        $destinationPath = 'uploads/units/';
 
 
 
@@ -27,7 +27,7 @@ class UploadController extends Controller
         $img = Image::make($image->getRealPath());
         $watermark = Image::make(public_path('/frontend/images/logo.png'));
         $img->insert($watermark, 'bottom-right');
-        $img->save($destinationPath.'/'.$fileName);
+        $img->save(public_path($destinationPath).'/'.$fileName);
         //$move = $image->move($destinationPath, $fileName);
         $path=$destinationPath.'/'.$fileName;
         $image=imageModel::create([
