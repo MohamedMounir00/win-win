@@ -8,11 +8,13 @@
 @endphp
 <head>
     <meta charset="utf-8">
+    <link rel="icon" type="image/x-icon" href="{{url('logo.png')}}">
+
     <title>{{ trans('frontend.home')}}|win-win</title>
 
     @if($lang=='ar')
-    
-        <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css" integrity="sha384-vus3nQHTD+5mpDiZ4rkEPlnkcyTP+49BhJ4wJeJunw06ZAp+wzzeBPUXr42fi8If" crossorigin="anonymous">    
+
+        <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css" integrity="sha384-vus3nQHTD+5mpDiZ4rkEPlnkcyTP+49BhJ4wJeJunw06ZAp+wzzeBPUXr42fi8If" crossorigin="anonymous">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="{{asset('frontend')}}/css/main-outside-ar.css">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -25,7 +27,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     @endif
 
-   
+
     <link rel="stylesheet" href="{{asset('frontend')}}/css/fakeLoader.min.css">
 
 </head>

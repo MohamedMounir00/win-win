@@ -8,7 +8,7 @@
 @endphp
 <head>
     <meta charset="utf-8">
-    <link rel="icon" type="image/x-icon" href="{{asset('logo.png')}}">
+    <link rel="icon" type="image/x-icon" href="{{url('logo.png')}}">
 
     <title>@yield('page_title') | win-win </title>
     <meta name="csrf-token" content="{{ csrf_token() }}">

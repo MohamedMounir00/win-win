@@ -119,6 +119,6 @@ return [
     'send_success'=>'تم ارسال الرساله بنجاح!',
     'conversations' => 'المحادثات',
     'conversations_description' => 'ابدا في صنع المحادثات',
-    'chosse_conversation'=>'برجاء فتح محادثه اولا'
+    'chosse_conversation'=>'برجاء فتح محادثه اولا',
 
 ];

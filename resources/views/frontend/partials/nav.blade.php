@@ -58,7 +58,7 @@
                         </li>
 
                         <li class="nav-item active">
-                            <a href="{{route('chat')}}" class="badge1" data-badge="{{\App\Helper\Helper::count_unseen_message() > 9 ? '9+' : \App\Helper\Helper::count_unseen_message()}}"> <img src="{{asset('chatting.svg')}} " style="width: 30px"></a>
+                            <a href="{{route('chat')}}" class="badge1" data-badge="{{\App\Helper\Helper::count_unseen_message() > 9 ? '9+' : \App\Helper\Helper::count_unseen_message()}}"> <img src="{{url('chatting.svg')}} " style="width: 30px"></a>
                         </li>
 
 

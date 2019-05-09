@@ -16,7 +16,7 @@
                         @if(!Auth::check()||auth()->user()->verification==0)
 
                         @if($image->image==null)
-                            <li><a ><img class="img-thumbnail" src="{{asset('/')}}profile.jpg" alt=""></a></li>
+                            <li><a ><img class="img-thumbnail" src="{{url('profile.jpg')}}" alt=""></a></li>
 
                         @else
                             <li > <img class="img-thumbnail" src="{{url($image->image)}}" alt=""> </li>
@@ -26,7 +26,7 @@
 
                         @else
                             @if($image->image==null)
-                                <li><a href="{{route('get_profile_view',$image->id)}}"><img class="img-thumbnail" src="{{asset('/')}}profile.jpg" alt=""></a></li>
+                                <li><a href="{{route('get_profile_view',$image->id)}}"><img class="img-thumbnail" src="{{url('profile.jpg')}}" alt=""></a></li>
 
                             @else
                                 <li ><a href="{{route('get_profile_view',$image->id)}}"> <img class="img-thumbnail" src="{{url($image->image)}}" alt=""></a> </li>

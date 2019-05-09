@@ -181,9 +181,9 @@
                 goSearch(current_offset)
             });
 
-                    
+
             // Live Search With Ajax After Display Unites From Backend API
-    
+
 
 
         function goSearch(offset_count = '',) {
@@ -245,28 +245,28 @@
                     $.each(data.data, function(key, value){
 
                         // var imgUrl = value.storge[0].url
-                    var imgUrl = '{{asset('no-photo.png')}}'
+                    var imgUrl = '{{url('no-photo.png')}}'
                     if (value.storge.length > 0) {
                         imgUrl = value.storge[0].url
-                    } 
+                    }
                         $('#result').append(printUnitCard(imgUrl, value.type, value.price, value.activation,value.title,value.date,value.url, value.state));
                         current_offset++;
                     });
 
-                    if (data.data.length > 0) {    
+                    if (data.data.length > 0) {
                         $('#result').append('<input id="load_btn" type="button" class="btn btn-primary my-btn my-3 load" value="{{trans('frontend.load_more')}}" />');
                     }
 
 
-                    
-                    
+
+
                 }
             });
 
 
         }
 
-        // For changing state 
+        // For changing state
         $('select[name=city]').change(function() {
             changeStatusUnit()
         })
@@ -293,7 +293,7 @@
                     success: function (data) {
                         var dropdown=$('select[name=state]');
                         dropdown.empty()
-                        dropdown.append($('<option value="">كل المناطق</option>'))
+                        dropdown.append($('<option value="">---</option>'))
                         $.each( data.data, function( key, value ) {
                             dropdown.append($('<option>', {value: value.id,text: value.state}, '</option>'))
                             // $('.' + value.name)[1].prop('required',true);
@@ -319,13 +319,13 @@
                 '      </label>';
         }
         if (activationBtn != null) {
-           
+
             if (activationBtn == "not_active") {
                 activation =    '      <a href="#" class="download" style="background: #4C8B55;">'+
                             '		        تفعيل'+
                             '      </a>';
             }
-            
+
         }
         return '<div class="food">'+
 '    <div class="cover" style="background-image: url('+imageUrl+')">'+
@@ -347,7 +347,7 @@
 '	          </g>'+
 '          </svg>'+
 '        </i>'+
-'        <span>التفاصيل</span>'+
+'        <span>+{{trans('frontend.details')}}+</span>'+
 '      </a>'+
 '      <div class="contentt">'+
 '            <div class="container">'+
