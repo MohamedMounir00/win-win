@@ -8,7 +8,7 @@
 @endphp
 <head>
     <meta charset="utf-8">
-    <link rel="icon" type="image/x-icon" href="{{url('logo.png')}}">
+    <link rel="icon" type="image/x-icon" href="{{url('frontend/images/logo.png')}}">
 
     <title>{{ trans('frontend.home')}}|win-win</title>
 

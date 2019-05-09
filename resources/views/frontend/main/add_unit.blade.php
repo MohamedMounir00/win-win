@@ -8,6 +8,8 @@
 
 <head>
     <meta charset="utf-8">
+    <link rel="icon" type="image/x-icon" href="{{url('frontend/images/logo.png')}}">
+
     <title>{{trans('frontend.add_unit')}}|win-win</title>
 
 

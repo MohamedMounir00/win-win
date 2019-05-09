@@ -445,7 +445,7 @@ $(document).ready(function () {
                 $.each(data.data ,function(index, value) {
 
                     // var imgUrl = value.storge[0].url
-                    var imgUrl = '{{url('no-photo.png')}}';
+                    var imgUrl = '{{url('frontend/images/no-photo.png')}}';
                     if (value.storge.length > 0) {
                         imgUrl = value.storge[0].url
                     } 
