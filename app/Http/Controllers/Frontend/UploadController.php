@@ -19,7 +19,7 @@ class UploadController extends Controller
         $slug= "bgh-dsd";
         $key=time() . rand(99999, 999999999);
         $fileName = "img-".$slug."-".$key. "." . strtolower($image->getClientOriginalExtension());
-        $destinationPath = 'uploads/units/';
+        $destinationPath = 'uploads/units';
 
 
 
