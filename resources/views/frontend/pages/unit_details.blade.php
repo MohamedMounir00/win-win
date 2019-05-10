@@ -88,11 +88,12 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-8">
-                                      <p style="word-break: break-word;" class="unit-intro">{{$unit->title}}</p>
+                                      <p class="unit-intro">{{$unit->title}}</p>
                                 </div>
 
                                 <div class="col-md-4">
-                                      <p style="word-break: break-word;" class="unit-intro"> {{unserialize($unit->unit_type->name)[$lang]}}</p>
+                                    <p class="unit-intro-time"> <i class="fa fa-clock-o" aria-hidden="true"></i> {{\Carbon\Carbon::parse($unit->updated_at)->diffForHumans()}}</p>
+                                    <p class="unit-intro-location"> <i class="fa fa-map-marker" aria-hidden="true"></i> {{unserialize($unit->unit_type->name)[$lang]}}</p>
                                 </div>
                             </div>
                             </div>

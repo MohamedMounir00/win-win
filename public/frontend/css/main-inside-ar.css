@@ -1144,3 +1144,8 @@ body {
   margin-right: 0 !important;
   display: none !important;
 }
+
+p.unit-intro-location,
+p.unit-intro-time {
+  float: left;
+}

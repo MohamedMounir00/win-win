@@ -88,3 +88,22 @@ body {
     width: 40px;
     height: 40px;
 }
+
+
+/* unit details */
+
+p.unit-intro-location {
+    margin: auto;
+    background: #378ae1;
+    color: #fff;
+    padding: 3px 13px;
+}
+
+p.unit-intro-time {
+  margin: auto;
+  color: #546794;
+  padding: 3px 13px;
+  font-size: 12px;
+  white-space: nowrap;
+  line-height: 25px;
+}

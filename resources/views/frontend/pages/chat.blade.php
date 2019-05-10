@@ -193,8 +193,18 @@
     }
 
     $('.right-section').on('click', '.btn-send', function() {
-        var message = $(this).parent().find('input').val();
-        var reciver_id = $(this).attr('reciver_id');
+        sendMessageHandler()
+    });
+    $(document).on('keypress',function(e) {
+        if(e.which == 13) {
+            sendMessageHandler()
+        }
+    });
+
+    // handle before send message by ajax 
+    function sendMessageHandler() {
+        var message = $('.btn-send').parent().find('input').val();
+        var reciver_id = $('.btn-send').attr('reciver_id');
         if (message == "") {
             swal('{{trans('frontend.send_message_required')}}')
             return false
@@ -202,13 +212,12 @@
 
         if (typeof reciver_id == 'undefined') {
             swal('{{trans('frontend.chosse_conversation')}}')
-
             return false
         }
 
         sendMessage(reciver_id, message);
-    });
-    // Get ALl Message Ajax
+    }
+    // Send new Message Ajax
     function sendMessage(receiver, message) {
         $.ajax({
             url: '{{url('/send-message')}}',

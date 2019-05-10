@@ -4001,13 +4001,14 @@ height: 150px; }
   
 #remove_photo {
   position: absolute;
-  right: 28px;
-  top: 7px;
-    width: 22px;
-    height: 25px;
-    line-height: 25px;
-    text-align: center;
-    padding: 0;;
+  right: 8px;
+  top: -5px;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  padding: 0;
+  border-radius: 50%;
 }
 
 .boxImg {
@@ -4038,4 +4039,9 @@ height: 150px; }
 
 .badge1 {
   margin-left: 10px;
+}
+
+p.unit-intro-location,
+p.unit-intro-time {
+  float: left;
 }

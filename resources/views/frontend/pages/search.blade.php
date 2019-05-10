@@ -211,6 +211,7 @@
                 url: '{{route('advanced_search')}}',
                 method: 'post',
                 data : {
+                    lang            : '{{LaravelLocalization::getCurrentLocale()}}',
                     title           : string,
                     status          : legend,
                     finishing       : finishing,

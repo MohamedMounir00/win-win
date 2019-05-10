@@ -17,6 +17,7 @@ class UnitCollection extends JsonResource
     public function toArray($request)
     {
         $lang = isset($request->lang)?$request->lang:'ar';
+        \Carbon\Carbon::setLocale($lang);
 
         if ($this->finishing=='without')
             $finishing=trans('backend.without');
@@ -62,7 +63,7 @@ class UnitCollection extends JsonResource
             'payment_method'=>$payment_method,
             'city'=>isset($this->city_id)?unserialize($this->city->name)[$lang]:null,
             'state'=>isset($this->state_id)?unserialize($this->state->name)[$lang]:null,
-            'date'=> date('Y-m-d' , strtotime($this->created_at)),
+            'date'=> \Carbon\Carbon::parse($this->created_at)->diffForHumans(),
             'string_prics'=>($lang=='ar')?'السعر':'price',
             'url'=>route('details',$this->id),
             'storge'=>StorgeCollection::collection($this->storge),

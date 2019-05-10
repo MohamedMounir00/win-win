@@ -40,8 +40,8 @@ class SearchController extends Controller
 
     public function searchOperation(Request $request) {
 
-        $units=Unit::where('activation_admin','active')->whereHas('realtor', function ($query) {
-            $query->where('activation_user','active');
+        $units=Unit::where('activation_admin','active')->where('activation_user','active')->whereHas('realtor', function ($query) {
+            $query->where('verification','1');
         });
         if ($request->title != null)
             $units -> where('title','LIKE','%'.$request->title.'%');
