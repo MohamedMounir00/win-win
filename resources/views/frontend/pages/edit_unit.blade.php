@@ -449,9 +449,6 @@
                 previewWidth: "101px",
             });
         });
-        if ( $('.show-images').html().length == 0 ) {
-	alert()
-}
     </script>
 
 

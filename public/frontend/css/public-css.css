@@ -107,3 +107,11 @@ p.unit-intro-time {
   white-space: nowrap;
   line-height: 25px;
 }
+
+.sticky-sidebar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  height: 25vh;
+
+}

@@ -289,9 +289,12 @@
 
                     <h5 class="contact-heading text-uppercase my-3">{{trans('frontend.last_rating')}}</h5>
                     <div class="latest-rate">
-
+                    <?php $rating_counter = 1;?>
                     @forelse($rating_10 as $rating)
+                        @if($rating_counter > 1)
                             <hr>
+                        @endif
+                        <?php $rating_counter++;?>
 
                         <div class="block">
                             <div class="rate">
@@ -310,7 +313,7 @@
                         @empty
                         <span class="when-no-rating">  {{trans('frontend.no_rating')}}</span>
                         @endforelse
-                        @if($ratingcount!=0)
+                        @if($ratingcount > 3)
                         <a href="{{route('get_all_comment_view',$user->id)}}" class="btn btn-primary my-btn send btn-block">{{trans('frontend.load_more')}}</a>
                         @endif
                      </div>
@@ -329,9 +332,7 @@
 
 
 
-    <!-- Start Dealing Section -->
 
-    @include('frontend.partials.dealing')
 
 
     <!-- End Dealing Section -->
