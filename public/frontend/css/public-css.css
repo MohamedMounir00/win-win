@@ -76,12 +76,15 @@ body {
 
 .no-conversations p {
   font-weight: bold !important;
-
 }
 
-/* override  chat page */
 /*.left-section,*/
 .right-section .message 
 {
   overflow: scroll;
+}
+
+.left-section .chatList .img img {
+    width: 40px;
+    height: 40px;
 }
