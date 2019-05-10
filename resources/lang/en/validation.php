@@ -180,6 +180,14 @@ return [
         'status'=>'status',
         'finishing'=>'finishing',
         'payment_method'=>'payment_method',
+        'state_id'=>'state',
+        'title'=>'title',
+        'company_name'=>'company name ',
+        'photos'=>' photos foe units',
+
+
+
+
     ],
 
 

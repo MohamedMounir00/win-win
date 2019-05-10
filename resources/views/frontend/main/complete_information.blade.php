@@ -8,7 +8,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Win Win Website</title>
+    <title>{{trans('frontend.Main_Information')}}|win-win</title>
 
 
     @if($lang=='ar')
@@ -38,7 +38,7 @@
     <div class="row no-gutters">
         @include('frontend.main.sidebar')
 
-        <div class="col-xl-9 col-lg-7 col-md-7">
+        <div class="col-xl-9 col-lg-8 col-md-7">
             <div class="info">
                 <div class="container">
                     <div class="section-head">
@@ -104,7 +104,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="click-btn">
+                        <div class="text-center click-btn">
                             <div class="container">
                                 <button type="submit" class="my-btn btn btn-primary">{{trans('frontend.Next')}}</button>
                             </div>

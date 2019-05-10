@@ -8,7 +8,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Win Win Website</title>
+    <title>{{trans('frontend.My_All_Unit')}}|win-win</title>
 
 
     @if($lang=='ar')
@@ -42,7 +42,7 @@
                 <div class="tolpit">
                     <div class="container">
                         <div class="logo">
-                            <img class="img-fluid" src="{{asset('frontend')}}/images/logo2.png" alt="">
+                            <a href="{{url('/')}}"><img class="img-fluid" src="{{asset('frontend')}}/images/logo2.png" alt=""></a>
                         </div>
 
                         <ul class="list-unstyled">
@@ -66,9 +66,10 @@
                             @endif
                             @if (Auth::check() && auth()->user()->register=='second_step')
 
-                                <li><a href="{{route('add-unit-page')}}"  class="{{Request::path() == "$lang/add-unit-page"   ? 'active contact-information-page' : ''}} " >{{trans('frontend.Add_Units')}}</a></li>
                                     @if(Request::path() == "$lang/all-my-unit-page")
                                         <li><a href="{{route('add-unit-page')}}"  class="active contact-information-page" >{{trans('frontend.Add_Units')}}</a></li>
+                             @else
+                                        <li><a href="{{route('add-unit-page')}}"  class="{{Request::path() == "$lang/add-unit-page"   ? 'active contact-information-page' : ''}} " >{{trans('frontend.Add_Units')}}</a></li>
 
                                     @endif
                             @else
@@ -176,7 +177,7 @@
                                         <div class="row no-gutters">
                                             <div class="col-md-2">
                                                 <div class="user-img" >
-                                                    <img class="img-fluid" src="{{asset('frontend')}}/images/broker2.jpg" alt="">
+                                                    <img class="img-fluid" src="https://www.mycustomer.com/sites/all/modules/custom/sm_pp_user_profile/img/default-user.png" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-10">
@@ -312,22 +313,18 @@
                                     <div class="container">
                                         <div class="row no-gutters">
                                             <div class="col-sm-12" id="unit-buttons">
-                                                <button class="btn btn-secondary btn-winwin"><i class="fa fa-pencil" aria-hidden="true"></i> Edit unit</button>
+                                                {{-- <a id="for-edit-unit" href="{{route('edit-unit-page',$unit->id)}}" class="btn my-btn edit-button"> <i  class="fa fa-pencil" aria-hidden="true"></i>{{trans('frontend.edit-your-unit')}} </a> --}}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
-
-
+    </div>   
 </section>
 
 
@@ -356,7 +353,6 @@
 
             var conID = $(this).attr("id");
             console.log(conID)
-
             $.ajax({
 
                url: '{{route('all-my-unit')}}',
@@ -371,7 +367,7 @@
                     $('.spinner').hide();
                 },
                 success: function (data) {
-                    reciveResponse(data)
+                    reciveResponse(data);
                 }
             });
 
@@ -411,6 +407,7 @@
                 setTextOrRemove("rooms", value.rooms);
                 setTextOrRemove("bathroom", value.bathroom);
                 setTextOrRemove("payment_method", value.payment_method);
+                $('#unit-buttons').append('<a id="for-edit-unit" href="'+value.route_update+'" class="btn my-btn edit-button"> <i  class="fa fa-pencil" aria-hidden="true"></i> {{trans("frontend.edit-your-unit")}} </a>');
                 
 
                 $('.show-images').empty()

@@ -23,6 +23,7 @@ return [
     'Select Your State'=>'Select Your State',
     'Next'=>'Next',
     'Mobile_number'=>'Mobile number',
+    'Mobile'=>'Mobile number',
     'Phone'=>'Phone',
     'Company_Bio'=>'Company Bio',
     'Street_Address'=>'Street Address',
@@ -71,11 +72,11 @@ return [
    'verify_account'=>'Verify Account',
     'Contact_Us'=>'Contact Us',
     'About_Us'=>'About Us',
-    'Slocial_Media'=>'Slocial Media',
+    'Slocial_Media'=>'social media ',
     'Top_Brokers'=>'Top Brokers',
     'desc_lorm'=>' is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley ',
     'save'=>'Save',
-    'admin-panel'=>'admin-panel',
+    'admin-panel'=>'control-panel',
     'add-your-unit'=>'Add Your Units',
     'last_unit'=>'LATEST 10 UNITS',
     'details'=>'Details',
@@ -97,7 +98,39 @@ return [
     'last_rating'=>'Latest Rating',
     'no_rating'=>'No Rating',
     'profile'=>' My profile',
-    'validate_image'=>'image Required'
+    'validate_image'=>'Images must be uploaded to the unit',
+    'send_message'=>'The message has been successfully sent and will be answered as soon as possible',
+    'message'=>'message',
+    'update_profile'=>'Update Your Profile',
+    'edit_profile'=>'Edit Profile',
+    'you_can_upload'=>'You can add up to 8 photos',
+    'select_type'=>'Select the unit type',
+    'select_city'=>'Select City',
+    'home'=>'Home',
+    'add_unit_sucess'=>'The Unit  has been successfully added',
+
+    'update_unit_sucess'=>'The unit was successfully modified',
+    'edit-your-unit'=>'Edit Unit',
+    'no_message'=>'no_message',
+    'chat'=>'Chat',
+    'start_chat'=>'You can start the conversation now',
+    'you_cant_remove_image'=>'You can not delete all photos',
+
+    'name'=> 'User Name',
+    'send_message_required'=>'message required',
+    'take_message'=>'send message',
+    'take_message_description'=>'You can send a message to this realtor',
+
+
+    'conversations' => 'Conversations',
+    'conversations_description' => 'Start your conversations.',
+    'chosse_conversation'=>'Please open a conversation first'
+
+
+
+
+
+
 
 
 

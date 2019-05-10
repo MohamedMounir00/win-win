@@ -1,4 +1,5 @@
 @extends('frontend.layouts.app')
+@section('page_title' , trans('frontend.search'))
 
 @section('content')
 
@@ -13,32 +14,8 @@
         <div class="row">
 
             <div class="col-md-8">
-                <input id="search" class="form-control serch-input rounded-pill" type="search" placeholder="{{trans('frontend.search')}}">
+                <input id="search" class="form-control serch-input rounded-pill" type="search" placeholder="{{trans('frontend.search')}}" value="{{$search_title}}">
                 <div id="result" class="search-body">
-                    @foreach($units as $u)
-                    <div class="latest-search-units">
-                        <div class="row no-gutters">
-                            <div class="col-md-3">
-                                <div class="unit-img">
-                                    <img class="img-fluid rounded-circle" src="{{asset('frontend')}}/images/login-img.jpg" alt="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="unit-description">
-                                    <h2> <a href="{{route('details',$u->id)}}"> {{$u->title}}</a></h2>
-                                    <p>{{date('Y-m-d' , strtotime($u->created_at))}}</p>
-                                    <span><i class="fa fa-gear"></i> {{unserialize($u->unit_type->name)[$lang]}}</span>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="price">
-                                    <span>{{$u->price}}{{trans('frontend.L_E')}}</span>
-                                    <p>{{trans('frontend.price')}}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                 @endforeach
                 </div>
 
 
@@ -72,13 +49,8 @@
 
                     <div class="state-select">
                         <label>{{trans('frontend.State')}}</label>
-                        <select  name="state" class="form-control custom-select" required>
+                        <select  name="state" class="form-control custom-select" >
                             <option value="">{{trans('frontend.State')}}</option>
-
-                            @foreach($state as $c)
-                                <option value="{{$c->id}}" >{{unserialize($c->name)[ $lang]}}</option>
-
-                            @endforeach
                         </select>
                     </div>
 
@@ -88,13 +60,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label> {{trans('frontend.from')}}</label>
-                                    <input type="number" class="form-control"  name="bedrooms_from"  >
+                                    <input min="0"  type="number" class="form-control"  name="bedrooms_from"  >
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>{{trans('frontend.to')}}</label>
-                                    <input type="number" class="form-control" name="bedrooms_to" >
+                                    <input min="0"  type="number" class="form-control" name="bedrooms_to" >
                                 </div>
                             </div>
                         </div>
@@ -121,13 +93,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label> {{trans('frontend.from')}}</label>
-                                    <input type="number" name="floor_from" class="form-control" >
+                                    <input min="0"  type="number" name="floor_from" class="form-control" >
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>{{trans('frontend.to')}}</label>
-                                    <input type="number" name="floor_to"  class="form-control" >
+                                    <input min="0"  type="number" name="floor_to"  class="form-control" >
                                 </div>
                             </div>
                         </div>
@@ -139,13 +111,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label> {{trans('frontend.from')}}</label>
-                                    <input type="number" name="area_from" class="form-control" >
+                                    <input min="0" type="number" name="area_from" class="form-control" >
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>{{trans('frontend.to')}}</label>
-                                    <input type="number" name="area_to" class="form-control" >
+                                    <input min="0" type="number" name="area_to" class="form-control" >
                                 </div>
                             </div>
                         </div>
@@ -156,14 +128,14 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label> {{trans('frontend.from')}}</label>
-                                    <input type="number" name="price_from" class="form-control" >
+                                    <label>  {{trans('frontend.from')}}</label>
+                                    <input min="0" type="number" name="price_from" class="form-control" >
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>{{trans('frontend.to')}}</label>
-                                    <input type="number" name="price_to" class="form-control" >
+                                    <input min="0" type="number" name="price_to" class="form-control" >
                                 </div>
                             </div>
                         </div>
@@ -182,46 +154,17 @@
 
 
 
-<!-- Start Dealing Section -->
-
-    <section class="homepage-deal">
-        <div class="container">
-            <div class="row text-center justify-content-md-center">
-
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <a href="#" class="main">
-                        <div data-tilt class="deal-section">
-                            <i class="sell-i fa fa-hand-paper-o"></i>
-                            <h3> {{trans('frontend.Buy')}}</h3>
-
-                            <p>{{trans('frontend.desc_lorm')}}</p>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <a href="#" class="main">
-                        <div data-tilt class="deal-section">
-                            <i class="fa fa-home"></i>
-                            <h3> {{trans('frontend.Rent')}}</h3>
-                            <p>{{trans('frontend.desc_lorm')}}</p>
-                        </div>
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
 @endsection
 
 @section('scripts')
 
 
+
     <script>
 
         $(document).ready(function(){
-
+            var current_offset = 0;
+            goSearch();
             // Show Latest Unites With Ajax From Backend API
             $("#submit-search").click(function() {
                 goSearch()
@@ -234,16 +177,16 @@
 
             });
 
+            $('#result').on('click', '.load', function() {
+                goSearch(current_offset)
+            });
 
-
+                    
             // Live Search With Ajax After Display Unites From Backend API
+    
 
 
-
-        });
-
-
-        function goSearch() {
+        function goSearch(offset_count = '',) {
             searchEngine(
                 $("input[id=search]").val(),
                 $("input[name=legend]:checked").val(),
@@ -258,12 +201,12 @@
                 $("input[name=area_to]").val(),
                 $("input[name=price_from]").val(),
                 $("input[name=price_to]").val(),
-
+                offset_count
             );
         }
         function searchEngine(string="", legend = "",finishing = "", city = "", state = "", bedrooms_from = "",
                               bedrooms_to = "",  floor_from = "", floor_to = "", area_from = "",
-                              area_to = "", price_from = "", price_to = "") {
+                              area_to = "", price_from = "", price_to = "", offset = "") {
             $.ajax({
                 url: '{{route('advanced_search')}}',
                 method: 'post',
@@ -281,54 +224,161 @@
                     area_to         : area_to,
                     price_from      : price_from,
                     price_to        : price_to,
-
+                    offset_id       : offset,
                 },
                 beforeSend: function () {
                     $('.spinner').show();
-                    $('#result').empty();
-                    $('#result').append("Loading ...");
+                    if(offset == '') {
+                        $('#result').empty();
+                    }
                 },
                 complete: function () {
                     $('.spinner').hide();
                 },
                 success: function (data) {
-                    $('#result').empty();
-                    $.each(data.data, function(key, value){
-                        $('#result').append(
-                            '<div class="latest-search-units">'+
-                            '<div class="row no-gutters">'+
-                            '<div class="col-md-3">'+
-                            '<div class="unit-img">'+
-                            '<img class="img-fluid rounded-circle" src="{{asset('frontend')}}/images/login-img.jpg" alt="">' +
-                            '</div>'+
-                            '</div>'+
-                            '<div class="col-md-6">'+
-                            '<div class="unit-description">'+
-                            '<h2> <a href="'+value.url+'"> '+ value.title +'</a></h2>'+
-                            '<p>'+ value.date +'</p>'+
-                            '<span><i class="fa fa-gear"></i>'+value.type+'</span>'+
-                            '</div>'+
-                            '</div>'+
-                            '<div class="col-md-3">'+
-                            '<div class="price">'+
-                            '<span>'+value.price+'</span>'+
-                            '<p>'+value.string_prics+'</p>'+
-                            '</div>'+
-                            '</div>'+
-                            '</div>'+
-                            ' </div>'
+                    $('#load_btn').remove();
+                    if(offset == '') {
+                        $('#result').empty();
+                        current_offset = 0;
+                    }
 
-                        );
+                    $.each(data.data, function(key, value){
+
+                        // var imgUrl = value.storge[0].url
+                    var imgUrl = '{{asset('no-photo.png')}}'
+                    if (value.storge.length > 0) {
+                        imgUrl = value.storge[0].url
+                    } 
+                        $('#result').append(printUnitCard(imgUrl, value.type, value.price, value.activation,value.title,value.date,value.url, value.state));
+                        current_offset++;
                     });
+
+                    if (data.data.length > 0) {    
+                        $('#result').append('<input id="load_btn" type="button" class="btn btn-primary my-btn my-3 load" value="{{trans('frontend.load_more')}}" />');
+                    }
+
+
+                    
+                    
                 }
             });
 
 
         }
 
+        // For changing state 
+        $('select[name=city]').change(function() {
+            changeStatusUnit()
+        })
+
+        changeStatusUnit()
+        function changeStatusUnit() {
+            var city = $('select[name=city]').val()
+            if (city > 0) {
+                $.ajax({
+                    url: '{{url('api/state_by_id')}}',
+                    method: 'post',
+                    data: {
+                        city_id : city,
+                        lang : '{{LaravelLocalization::getCurrentLocale()}}'
+
+                    },
+                    beforeSend: function () {
+                        $('.spinner').show();
+
+                    },
+                    complete: function () {
+                        $('.spinner').hide();
+                    },
+                    success: function (data) {
+                        var dropdown=$('select[name=state]');
+                        dropdown.empty()
+                        dropdown.append($('<option value="">كل المناطق</option>'))
+                        $.each( data.data, function( key, value ) {
+                            dropdown.append($('<option>', {value: value.id,text: value.state}, '</option>'))
+                            // $('.' + value.name)[1].prop('required',true);
+                        });
+                    }
+                });
+            }
+        }
+
+
+
+
+
+
+        // Pring Unit Card Function .......
+
+        function printUnitCard(imageUrl, unitType, unitPrice, activationBtn, unitTitle, unitDate, detailsUrl, detailState) {
+        var price = ""
+        var activation = ""
+        if (unitPrice != null) {
+            price  = '<label class="price">'+
+                '        <span>'+unitPrice+'</span>'+
+                '      </label>';
+        }
+        if (activationBtn != null) {
+           
+            if (activationBtn == "not_active") {
+                activation =    '      <a href="#" class="download" style="background: #4C8B55;">'+
+                            '		        تفعيل'+
+                            '      </a>';
+            }
+            
+        }
+        return '<div class="food">'+
+'    <div class="cover" style="background-image: url('+imageUrl+')">'+
+'      <label>'+
+'        <span>'+unitType+'</span>'+
+'      </label>'+
+      price +
+'      <label class="right">'+
+'        <span>'+detailState+'</span>'+
+'      </label>'+
+'    </div>'+
+'    <div class="info">'+
+'      <a href="'+detailsUrl+'" class="recipe">'+
+'        <i>'+
+'          <svg x="0px" y="0px" width="26px" height="28px"'+
+'>'+
+'	          <g>'+
+'		          <path d="M 8.5 20 L 8.5 21 L 17.5 21 L 17.5 20 L 8.5 20 ZM 8.5 16 L 8.5 17 L 17.5 17 L 17.5 16 L 8.5 16 ZM 8.5 12 L 8.5 13 L 17.5 13 L 17.5 12 L 8.5 12 ZM 20 0 C 19.4477 0 19 0.4477 19 1 L 19 6 C 19 6.5523 19.4477 7 20 7 C 20.5523 7 21 6.5523 21 6 L 21 1 C 21 0.4477 20.5523 0 20 0 ZM 13 0 C 12.4477 0 12 0.4477 12 1 L 12 6 C 12 6.5523 12.4477 7 13 7 C 13.5523 7 14 6.5523 14 6 L 14 1 C 14 0.4477 13.5523 0 13 0 ZM 6 0 C 5.4477 0 5 0.4477 5 1 L 5 6 C 5 6.5523 5.4477 7 6 7 C 6.5523 7 7 6.5523 7 6 L 7 1 C 7 0.4477 6.5523 0 6 0 ZM 15 4 L 18 4 L 18 3 L 15 3 L 15 4 ZM 8 4 L 11 4 L 11 3 L 8 3 L 8 4 ZM 3 4 L 4 4 L 4 3 L 3 3 C 1.3431 3 0 4.3431 0 6 L 0 25 C 0 26.6569 1.3431 28 3 28 L 23 28 C 24.6569 28 26 26.6569 26 25 L 26 6 C 26 4.3431 24.6569 3 23 3 L 22 3 L 22 4 L 23 4 C 24.1046 4 25 4.8954 25 6 L 25 25 C 25 26.1046 24.1046 27 23 27 L 3 27 C 1.8954 27 1 26.1046 1 25 L 1 6 C 1 4.8954 1.8954 4 3 4 Z" fill="#ffffff"/>'+
+'	          </g>'+
+'          </svg>'+
+'        </i>'+
+'        <span>التفاصيل</span>'+
+'      </a>'+
+'      <div class="contentt">'+
+'            <div class="container">'+
+'                <div class="row">'+
+'                    '+
+'                    <div class="col-md-9 col-sm-9">'+
+'                        <div class="date">'+
+'                            <span class="date-string">'+unitTitle+'</span>'+
+'                            <span class="date-num">'+unitDate+'</span>'+
+'                        </div>'+
+''+
+'                        '+
+'                    </div>'+
+'                </div>'+
+'            </div>'+
+'      </div>'+
+'    </div>'+
+'  </div>';
+    }
+    });
+
+
     </script>
 
 
 
 
+
+
+
 @endsection
+
+
+

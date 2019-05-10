@@ -9,8 +9,14 @@ class ReportAdmin extends Model
     protected  $fillable=['user_id','title','report','realtor_id'];
 
 
-    public function realtor()
+    public function user()
     {
         return $this->belongsTo(User::class ,'user_id')->withTrashed();
     }
+    public function realtor()
+    {
+        return $this->belongsTo(User::class ,'realtor_id')->withTrashed();
+    }
+
+
 }

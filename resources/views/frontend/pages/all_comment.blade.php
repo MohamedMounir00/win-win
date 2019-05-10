@@ -1,4 +1,5 @@
 @extends('frontend.layouts.app')
+@section('page_title' , trans('frontend.Public_Rating'))
 
 @section('content')
 
@@ -18,7 +19,8 @@
                 <div class="col-xl-4 col-lg-4">
                     <div class="user-info text-center">
                         @if($user->image!=null)
-                            <img class="img-fluid img-thumbnail rounded-circle" src="{{url($user->image)}}" alt="">
+                        <a  href="{{url($user->image)}}" data-lightbox="image-1">
+                        <img class="img-fluid img-thumbnail rounded-circle" src="{{url($user->image)}}" alt=""></a>
                         @else
                             <img class="img-fluid img-thumbnail rounded-circle" src="https://www.mycustomer.com/sites/all/modules/custom/sm_pp_user_profile/img/default-user.png" alt="">
 
@@ -104,34 +106,8 @@
 
     <!-- Start Dealing Section -->
 
-    <section class="homepage-deal">
-        <div class="container">
-            <div class="row text-center justify-content-md-center">
+    @include('frontend.partials.dealing')
 
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <a href="#" class="main">
-                        <div data-tilt class="deal-section">
-                            <i class="sell-i fa fa-hand-paper-o"></i>
-                            <h3> {{trans('frontend.Buy')}}</h3>
-
-                            <p>{{trans('frontend.desc_lorm')}}</p>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <a href="#" class="main">
-                        <div data-tilt class="deal-section">
-                            <i class="fa fa-home"></i>
-                            <h3> {{trans('frontend.Rent')}}</h3>
-                            <p>{{trans('frontend.desc_lorm')}}</p>
-                        </div>
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </section>>
 
     <!-- End Dealing Section -->
 
@@ -156,7 +132,7 @@ $(document).ready(function () {
     function loadMoreData() {
         var user_id = {{$user->id}};
         $.ajax({
-           url  : "{{url('api/get_all_comment')}}",
+           url  : "{{url('get_all_comment')}}",
            type : 'POST',
            data : {
                offset_id : offset,

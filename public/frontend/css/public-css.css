@@ -28,3 +28,43 @@ body.loading .modal {
 body.loading .modal {
     display: block;
 }
+
+@media (min-width: 992px) { 
+  .nav-item {
+    margin: auto;
+  } 
+}
+
+/* override unit card style */
+.food {
+  min-height: 280px !important;
+}
+.food > .info > .contentt {
+  padding: 15px 5px !important;
+}
+.food > .info {
+  min-height: 110px !important;  
+}
+
+.food > .info > .recipe > i {
+  margin: 25px 0 15px !important;
+}
+
+
+/* override chat inputs */
+
+.right-section-bottom .btn-send,
+.right-section-bottom input {
+  padding: 10px 10px !important;
+}
+
+.right-section-bottom input {
+  width: calc(100% - 86px) !important;
+}
+
+/* override  chat page */
+/*.left-section,*/
+.right-section .message 
+{
+  overflow: scroll;
+}

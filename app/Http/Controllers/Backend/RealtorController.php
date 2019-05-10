@@ -170,7 +170,7 @@ class RealtorController extends Controller
             ->addColumn('action', function ($data) {
                 return '<a href="' . route('realtor.edit', $data->id) . '" class="btn btn-round  btn-primary"><i class="fa fa-edit"></i> '.trans('backend.update').'</a>
                     <a href="' . route('realtor.show', $data->id) . '" class="btn btn-round  btn-primary"><i class="fa fa-eye"></i> '.trans('backend.details').'</a>
-              <button class="btn btn-delete btn btn-round  btn-danger" data-remote="state/' . $data->id . '"><i class="fa fa-remove"></i>'.trans('backend.delete').'</button>
+              <button class="btn btn-delete btn btn-round  btn-danger" data-remote="realtor/' . $data->id . '"><i class="fa fa-remove"></i>'.trans('backend.delete').'</button>
     
                 ';
             })

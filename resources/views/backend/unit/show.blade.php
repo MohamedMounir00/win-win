@@ -1,4 +1,5 @@
 @extends('backend.layouts.app')
+@section('page_title' , trans('backend.unit_details'))
 
 @section('content')
     @php
@@ -17,39 +18,34 @@
                     <div class="x_title">
                         <h2>{{trans('backend.unit_details')}}</h2>
                         <ul class="nav navbar-right panel_toolbox">
-                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            <li>
+                                <a class="collapse-link"> <i class="fa fa-chevron-up"></i> </a>
                             </li>
 
-                            </li>
                         </ul>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
 
-                        <div class="col-md-7 col-sm-7 col-xs-12">
+                        <div class="col-md-6 col-sm-7 col-xs-12">
 
                             <div class="product_gallery">
                                 @foreach($data->storge as $item)
-
-
-                                    <a>
-                                        <img src="{{url($item->url)}}"
-                                             alt="..."/>
-                                    </a>
+                                    <a> <img src="{{url($item->url)}}" alt="..."/> </a>
                                 @endforeach
 
                             </div>
                         </div>
 
-                        <div class="col-md-5 col-sm-5 col-xs-12" style="border:0px solid #e5e5e5;">
+                        <div class="col-md-6 col-sm-5 col-xs-12" style="border:0px solid #e5e5e5;">
 
-                            <h3 class="prod_title">{{$data->title}}</h3>
+                            <h3 style="padding-bottom: 10px;" class="prod_title">{{$data->title}}</h3>
 
                             <p>{{$data->desc}}</p>
                             <br>
 
-                            <div class="">
-                                <h2>{{trans('backend.type')}}</h2>
+                            <div style="margin:0 2px;" class="well col-md-3">
+                                <h2 style="font-size:20px;">{{trans('backend.type')}}</h2>
                                 <ul class="list-inline prod_color">
                                     <li>
                                         <p>{{unserialize($data->unit_type->name)[$lang]}}</p>
@@ -58,9 +54,8 @@
 
                                 </ul>
                             </div>
-                            <br>
-                            <div class="">
-                                <h2>{{trans('backend.city')}}</h2>
+                            <div style="margin:0 2px;" class="well  col-md-3">
+                                <h2 style="font-size:20px;">{{trans('backend.city')}}</h2>
                                 <ul class="list-inline prod_color">
                                     <li>
                                         @if($data->city_id==null)
@@ -70,14 +65,11 @@
                                         @endif
 
                                     </li>
-
-
                                 </ul>
                             </div>
 
-                            <br>
-                            <div class="">
-                                <h2>{{trans('backend.state')}}</h2>
+                            <div style="margin:0 2px;" class="well  col-md-3">
+                                <h2 style="font-size:20px;">{{trans('backend.state')}}</h2>
                                 <ul class="list-inline prod_color">
                                     <li>
 
@@ -91,12 +83,12 @@
 
                                 </ul>
                             </div>
-                            <div class="">
+                            <div class=" col-md-12">
                                 <h2><small>{{trans('backend.unit_details')}}</small></h2>
                                 <ul class="list-inline prod_size">
                                     <li>
                                         <div class=" well text-center">
-                                            <h3>{{ trans('backend.bathroom') }}</h3>
+                                            <h3 style="font-size:20px;">{{ trans('backend.bathroom') }}</h3>
                                             @if($data->bathroom==null)
                                                 {{trans('backend.without')}}
                                             @else
@@ -106,7 +98,7 @@
                                     </li>
                                     <li>
                                         <div class=" well text-center">
-                                            <h3>{{ trans('backend.area') }}</h3>
+                                            <h3 style="font-size:20px;">{{ trans('backend.area') }}</h3>
                                             @if($data->area==null)
                                                 {{trans('backend.without')}}
                                             @else
@@ -116,7 +108,7 @@
                                     </li>
                                     <li>
                                         <div class=" well text-center">
-                                            <h3>{{ trans('backend.status') }}</h3>
+                                            <h3 style="font-size:20px;">{{ trans('backend.status') }}</h3>
 
                                         @if($data->status=='sale')
                                                 {{ trans('backend.sale') }}
@@ -129,7 +121,7 @@
                                     </li>
                                     <li>
                                         <div class=" well text-center">
-                                            <h3>{{ trans('backend.bathroom') }}</h3>
+                                            <h3 style="font-size:20px;">{{ trans('backend.bathroom') }}</h3>
                                             @if($data->bathroom==null)
                                                 {{trans('backend.without')}}
                                             @else
@@ -139,7 +131,7 @@
                                     </li>
                                     <li>
                                         <div class=" well text-center">
-                                            <h3>{{ trans('backend.payment_method') }}</h3>
+                                            <h3 style="font-size:20px;">{{ trans('backend.payment_method') }}</h3>
                                             @if($data->payment_method=='cash')
                                                 {{ trans('backend.cash') }}
 
@@ -156,7 +148,7 @@
                                     </li>
                                     <li>
                                         <div class=" well text-center">
-                                            <h3>{{ trans('backend.rooms') }}</h3>
+                                            <h3 style="font-size:20px;">{{ trans('backend.rooms') }}</h3>
                                             @if($data->rooms==null)
                                                 {{trans('backend.without')}}
                                             @else
@@ -166,7 +158,7 @@
                                     </li>
                                     <li>
                                         <div class=" well text-center">
-                                            <h3>{{ trans('backend.floor') }}</h3>
+                                            <h3 style="font-size:20px;">{{ trans('backend.floor') }}</h3>
                                             @if($data->floor==null)
                                                 {{trans('backend.without')}}
                                             @else
@@ -177,7 +169,7 @@
 
                                     <li>
                                         <div class=" well text-center">
-                                            <h3>{{ trans('backend.finishing') }}</h3>
+                                            <h3 style="font-size:20px;">{{ trans('backend.finishing') }}</h3>
                                            @if($data->finishing=='yes')
                                                 {{ trans('backend.yes') }}
                                                @elseif($data->finishing=='no')
@@ -195,7 +187,7 @@
                             <br>
 
 
-                            <div class="">
+                            <div class="col-md-12">
                                @if($data->activation_admin=='active')
                                 <a href="{{route('unit.active',$data->id)}}" class="btn btn-danger ">{{trans('backend.not_active')}}</a>
                                 @else
@@ -232,7 +224,7 @@
 
                             <div class="">
                                 <div class="product_price">
-                                    <h1 class="price">
+                                    <h1 class="price" style="font-size:25px;">
                                         @if($data->price==null)
                                             {{trans('backend.without')}}
                                         @else
@@ -241,12 +233,6 @@
                                     <br>
                                 </div>
                             </div>
-
-
-
-
-
-
                     </div>
                 </div>
             </div>

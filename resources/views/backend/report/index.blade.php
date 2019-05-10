@@ -1,10 +1,11 @@
 @extends('backend.layouts.app')
+@section('page_title' , trans('backend.get_report'))
 
 @section('content')
 
     <div class="x_panel">
         <div class="x_title">
-            <h2>{{trans('backend.realtor')}}</h2>
+            <h2>{{trans('backend.get_report')}}</h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                 </li>
@@ -21,10 +22,11 @@
                 <table id="table1" class="table table-striped table-bordered bulk_action table1">
                     <thead>
                     <tr>
-                        <th>{{trans('backend.name')}}</th>
+                        <th>{{trans('backend.report_send')}}</th>
 
                         <th>{{trans('backend.email')}}</th>
                         <th>{{trans('backend.phone')}}</th>
+                        <th>{{trans('backend.report_in')}}</th>
                         <th>{{trans('backend.report')}}</th>
                         <th>{{trans('backend.date')}}</th>
                         <th>{{trans('backend.action')}}</th>
@@ -58,6 +60,7 @@
 
                     { data: 'email', name: 'email' },
                     { data: 'phone', name: 'phone' },
+                    { data: 'realtor', name: 'realtor' },
                     { data: 'report', name: 'report' },
                     { data: 'created_at', name: 'created_at' },
 

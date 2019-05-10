@@ -46,7 +46,13 @@
         }
 
     </style>
+    <style type="text/css">
+        
+
+
+    </style>
 @endsection
+@section('page_title' , trans('frontend.profile'))
 
 @section('content')
 
@@ -58,27 +64,30 @@
 
 
     <!-- Start Introduction Section -->
-
     <div class="user-profile">
         <div class="container">
             <div class="row no-gutters">
                 <div class="col-xl-3 col-lg-4">
                     <div class="user-info text-center">
                         @if($user->image!=null)
-                        <img class="img-fluid img-thumbnail rounded-circle" src="{{url($user->image)}}" alt="">
+                        <a  href="{{url($user->image)}}" data-lightbox="image-1">
+                        <img class="img-fluid img-thumbnail rounded-circle" src="{{url($user->image)}}" alt=""></a>
                         @else
                             <img class="img-fluid img-thumbnail rounded-circle" src="https://www.mycustomer.com/sites/all/modules/custom/sm_pp_user_profile/img/default-user.png" alt="">
 
                         @endif
-                        <h2  class="text-truncate">{{$user->name}}</h2>
-                        <span class="text-truncate">{{$user->email}}</span>
+                        <h2 style="word-wrap:break-word;">{{$user->realtor->company_name}}</h2>
+       
                             @if($user->realtor)
 
-                            <p>{{$user->realtor->bio}}</p>
+                                @if(auth()->user()->id==$user->id)
+                                    
+                                @endif
+                            <p style="word-break: break-word;">{{$user->realtor->bio}}</p>
                         <hr>
                         <div class="manager-info">
-                            <h2>{{trans('frontend.Company_Name')}}</h2>
-                            <span>{{$user->realtor->company_name}}</span>
+                            <h2>{{trans('frontend.name')}}</h2>
+                            <span>{{$user->name}}</span>
                         </div>
                         <hr>
                         <div class="adress">
@@ -134,14 +143,18 @@
 
 
 
-                                <div class="container">
+                                <div>
                                     @if($user->realtor)
 
                                     <div class="stars">
                                         <nav style="margin-bottom:30px">
                                             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                                 <a class="nav-item nav-link active" id="nav-rate" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">{{trans('frontend.add_rating')}}</a>
+                                                @if(auth()->user()->realtor)
+
                                                 <a class="nav-item nav-link" id="nav-report" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">{{trans('frontend.report')}}</a>
+                                                @endif
+                                                    <a class="nav-item nav-link" id="nav-report" data-toggle="tab" href="#nav-takemessage" role="tab" aria-controls="nav-profile" aria-selected="false">{{trans('frontend.take_message')}}</a>
                                             </div>
                                         </nav>
                                         <div class="tab-content" id="nav-tabContent">
@@ -190,13 +203,20 @@
                                                 </div>
                                                     @endif
                                             </div>
+                                            @if(auth()->user()->realtor)
                                             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                                                 {!! Form::open(['route'=>['add_report'],'method'=>'POST', 'id' => 'form','files'=>true]) !!}
-                                                    <p class="reportParagraph">{{trans('frontend.send_report')}}</p>
+                                                <p class="reportParagraph">{{trans('frontend.send_report')}}</p>
                                                 <input name="realtor_id"  value="{{$user->id}}" type="hidden">
-                                                    <textarea  name="report" required class="form-control" ></textarea>
-                                                    <button class="btn btn-primary my-btn ">{{trans('frontend.send')}}</button>
+                                                <textarea  name="report" required class="form-control" ></textarea>
+                                                <button class="btn btn-primary my-btn ">{{trans('frontend.send')}}</button>
                                                 {!! Form::close() !!}
+                                            </div>
+                                            @endif
+                                            <div class="tab-pane fade" id="nav-takemessage" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                                <p class="reportParagraph">{{trans('frontend.take_message_description')}}</p>
+                                                <input  name="report" required class="form-control" />
+                                                <button class="btn btn-primary my-btn btn-send" reciver-id="{{$user->id}}">{{trans('frontend.send')}}</button>
                                             </div>
                                         </div>
                                     </div>
@@ -212,10 +232,15 @@
 
 
                         <!-- User Rating box -->
-                        
-                        <!-- Latest Unites -->
+
+
+         
                     </div>
-                </div>
+                    </div>
+
+
+
+                    
 
                 @if($user->realtor)
 
@@ -224,22 +249,41 @@
                     <div class="contact-info">
                         <span>{{trans('frontend.Mobile')}}</span>
                         <ul class="list-unstyled">
-                            <li><i class="fa fa-gear"></i> {{$user->phone}}</li>
-                            <li><i class="fa fa-gear"></i> {{$user->realtor->phone1}}</li>
+                            @if($user->phone!=null)
+                            <li class="text-break"><i class="fa fa-mobile"></i> {{$user->phone}}</li>
+                            @endif
+                                @if($user->realtor->phone1!=null)
+
+                                <li class="text-break"><i class="fa fa-mobile"></i> {{$user->realtor->phone1}}</li>
+                                @endif
+
                         </ul>
                         <hr>
                         <span> {{trans('frontend.Phone')}}</span>
                         <ul class="list-unstyled">
-                            <li><i class="fa fa-gear"></i> {{$user->realtor->phone2}}</li>
-                            <li><i class="fa fa-gear"></i> {{$user->realtor->phone3}}</li>
+                            @if($user->realtor->phone2!=null)
+
+                            <li class="text-break"><i class="fa fa-phone"></i> {{$user->realtor->phone2}}</li>
+                            @endif
+                                @if($user->realtor->phone3!=null)
+
+                            <li class="text-break"><i class="fa fa-phone"></i> {{$user->realtor->phone3}}</li>
+                                @endif
+                        </ul>
+                        <hr>
+                        <span>{{trans('frontend.Email')}}</span>
+                        <ul class="list-unstyled">
+                            <li style="word-wrap:break-word;" class="text-break"><i class="fa fa-envelope-o"></i> {{$user->email}}</li>
                         </ul>
                         <hr>
                         <span>{{trans('frontend.Street_Address')}}</span>
                         <div class="address">
-                            <i class="fa fa-gear"></i>
-                            <p class="text-center"> {{$user->realtor->address}} </p>
+                            <i class="fa fa-map-marker"></i>
+                            <p class="text-center text-break"> {{$user->realtor->address}} </p>
                         </div>
+                        
                     </div>
+                    <br>
 
                     <!-- Latest Rating-->
 
@@ -247,6 +291,7 @@
                     <div class="latest-rate">
 
                     @forelse($rating_10 as $rating)
+                            <hr>
 
                         <div class="block">
                             <div class="rate">
@@ -258,22 +303,19 @@
                                 @endphp
                             </div>
                             <div class="comment">
-                                <p class="text-truncate">{{$rating->comment}}</p>
+                                <p style="word-break: break-word;" class="text-truncate">{{$rating->comment}}</p>
                             </div>
                         </div>
 
-                        <hr>
                         @empty
-                        {{trans('frontend.no_rating')}}
+                        <span class="when-no-rating">  {{trans('frontend.no_rating')}}</span>
                         @endforelse
                         @if($ratingcount!=0)
                         <a href="{{route('get_all_comment_view',$user->id)}}" class="btn btn-primary my-btn send btn-block">{{trans('frontend.load_more')}}</a>
                         @endif
-                    </div>
+                     </div>
 
-
-
-                </div>
+                   </div>
 
                         @endif
 
@@ -289,34 +331,8 @@
 
     <!-- Start Dealing Section -->
 
-    <section class="homepage-deal">
-        <div class="container">
-            <div class="row text-center justify-content-md-center">
+    @include('frontend.partials.dealing')
 
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <a href="#" class="main">
-                        <div data-tilt class="deal-section">
-                            <i class="sell-i fa fa-hand-paper-o"></i>
-                            <h3> {{trans('frontend.Buy')}}</h3>
-
-                            <p>{{trans('frontend.desc_lorm')}}</p>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <a href="#" class="main">
-                        <div data-tilt class="deal-section">
-                            <i class="fa fa-home"></i>
-                            <h3> {{trans('frontend.Rent')}}</h3>
-                            <p>{{trans('frontend.desc_lorm')}}</p>
-                        </div>
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </section>
 
     <!-- End Dealing Section -->
 
@@ -329,11 +345,7 @@
         $('#addStar').on('submit',function(e){
             e.preventDefault();
 
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                }
-            });
+        
             $.ajax({
                 type: 'POST',
                 cache: false,
@@ -375,16 +387,53 @@ $(document).ready(function () {
     var offset  = 0;
     loadMoreData();
 
-  
+    // this functions for change status of units
+    $('#data-container').on('click', '.available-button', function() {
+        changeStatusUnit($(this).attr('activation'), $(this).attr('unit-id'), this)
+    });
+
+    function changeStatusUnit(current_status, unit_id, item) {
+        $.ajax({
+            url: '{{url('api/change_status')}}',
+            method: 'post',
+            data: {
+                activation: current_status,
+                id : unit_id
+            },
+            beforeSend: function () {
+                $('.spinner').show();
+            },
+            complete: function () {
+                $('.spinner').hide();
+            },
+            success: function (data) {
+                $(item).replaceWith(appendActivationButtons(data));
+                {{--swal('{{trans('frontend.status_changed_successfully')}}')--}}
+
+            }
+        });
+    }
+
+    function appendActivationButtons(data) {
+
+        if (data.activation == 'not_active') {
+            return '<button class="btn btn-primary available-button"activation="active"  unit-id="'+data.id+'"><i class="fa fa-check" aria-hidden="true"></i>{{trans('backend.active')}}</button>';
+        } 
+        
+        if (data.activation == 'active') {
+            return '<button class="btn btn-danger available-button" activation="not_active" unit-id="'+data.id+'"><i class="fa fa-check" aria-hidden="true"></i> {{trans('backend.not_active')}}</button>';
+        } 
+    }
 
     // Function To Get 10 Rating Data From Database 
     function loadMoreData() {
         indicator('start');
         var user_id = {{$user->id}};
         $.ajax({
-           url  : "{{url('api/get_all_units')}}",
+           url  : "{{route('get_all_units')}}",
            type : 'POST',
            data : {
+
                offset_id : offset,
                user_id : user_id,
                lang : '{{LaravelLocalization::getCurrentLocale()}}'
@@ -395,9 +444,14 @@ $(document).ready(function () {
                 }
                 $.each(data.data ,function(index, value) {
 
-                    console.log(value.date)
-                    var html = '<div class="latest-units"> <div class="row no-gutters"> <div class="col-md-3"> <div class="unit-img"> <img class="img-fluid rounded-circle" src="'+value.userimage+'" alt=""> </div> </div> <div class="col-md-6"> <div class="unit-description"> <h2 class="text-truncate"><a class="text-decoration-none" href="'+value.url+'"> '+value.title+'</a></h2> <p>'+value.date+'</p> <span><i class="fa fa-gear"></i> '+value.type+'</span> </div> </div> <div class="col-md-3"> <div class="price"> <span>'+value.price+'</span> <p>'+value.string_prics+'</p> </div> </div> </div></div>';
-                  $('#data-container').append(html);
+                    // var imgUrl = value.storge[0].url
+                    var imgUrl = '{{asset('no-photo.png')}}';
+                    if (value.storge.length > 0) {
+                        imgUrl = value.storge[0].url
+                    } 
+
+                    var html = '<div class="latest-units"> <div class="row no-gutters"> <div class="col-md-3"> <div class="unit-img"> <img class="img-fluid rounded-circle" src="'+imgUrl+'" alt=""> </div> </div> <div class="col-md-6"> <div  class="unit-description"> <h2 style="word-break: break-word;"><a class="text-decoration-none" href="'+value.url+'"> '+value.title+'</a></h2> <p>'+value.date+'</p> <span><i class="fa fa-gear"></i> '+value.type+'</span> <span style="margin-right:40px"><i class="fa fa-map-marker"></i> '+value.type+'</span> </div> </div> <div class="col-md-3"> <div class="price"> <span>'+value.price+'</span> '+appendActivationButtons(value)+'<p>'+value.string_prics+'</p> </div> </div> </div></div>';
+                        $('#data-container').append(printUnitCard(imgUrl, value.type, value.price, value.activation,value.title,value.date,value.url, value.state));
                         offset ++;
                 });
                 if (data.data.length == 0) {
@@ -414,23 +468,148 @@ $(document).ready(function () {
     }     
 
     function indicator(status) {
+
         if (status == 'start') {
             $( "#load" ).remove();
             $('#data-container').append('<img id="loading-icon" src="{{asset('frontend/images/loading.gif')}}" />');
         }
+
         if (status == 'stop') {
             $('#data-container').append('<input id="load" type="button" class="btn btn-primary my-btn my-3" value="{{trans('frontend.load_more')}}" />');
             $('#loading-icon').remove();
+
                 // Work Function When Click On Load More Button 
             $('#load').click(function () {
                 loadMoreData();
             });
         }
+
         if (status == 'empty') {
             $('#loading-icon').remove();
         }
     }
+
+
+    $('#nav-takemessage').on('click', '.btn-send', function() {
+        var message = $(this).parent().find('input').val();
+        var reciver_id = $(this).attr('reciver-id');
+        if (message == "") {
+            swal('{{trans('frontend.send_message_required')}}')
+            return false
+        }
+
+        if (typeof reciver_id == 'undefined') {
+            swal('{{trans('frontend.chosse_conversation')}}')
+            return false
+        }
+
+        sendMessage(reciver_id, message);
+    });
+
+
+    // Get ALl Message Ajax
+    function sendMessage(receiver, message) {
+        $.ajax({
+            url: '{{url('/send-message')}}',
+            type: 'POST',
+            data: {
+                receiver_id : receiver,
+                message : message,
+                lang : '{{LaravelLocalization::getCurrentLocale()}}'
+            },
+            success: function (value) {
+                value = value.data
+                if (value.sender_id > 0) {
+                    swal('{{trans('frontend.send_success')}}')
+                }
+                $('#nav-takemessage input').val('');
+            }
+        });
+    }
+
+
+    // Pring Unit Card Function .......
+
+    function printUnitCard(imageUrl, unitType, unitPrice, activationBtn, unitTitle, unitDate, detailsUrl, detailState) {
+        var price = ""
+        var activation = ""
+        if (unitPrice != null) {
+            price  = '<label class="price">'+
+                '        <span>'+unitPrice+'</span>'+
+                '      </label>';
+        }
+        if (unitTitle != null) {
+            unitTitle = unitTitle.slice(0, 100)
+        }
+        if (activationBtn != null) {
+            if (activationBtn == "active") {
+                activation =    '      <a href="#" class="download">'+
+                            '		          <a href="#" class="download">'+
+       ' <svg x="0px" y="0px" width="27px" height="22px">'+
+	      '  <g>'+
+		        '<path d="M 12.5625 0 C 12.0102 0 11.5625 0.4477 11.5625 1 L 11.565 8.69 L 9.0625 8.6875 L 12 16 L 14 16 L 17.0625 8.6875 L 14.5 8.69 L 14.5 1 C 14.5 0.4477 14.0523 0 13.5 0 L 12.5625 0 ZM 1 19 L 1 14 L 0 14 L 0 19 C 0 20.6569 1.3431 22 3 22 L 24 22 C 25.6569 22 27 20.6569 27 19 L 27 14 L 26 14 L 26 19 C 26 20.1046 25.1046 21 24 21 L 3 21 C 1.8954 21 1 20.1046 1 19 Z" fill="#ffffff"/>'+
+	       ' </g>'+
+       ' </svg>'+
+      '</a>'+
+                            '      </a>';
+            }
+
+            if (activationBtn == "not_active") {
+                activation =    '      <a href="#" class="download">'+
+                            '		         <a href="#" class="download">'+
+       ' <svg x="0px" y="0px" width="27px" height="22px">'+
+	      '  <g>'+
+		        '<path d="M 12.5625 0 C 12.0102 0 11.5625 0.4477 11.5625 1 L 11.565 8.69 L 9.0625 8.6875 L 12 16 L 14 16 L 17.0625 8.6875 L 14.5 8.69 L 14.5 1 C 14.5 0.4477 14.0523 0 13.5 0 L 12.5625 0 ZM 1 19 L 1 14 L 0 14 L 0 19 C 0 20.6569 1.3431 22 3 22 L 24 22 C 25.6569 22 27 20.6569 27 19 L 27 14 L 26 14 L 26 19 C 26 20.1046 25.1046 21 24 21 L 3 21 C 1.8954 21 1 20.1046 1 19 Z" fill="#ffffff"/>'+
+	       ' </g>'+
+       ' </svg>'+
+      '</a>'+
+                            '      </a>';
+            }
+            
+        }
+        return '<div class="food">'+
+'    <div class="cover" style="background-image: url('+imageUrl+')">'+
+'      <label>'+
+'        <span>'+unitType+'</span>'+
+'      </label>'+
+      price +
+'      <label class="right">'+
+'        <span>'+detailState+'</span>'+
+'      </label>'+
+    activation+
+'    </div>'+
+'    <div class="info">'+
+'      <a href="'+detailsUrl+'" class="recipe">'+
+'        <i>'+
+'          <svg x="0px" y="0px" width="26px" height="28px"'+
+'>'+
+'	          <g>'+
+'		          <path d="M 8.5 20 L 8.5 21 L 17.5 21 L 17.5 20 L 8.5 20 ZM 8.5 16 L 8.5 17 L 17.5 17 L 17.5 16 L 8.5 16 ZM 8.5 12 L 8.5 13 L 17.5 13 L 17.5 12 L 8.5 12 ZM 20 0 C 19.4477 0 19 0.4477 19 1 L 19 6 C 19 6.5523 19.4477 7 20 7 C 20.5523 7 21 6.5523 21 6 L 21 1 C 21 0.4477 20.5523 0 20 0 ZM 13 0 C 12.4477 0 12 0.4477 12 1 L 12 6 C 12 6.5523 12.4477 7 13 7 C 13.5523 7 14 6.5523 14 6 L 14 1 C 14 0.4477 13.5523 0 13 0 ZM 6 0 C 5.4477 0 5 0.4477 5 1 L 5 6 C 5 6.5523 5.4477 7 6 7 C 6.5523 7 7 6.5523 7 6 L 7 1 C 7 0.4477 6.5523 0 6 0 ZM 15 4 L 18 4 L 18 3 L 15 3 L 15 4 ZM 8 4 L 11 4 L 11 3 L 8 3 L 8 4 ZM 3 4 L 4 4 L 4 3 L 3 3 C 1.3431 3 0 4.3431 0 6 L 0 25 C 0 26.6569 1.3431 28 3 28 L 23 28 C 24.6569 28 26 26.6569 26 25 L 26 6 C 26 4.3431 24.6569 3 23 3 L 22 3 L 22 4 L 23 4 C 24.1046 4 25 4.8954 25 6 L 25 25 C 25 26.1046 24.1046 27 23 27 L 3 27 C 1.8954 27 1 26.1046 1 25 L 1 6 C 1 4.8954 1.8954 4 3 4 Z" fill="#ffffff"/>'+
+'	          </g>'+
+'          </svg>'+
+'        </i>'+
+'        <span>التفاصيل</span>'+
+'      </a>'+
+'      <div class="contentt">'+
+'            <div class="container">'+
+'                <div class="row">'+
+'                    '+
+'                    <div class="col-md-9 col-sm-9">'+
+'                        <div class="date">'+
+'                            <span class="date-string">'+unitTitle+'</span>'+
+'                            <span class="date-num">'+unitDate+'</span>'+
+'                        </div>'+
+''+
+'                        '+
+'                    </div>'+
+'                </div>'+
+'            </div>'+
+'      </div>'+
+'    </div>'+
+'  </div>';
+    }
 });
 </script>
+
 
 @endsection

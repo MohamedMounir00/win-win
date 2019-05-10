@@ -1,4 +1,5 @@
 @extends('backend.layouts.app')
+@section('page_title' , trans('backend.state_controller'))
 
 @section('content')
 

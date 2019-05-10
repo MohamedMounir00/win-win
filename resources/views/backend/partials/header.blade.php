@@ -9,10 +9,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="fontiran.com:license" content="Y68A9">
+    <link href="https://fonts.googleapis.com/css?family=Tajawal:300,400,500,700,800,900" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{trans('backend.title')}}</title>
-
+    <title>@yield('page_title') | win-win </title>
     <!-- Bootstrap -->
 
     @if($lang == "ar")

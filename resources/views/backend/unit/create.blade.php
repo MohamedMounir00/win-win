@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('page_title' , trans('backend.create'))
 
 @section('content')
 

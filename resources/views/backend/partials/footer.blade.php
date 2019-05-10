@@ -42,9 +42,19 @@
 
 <!-- Custom Theme Scripts -->
 </script><script src="https://cdn.jsdelivr.net/npm/dropify@0.2.2/dist/js/dropify.min.js"></script>
-
+<script src="{{asset('vendors')}}/fastclick/lib/fastclick.js"></script>
+<!-- Chart.js -->
+<script src="{{asset('vendors')}}/Chart.js/dist/Chart.min.js"></script>
+<!-- jQuery Sparklines -->
+<script src="{{asset('vendors')}}/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+<!-- gauge.js -->
+<script src="{{asset('vendors')}}/gauge.js/dist/gauge.min.js"></script>
 <!-- Include this after the sweet alert js file -->
+<!-- Chart.js -->
+<
+<!-- Skycons -->
 
+<!-- Flot plugins -->
 <!-- Chart.js -->
 <!-- jQuery Sparklines -->
 @if($lang == "ar")

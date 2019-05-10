@@ -1,4 +1,5 @@
 @extends('backend.layouts.app')
+@section('page_title' , trans('backend.admins'))
 
 @section('content')
 
@@ -21,7 +22,7 @@
                 <table id="table1" class="table table-striped table-bordered bulk_action table1">
                     <thead>
                     <tr>
-                        <th>{{trans('backend.name')}}</th>
+                        <th>{{trans('backend.name_admin')}}</th>
                         <th>{{trans('backend.image')}}</th>
                         <th>{{trans('backend.email')}}</th>
                         <th>{{trans('backend.phone')}}</th>

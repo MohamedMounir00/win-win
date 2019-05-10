@@ -1,7 +1,7 @@
 <div class="col-md-3 left_col hidden-print">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
-            <a href="#" class="site_title"> <span>
+            <a href="{{route('admin')}}" class="site_title"> <span>
                    @if(app()->getLocale()=='ar' )
 
                         win-win لوحه تحكم
@@ -44,7 +44,8 @@
                         </ul>
                     </li>
 
-                    <li><a><i class="fa fa-edit"></i> {{trans('backend.unit_controller')}} <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-edit"></i> {{trans('backend.unit_controller')}} <span class="fa fa-chevron-down"></span>
+                        </a>
                         <ul class="nav child_menu">
                             <li><a href="{{route('unit.index')}}">{{trans('backend.all_unit')}} </a></li>
                             <li>
@@ -81,13 +82,36 @@
 
                         </ul>
                     </li>
-                    <li><a><i class="fa fa-edit"></i> {{trans('backend.get_report')}} <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-edit"></i> {{trans('backend.get_report')}} <span class="fa fa-chevron-down"></span>
+                            <span class="label label-danger pull-left">{{\App\Helper\Helper::count_report()}}</span>
+
+                        </a>
                         <ul class="nav child_menu">
                             <li><a href="{{route('report.index')}}">{{trans('backend.get_report')}} </a></li>
 
 
                         </ul>
                     </li>
+                    {{--
+                   <li><a><i class="fa fa-edit"></i> {{trans('backend.get_message')}} <span class="fa fa-chevron-down"></span>
+                           <span class="label label-danger pull-left">{{\App\Helper\Helper::count_message()}}</span>
+                       </a>
+                       <ul class="nav child_menu">
+                           <li><a href="{{route('message.index')}}">{{trans('backend.get_message')}} </a></li>
+
+
+                       </ul>
+                   </li>
+
+                   <li><a><i class="fa fa-edit"></i> {{trans('backend.role')}} <span class="fa fa-chevron-down"></span></a>
+                       <ul class="nav child_menu">
+                           <li><a href="{{route('roles.index')}}">{{trans('backend.role')}} </a></li>
+
+                           <li><a href="{{route('roles.create')}}">{{trans('backend.create')}} </a></li>
+
+                       </ul>
+                   </li>
+                   --}}
                     <li><a><i class="fa fa-edit"></i> {{trans('backend.get_settings')}} <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{route('get_settings')}}">{{trans('backend.get_settingsr_controller')}} </a></li>

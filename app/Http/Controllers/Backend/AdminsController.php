@@ -13,6 +13,8 @@ use App\Http\Controllers\Controller;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Yajra\Datatables\Datatables;
 use Alert;
+use Spatie\Permission\Models\Role;
+use DB;
 class AdminsController extends Controller
 {
     //
@@ -39,7 +41,9 @@ class AdminsController extends Controller
 
         $city=City::all();
         $state=State::all();
-        return view('backend.admins.create', compact('city','state'));
+        $roles = Role::pluck('name','name')->all();
+
+        return view('backend.admins.create', compact('city','state','roles'));
 
     }
 
@@ -67,6 +71,8 @@ class AdminsController extends Controller
         Admin::create([
             'user_id'=>$admin->id
         ]);
+        $admin->assignRole($request->input('roles'));
+
         if ($admin)
             Alert::success(trans('backend.created'))->persistent("Close");
 
@@ -107,8 +113,9 @@ class AdminsController extends Controller
         $state=State::all();
 
         $data = User::findOrFail($id);
-
-        return view('backend.admins.edit', compact('data','city','state'));
+        $roles = Role::pluck('name','name')->all();
+       // $userRole = $data->roles->pluck('name','name')->all();
+        return view('backend.admins.edit', compact('data','city','state','userRole','roles'));
 
     }
 
@@ -133,6 +140,8 @@ class AdminsController extends Controller
             'phone'=>'required|min:9',
             'state_id'=>'required',
             'city_id'=>'required',
+          //  'roles' => 'required'
+
 
         ]);
 
@@ -148,7 +157,10 @@ class AdminsController extends Controller
             $data->password = bcrypt($request->password);      //  ]);
         $data->save();
 
-
+       // if (!$data->hasRole('admin')) {
+         ///   DB::table('model_has_roles')->where('model_id',$id)->delete();
+           // $data->assignRole($request->input('roles'));
+       // }
         if ($data)
             Alert::success(trans('backend.updateFash'))->persistent("Close");
         return redirect()->route('admins.index');

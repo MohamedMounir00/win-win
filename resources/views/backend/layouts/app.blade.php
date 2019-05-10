@@ -13,7 +13,7 @@
 @include('backend.partials.header')
 
 <!-- /header content -->
-<body class="nav-md">
+<body class="nav-md" style="word-wrap: break-word; font-family: 'Tajawal', sans-serif;">
 <div class="container body">
     <div class="main_container">
     @include('backend.partials.sidbar')

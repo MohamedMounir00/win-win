@@ -8,7 +8,7 @@
 @endphp
 <head>
     <meta charset="utf-8">
-    <title>Win Win Website</title>
+    <title>{{ trans('frontend.home')}}|win-win</title>
 
     @if($lang=='ar')
     
@@ -80,20 +80,29 @@
                                 </form>
                             </div>
                         </li>
+                        @if(auth()->user()->realtor)
+
+
+                            <li class="nav-item active">
+                                <a class="nav-link last add-unit-link " href="{{route('all-my-unit-page')}}"><i class="fa fa-plus-circle" aria-hidden="true"></i> {{trans('frontend.My_All_Unit')}}</a>
+                            </li>
+                        @endif
                        @else
                         <li class="nav-item active">
                             <a class=" nav-link" href="{{route('login')}}">{{trans('frontend.login')}}</a>
                         </li>
+
                         @endif
 
 
 
                     <li class="nav-item active">
                         @if($lang=='ar')
-                        <a class=" last nav-link" style="margin-top: 11px;"  hreflang="{{ 'en' }}" href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}"> {{trans('frontend.English')}}</a>
-                            @else
-                            <a class=" last nav-link" style="margin-top: 11px;"  hreflang="{{ 'ar' }}" href="{{ LaravelLocalization::getLocalizedURL('ar', null, [], true) }}"> {{trans('frontend.Arabic')}}</a>
-                                  @endif
+                            <a class="nav-link last"  hreflang="{{ 'en' }}" href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}"> English</a>
+                        @else
+                            <a class="nav-link last"  hreflang="{{ 'ar' }}" href="{{ LaravelLocalization::getLocalizedURL('ar', null, [], true) }}"> العربيه</a>
+                        @endif
+
 
                     </li>
 
@@ -121,7 +130,7 @@
         <a style="font-weight: bold;width: 190px;margin: auto;"  href="{{route('register')}}" class="my-btn btn btn-primary btn-block" >{{trans('frontend.register')}}</a>
             @elseif( Auth::check()&& auth()->user()->register=='first_step')
             <a  href="{{route('complete-information-page')}}" class="my-btn btn btn-primary" >{{trans('frontend.complete-information')}}</a>
-@else
+          @else
             <a  href="{{route('add-unit-page')}}" class="my-btn btn btn-primary" >{{trans('frontend.add-unit')}}</a>
 
         @endif

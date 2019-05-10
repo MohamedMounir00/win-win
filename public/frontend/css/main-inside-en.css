@@ -12,6 +12,7 @@
   color: #007bff; }
 
 body {
+  word-wrap: break-word;
   background-color: #EEF7FC;
   background-image: url(../images/O.png);
   background-position: top right;
@@ -122,7 +123,7 @@ margin-top: 20px}
   }
 .add-main-info .info form .form-control:focus, .add-main-info .info form .form-control:active {
   box-shadow: none;
-  border: 1px solid transparent; }
+  border: 1px solid #cccdce; }
 .add-main-info .info form textarea {
   resize: none;
   margin-bottom: 30px }
@@ -435,7 +436,9 @@ body {
   border-radius: 5px;
   overflow: hidden;
   max-width: 80px;
-  margin-top: 20px; }
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto; }
 @media (max-width: 575.98px) {
   .all-main-info .info .navs-section .content .section-img {
     max-width: 120px;
@@ -526,7 +529,8 @@ body {
   margin-bottom: 30px; }
 @media (max-width: 575.98px) {
   .all-main-info .details .details-title h2 {
-    margin-bottom: 0; } }
+    margin-bottom: 0;
+    padding: 20px 0 20px 0; } }
 .all-main-info .details .unit-title {
   border-bottom: 1px solid #F0F1F7;
   padding: 22px 0 14px 40px; }
@@ -567,8 +571,9 @@ body {
   margin-top: 30px;
   border-radius: 5px;
   padding: 5px;
-  max-width: 584px;
-  text-align: left; }
+  max-width: 568px;
+  text-align: left;
+min-height: 120px; }
 @media (max-width: 575.98px) {
   .all-main-info .details .units-galary .show-images {
     max-width: 294px;
@@ -640,7 +645,6 @@ body {
   padding: 10px;
   text-align: center; }
 .all-main-info .details .action-btn .btn {
-  width: 179px;
   height: 50px;
   padding: 10px 15px;
   margin-right: 10px;
@@ -1099,8 +1103,56 @@ body {
   background-color: #F0F1F7;
   color: #545871;
 }
-/*# sourceMappingURL=main-inside-en.css.map */
+@media (max-width: 575.98px) { 
+  .dropify-wrapper {
+    width: 100px !important;
+  }
+  .dropify-wrapper .dropify-preview .dropify-render img {
+    width: 100px !important;
+  }
+ }
+
+ @media (min-width: 576px) and (max-width: 767.98px) { 
+  .dropify-wrapper {
+    width: 100px !important;
+  }
+  .dropify-wrapper .dropify-preview .dropify-render img {
+    width: 100px !important;
+  }
+ }
+
+
+ @media (min-width: 768px) and (max-width: 991.98px) { 
+  .dropify-wrapper {
+    width: 100px !important;
+  }
+  .dropify-wrapper .dropify-preview .dropify-render img {
+    width: 100px !important;
+  }
+ }
+
+
 .dropify-wrapper {
-  width: 90px !important;
-  height: 90px !important;
+  min-width: 100px !important;
+  height: 100px !important;
+}
+.dropify-wrapper .dropify-preview .dropify-render img {
+  min-width: 100px !important;
+  height: 100px !important;
+}
+.dropify-wrapper .dropify-preview {
+  padding: 0 !important;
+}
+.edit-button {
+  color: #FFF;
+  border-radius: 5px;
+  border: 1px solid #3787E0;
+}
+.edit-button:hover {
+  color: #3787E0;
+  border: 1px solid #3787E0 !important;
+}
+.dropify-message p {
+  margin-right: 0 !important;
+  display: none !important;
 }

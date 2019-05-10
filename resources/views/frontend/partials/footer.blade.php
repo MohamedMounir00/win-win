@@ -10,7 +10,7 @@
                 <div class="about">
                     <div class="row">
 
-                        <div class="col-md-8">
+                        <div class="col-md-12">
 
                             <h2>{{trans('frontend.About_Us')}}</h2>
                             <div class="about-para">
@@ -19,49 +19,51 @@
                                   @else
                                     {{\App\Helper\Helper::get_setting('about_us_en')->value}}
                                 @endif
-
                             </div>
-                            <div class="social-media">
-                                <h2>{{trans('frontend.Slocial_Media')}}</h2>
-                                
-                                <a href=" {{\App\Helper\Helper::get_setting('facebook')->value}}"><i class="fa fa-facebook"></i></a>
-                                <a href="{{\App\Helper\Helper::get_setting('google')->value}}"><i class="fa fa-google"></i></a>
-                                <a href="{{\App\Helper\Helper::get_setting('insta')->value}}"><i class="fa fa-instagram"></i></a>
-                                <a href="{{\App\Helper\Helper::get_setting('twitter')->value}}"><i class="fa fa-twitter"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="top-brokers">
-                                <h2> {{trans('frontend.Top_Brokers')}}</h2>
-                                <ul class="list-unstyled">
-                                    @foreach($users as $image)
-                                        @if($image->image==null)
-                                            <li><img class="img-thumbnail" src="https://www.mycustomer.com/sites/all/modules/custom/sm_pp_user_profile/img/default-user.png" alt=""></li>
-
-                                        @else
-                                         <li><img class="img-thumbnail" src="{{url($image->image)}}" alt=""></li>
-                                        @endif
-                                        @endforeach
-                                </ul>
-                            </div>
+                            
                         </div>
 
                     </div>
                 </div>
             </div>
 
+
             <div class="col-md-12 col-lg-4">
                 <div class="contact">
                     <h2>{{trans('frontend.Contact_Us')}}</h2>
-                    <form>
-                        <input type="text" class="form-control" placeholder="Name">
-                        <input type="email" class="form-control" placeholder="Email">
-                        <input type="tel" class="form-control" placeholder="Phone">
-                        <textarea class="form-control" placeholder="Message"></textarea>
-                        <button type="submit" class="my-btn btn btn-primary">{{trans('frontend.Next')}}</button>
-                    </form>
+                   {{-- {!! Form::open(['route'=>'contact_us']) !!}
+
+                        {!! Form::text('name', old('name'), ['class'=>'form-control','required', 'placeholder'=>trans('frontend.user_name')]) !!}
+
+                        {!! Form::text('email', old('email'), ['class'=>'form-control','required', 'placeholder'=>trans('frontend.Email')]) !!}
+                        {!! Form::text('phone', old('phone'), ['class'=>'form-control', 'required','placeholder'=>trans('frontend.Phone')]) !!}
+
+                        {!! Form::textarea('message', old('message'), ['class'=>'form-control','required', 'placeholder'=>trans('frontend.message')]) !!}
+
+                        <button type="submit" class="my-btn btn btn-primary">{{trans('frontend.send')}}</button>
+
+                    {!! Form::close() !!} --}}
+
+                    <div class="social-network">
+                        <b> {{trans('frontend.Phone')}}</b>
+                        <span>{{\App\Helper\Helper::get_setting('contact_us')->value}}</span>
+                        <b> {{trans('frontend.Email')}}</b>
+                        <span>{{\App\Helper\Helper::get_setting('email')->value}}</span>
+                    </div>
+                    <div class="social-media">
+                        <h2  style="margin-bottom:0 !important;">{{trans('frontend.Slocial_Media')}}</h2>
+
+                        <ul class="list-unstyled">
+                            <li>  <a target="_blank" href=" {{\App\Helper\Helper::get_setting('facebook')->value}}"><i class="fa fa-facebook"></i></a></li>
+                            <li> <a target="_blank" href="{{\App\Helper\Helper::get_setting('google')->value}}"><i class="fa fa-google"></i></a></li>
+                            <li> <a target="_blank" href="{{\App\Helper\Helper::get_setting('insta')->value}}"><i class="fa fa-instagram"></i></a></li>
+                            <li> <a target="_blank" href="{{\App\Helper\Helper::get_setting('twitter')->value}}"><i class="fa fa-twitter"></i></a></li>
+                        </ul>
+                    </div>
+                    
                 </div>
             </div>
+
 
         </div>
     </div>
@@ -106,9 +108,10 @@
 <script src="{{asset('frontend')}}/js/tilt.jquery.js"></script>
 <script src="{{asset('frontend')}}/js/jquery.uploadfile.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
 <script src="{{asset('frontend')}}/js/lightbox.js"></script>
+
 <script type="text/javascript">
+
     $body = $("body");
 
     $(document).on({
@@ -120,8 +123,17 @@
         'resizeDuration': 200,
         'wrapAround': true
     })
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $(document).ready(function () {
+
+    });
 
 </script>
+
 @include('sweet::alert')
 
 @yield('scripts')

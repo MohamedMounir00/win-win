@@ -1,4 +1,5 @@
 @extends('frontend.layouts.app')
+@section('page_title' , trans('frontend.home'))
 
 @section('content')
     @php
@@ -8,7 +9,7 @@
     @endphp
     <section class="intro text-center">
         <div class="container">
-            <h1>Win Win</h1>
+            <h1 class="mainHead">Win Win</h1>
             <p class="lead">
                 @if($lang=='ar')
                     {{\App\Helper\Helper::get_setting('desc_web_ar')->value}}
@@ -29,33 +30,7 @@
 
 
     <!-- Start Dealing Section -->
+    @include('frontend.partials.dealing')
 
-    <section class="homepage-deal">
-        <div class="container">
-            <div class="row text-center justify-content-md-center">
-
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <a class="main">
-                        <div data-tilt class="deal-section">
-                            <i class="sell-i fa fa-hand-paper-o"></i>
-                            <h3>{{trans('frontend.Buy')}}</h3>
-                            <p>{{trans('frontend.desc_lorm')}}</p>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <a  class="main">
-                        <div data-tilt class="deal-section">
-                            <i class="fa fa-home"></i>
-                            <h3> {{trans('frontend.Rent')}}</h3>
-                            <p class="lead">{{trans('frontend.desc_lorm')}}</p>
-                        </div>
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </section>
 
 @endsection

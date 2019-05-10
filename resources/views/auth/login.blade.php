@@ -8,7 +8,7 @@
 @endphp
 <head>
     <meta charset="utf-8">
-    <title>Win Win Website</title>
+    <title>{{ trans('frontend.login')}}|win-win</title>
 
     @if($lang=='ar')
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -61,12 +61,13 @@
 
                     <li class="nav-item active">
                         @if($lang=='ar')
-                            <a class=" nav-link last"  hreflang="{{ 'en' }}" href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}"> {{trans('frontend.English')}}</a>
+                            <a class="nav-link last"  hreflang="{{ 'en' }}" href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}"> English</a>
                         @else
-                            <a class=" nav-link last"  hreflang="{{ 'ar' }}" href="{{ LaravelLocalization::getLocalizedURL('ar', null, [], true) }}"> {{trans('frontend.Arabic')}}</a>
+                            <a class="nav-link last"  hreflang="{{ 'ar' }}" href="{{ LaravelLocalization::getLocalizedURL('ar', null, [], true) }}"> العربيه</a>
                         @endif
 
                     </li>
+
 
 
 

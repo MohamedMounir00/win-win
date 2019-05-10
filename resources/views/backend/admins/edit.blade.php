@@ -1,4 +1,5 @@
 @extends('backend.layouts.app')
+@section('page_title' , trans('backend.update'))
 
 @section('content')
 
@@ -13,8 +14,7 @@
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
 
-                                <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                </li>
+
                             </ul>
                             <div class="clearfix"></div>
                         </div>
@@ -39,7 +39,7 @@
                             {!! Form::open(['route'=>['admins.update',$data->id],'method'=>'PUT','class'=>'form-horizontal form-label-left ','novalidate','files'=>true,'autocomplete'=>'off']) !!}
 
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="">{{trans('backend.name')}} <span
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="">{{trans('backend.name_ofAdmin')}} <span
                                     >*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
@@ -114,52 +114,81 @@
                                     </select>
                                 </div>
                             </div>
+                    {{--
+
+@if(auth()->user()->hasRole('admin'))
+@if(auth()->user()->id!=$data->id)
+@if($data->role=='admin')
+    <div class="item form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="">{{trans('backend.role')}} <span
+            >*</span>
+        </label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <select class="form-control select2" multiple="multiple"
+                    data-placeholder="{{trans('backend.role')}}"
+                    name="roles[]" style="width: 100%;" >
+                @foreach($roles as $cat)
+                    <option value="{{$cat->id}}"
+
+                            @foreach($data->roles as $postCat)
+                            @if($postCat->id == $cat->id)
+                            selected
+                            @endif
+                            @endforeach
+
+                    > {{$cat->name}}</option>
+                @endforeach
+
+            </select>                                </div>
+    </div>
+@endif
+@endif
+@endif
+--}}
+<div class="item form-group">
+<label class="control-label col-md-3 col-sm-3 col-xs-12" for="">{{trans('backend.upload_image')}} <span
+    >*</span>
+</label>
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <input id="" class="form-control col-md-7 col-xs-12 dropify"
+           name="image"
+            type="file">
+</div>
+</div>
+
+<div class="item form-group">
+<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">{{trans('backend.image')}} <span
+    >*</span>
+</label>
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="image view view-first">
+        @if($data->image !='')
+
+        <img controls style="width: 300px; display: block;"src="{{url($data->image)}}">
+            @else
+            <img controls style="width: 300px; display: block;"src="https://www.mycustomer.com/sites/all/modules/custom/sm_pp_user_profile/img/default-user.png">
+
+        @endif
+
+    </div>
+
+</div>
+</div>
+<div class="ln_solid"></div>
+<div class="form-group">
+<div class="col-md-6 col-md-offset-3">
+<button id="send" type="submit" class="btn btn-success">{{trans('backend.update')}}</button>
+<a href="{{route('realtor.index')}}"  class="btn btn-primary">{{trans('backend.back')}}</a>
+
+</div>
+</div>
+
+{!! Form::close() !!}
 
 
-                            <div class="item form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="">{{trans('backend.upload_image')}} <span
-                                        >*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input id="" class="form-control col-md-7 col-xs-12 dropify"
-                                               name="image"
-                                                type="file">
-                                    </div>
-                                </div>
 
-                                <div class="item form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">{{trans('backend.image')}} <span
-                                        >*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <div class="image view view-first">
-                                            @if($data->image !='')
-
-                                            <img controls style="width: 300px; display: block;"src="{{url($data->image)}}">
-                                                @else
-                                                <img controls style="width: 300px; display: block;"src="https://www.mycustomer.com/sites/all/modules/custom/sm_pp_user_profile/img/default-user.png">
-
-                                            @endif
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                            <div class="ln_solid"></div>
-                            <div class="form-group">
-                                <div class="col-md-6 col-md-offset-3">
-                                    <button id="send" type="submit" class="btn btn-success">{{trans('backend.update')}}</button>
-                                    <a href="{{route('realtor.index')}}"  class="btn btn-primary">{{trans('backend.back')}}</a>
-
-                                </div>
-                            </div>
-
-                            {!! Form::close() !!}
-
-
-
-                        </div>
-                    </div>
+</div>
+</div>
 
 
 @endsection
@@ -168,25 +197,25 @@
 
 
 
-    <script>
+<script>
 
-        $('.dropify').dropify({
-            tpl: {
-                wrap:            '<div class="dropify-wrapper"></div>',
-                loader:          '<div class="dropify-loader"></div>',
-                message:         '<div class="dropify-message"><span class="file-icon" /> <p>  {{trans("backend.upload_image")}}  </p></div>',
-                preview:         '<div class="dropify-preview"><span class="dropify-render"></span><div class="dropify-infos"><div class="dropify-infos-inner"><p class="dropify-infos-message">delete</p></div></div></div>',
-                filename:        '<p class="dropify-filename"><span class="file-icon"></span> <span class="dropify-filename-inner"></span></p>',
-                clearButton:     '<button type="button" class="dropify-clear">delete</button>',
-                errorLine:       '<p class="dropify-error"> error</p>',
-                errorsContainer: '<div class="dropify-errors-container"><ul></ul></div>'
-            }
-        });
-    </script>
+$('.dropify').dropify({
+tpl: {
+wrap:            '<div class="dropify-wrapper"></div>',
+loader:          '<div class="dropify-loader"></div>',
+message:         '<div class="dropify-message"><span class="file-icon" /> <p>  {{trans("backend.upload_image")}}  </p></div>',
+preview:         '<div class="dropify-preview"><span class="dropify-render"></span><div class="dropify-infos"><div class="dropify-infos-inner"><p class="dropify-infos-message">delete</p></div></div></div>',
+filename:        '<p class="dropify-filename"><span class="file-icon"></span> <span class="dropify-filename-inner"></span></p>',
+clearButton:     '<button type="button" class="dropify-clear">delete</button>',
+errorLine:       '<p class="dropify-error"> error</p>',
+errorsContainer: '<div class="dropify-errors-container"><ul></ul></div>'
+}
+});
+</script>
 
-    <script type="text/javascript">
-        $('.select2').select2({
-            placeholder: '{{trans('backend.choose__time')}}'
-        });
-    </script>
+<script type="text/javascript">
+$('.select2').select2({
+placeholder: '{{trans('backend.choose__time')}}'
+});
+</script>
 @endsection

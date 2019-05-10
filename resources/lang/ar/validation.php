@@ -61,7 +61,7 @@ return [
         'password'=> 'الرقم السري',
         'company_id'=>'المؤسسه ',
         'name_of_head'=>'اسم الشخص المسئول',
-        'minstry_id'=>'الوزاره',
+        'title'=>'عنوان الوحده',
         'desc'=>'وصف المشكله',
         'category_id'=>'القسم',
         'time_id'=>'الوقت',
@@ -93,6 +93,10 @@ return [
         'status'=>'الحاله',
         'finishing'=>'التشطيب',
         'payment_method'=>'وسيله الدفع ',
+        'state_id'=>'المنطقه',
+        'company_name'=>'اسم الشركه ',
+        'photos'=>'صوره الوحده ',
+
 
     ],
 ];

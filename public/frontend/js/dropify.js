@@ -33,9 +33,9 @@ function Dropify(element, options) {
         defaultFile: '',
         maxFileSize: 0,
         minWidth: 0,
-        maxWidth: 600,
+        maxWidth: 60000000000,
         minHeight: 0,
-        maxHeight: 600,
+        maxHeight: 60000000,
         showRemove: false,
         showLoader: true,
         showErrors: false,
@@ -292,7 +292,7 @@ Dropify.prototype.setPreview = function(previewable, src)
     this.hideLoader();
 
     if (previewable === true) {
-        var imgTag = $('<img />').attr('src', src);
+        var imgTag = $('<img class="img-fluid" />').attr('src', src);
 
         if (this.settings.height) {
             imgTag.css("max-height", this.settings.height);

@@ -6,6 +6,7 @@ use App\City;
 use App\Http\Resources\Api\CityCollection;
 use App\Http\Resources\Frontend\StataCollection;
 use App\State;
+use App\Unit;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -46,7 +47,7 @@ class UserController extends Controller
 
         if (Auth::check()){
             if(auth()->user()->register=='second_step')
-                return redirect()->route('/');
+                return redirect('/');
 
             $user= User::findOrFail(auth()->user()->id);
 
@@ -71,8 +72,13 @@ class UserController extends Controller
     }
     public function thank_view()
     {
-        return view('frontend.main.thank_you');
+        $count = Unit::where('user_id', auth()->user()->id)->count();
+        if ($count >= 10)
+            return view('frontend.main.thank_you');
+        else{
+        return redirect()->route('add-unit-page');
 
+          }
     }
 
     public function stateByid(Request $request)

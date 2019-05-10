@@ -1,4 +1,5 @@
 @extends('frontend.layouts.app')
+@section('page_title' , trans('frontend.add_unit'))
 
 @section('content')
 
@@ -17,7 +18,7 @@
                 @if(Session::has('errors'))
 
                     <div class="alert alert-danger " >
-                        <ul >
+                        <ul class="list-unstyled" >
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 
                             @foreach ($errors->all() as $error)
@@ -46,8 +47,8 @@
                                 </div>
                                 <div class="col-lg-8 col-md-12">
                                     <div class="box-detail">
-                                        <h2>{{$unit->title}}</h2>
-                                        <p>{{date('Y-m-d' , strtotime($unit->created_at))}}</p>
+                                        <h2 style="word-break: break-word;">{{$unit->title}}</h2>
+                                        <p style="word-break: break-word;">{{date('Y-m-d' , strtotime($unit->created_at))}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -102,10 +103,10 @@
                                     <div class="form-group transition">
                                         <label> {{trans('frontend.Select_Type')}} </label>
                                         <select  name="type_id" class="form-control " required>
-                                            <option  value="" disabled selected>Please Select Type</option>
+                                            <option value="">{{trans('frontend.select_type')}}</option>
 
                                             @foreach($type as $t)
-                                                <option value="{{$t->id}}">{{unserialize($t->name)[$lang]}}</option>
+                                                <option value="{{$t->id}}" {{ (old("type_id") == $t->id ? "selected":"") }}>{{unserialize($t->name)[$lang]}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -115,7 +116,7 @@
                                 <div class="col-lg-6 col-sm-12 transition title">
                                     <div class="form-group ">
                                         <label>{{trans('frontend.Title')}}</label>
-                                        <input type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="title"  required>
+                                        <input type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="title"  required value="{{old('title')}}">
                                         @if ($errors->has('title'))
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('title') }}</strong>
@@ -148,9 +149,9 @@
 
                                         <label>{{trans('frontend.City')}}</label>
                                         <select name="city_id" class="form-control" >
-                                            <option value="">Please Select City</option>
+                                            <option value="">{{trans('frontend.select_city')}}</option>
                                             @foreach($city as $c)
-                                                <option value="{{$c->id}}" >{{unserialize($c->name)[ $lang]}}</option>
+                                                <option value="{{$c->id}}"  {{ (old("city_id") == $c->id ? "selected":"") }}>{{unserialize($c->name)[ $lang]}}</option>
 
                                             @endforeach
                                         </select>
@@ -190,7 +191,7 @@
                                 <div class="col-lg-6 col-sm-12 transition floor">
                                     <div class="form-group ">
                                         <label for="my-input"> {{trans('frontend.Floor')}}</label>
-                                        <input id="my-input" class="form-control" type="number" name="floor" >
+                                        <input min="1" id="my-input" class="form-control" type="number" name="floor"  value="{{old('floor')}}">
                                     </div>
                                 </div>
 
@@ -199,7 +200,7 @@
                                 <div class="col-lg-6 col-sm-12 transition bathroom">
                                     <div class="form-group ">
                                         <label for="my-input">{{trans('frontend.bathroom')}}</label>
-                                        <input id="my-input" class="form-control" type="number"  name="bathroom" >
+                                        <input min="1" id="my-input" class="form-control" type="number"  name="bathroom" value="{{old('bathroom')}}" >
                                     </div>
                                 </div>
 
@@ -209,7 +210,7 @@
                                 <div class="col-lg-6 col-sm-12 transition rooms">
                                     <div class="form-group ">
                                         <label for="my-input">{{trans('frontend.rooms')}}</label>
-                                        <input id="my-input" class="form-control" type="number"  name="rooms" >
+                                        <input min="1" id="my-input" class="form-control" type="number"  name="rooms" value="{{old('rooms')}}" >
                                     </div>
                                 </div>
 
@@ -218,7 +219,7 @@
                                 <div class="col-lg-6 col-sm-12 transition area">
                                     <div class="form-group ">
                                         <label for="my-input">{{trans('frontend.Area')}}</label>
-                                        <input id="my-input" class="form-control" type="number"   name="area">
+                                        <input min="1" id="my-input" class="form-control" type="number"   name="area" value="{{old('area')}}">
                                     </div>
                                 </div>
 
@@ -227,7 +228,7 @@
                                 <div class="col-lg-6 col-sm-12 transition price">
                                     <div class="form-group ">
                                         <label for="my-input"> {{trans('frontend.Price')}}</label>
-                                        <input id="my-input" class="form-control" type="number" name="price">
+                                        <input min="1" id="my-input" class="form-control" type="number" name="price" value="{{old('price')}}">
                                     </div>
                                 </div>
 
@@ -252,7 +253,7 @@
                                     <div class="form-group">
 
                                         <label for="">{{trans('frontend.Description')}}</label>
-                                        <textarea name="desc" class="form-control{{ $errors->has('desc') ? ' is-invalid' : '' }}" required></textarea>
+                                        <textarea name="desc" class="form-control{{ $errors->has('desc') ? ' is-invalid' : '' }}" required >{{old('desc')}}</textarea>
                                         @if ($errors->has('desc'))
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('desc') }}</strong>
@@ -262,7 +263,7 @@
                                 </div>
 
                             </div>
-                            <div class="click-btn">
+                            <div class="text-center click-btn">
                                 <div class="container">
                                     <button type="submit" class="my-btn btn btn-primary">{{trans('frontend.save')}}</button>
                                 </div>
@@ -326,7 +327,7 @@
 
 
                 if (current_photos >= max_photos) {
-                    return swal("You can add up to 8 photos.");;
+                    return swal("{{trans('frontend.you_can_upload')}}")
                 }
 
                 var form_data = new FormData();
@@ -341,7 +342,7 @@
                     processData: false,
                     success: function (data) {
                         if (current_photos >= max_photos) {
-                            return swal("You can add up to 8 photos.");;
+                            return swal("{{trans('frontend.you_can_upload')}}")
                         }
                         photosArray.push(data.id);
                         imageContainer.fadeIn("slow");
@@ -392,6 +393,7 @@
                 $('.payment_method').css("display", "none");
                 $('.city').css("display", "none");
                 $('.state').css("display", "none");
+
             }
 
             $('select[name=city_id]').change(function() {
@@ -406,7 +408,9 @@
                         url: '{{url('api/state_by_id')}}',
                         method: 'post',
                         data: {
-                            city_id : city
+                            city_id : city,
+                            lang : '{{LaravelLocalization::getCurrentLocale()}}'
+
                         },
                         beforeSend: function () {
                             $('.spinner').show();

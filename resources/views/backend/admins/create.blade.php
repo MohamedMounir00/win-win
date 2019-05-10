@@ -1,4 +1,5 @@
 @extends('backend.layouts.app')
+@section('page_title' , trans('backend.create'))
 
 @section('content')
 
@@ -43,7 +44,7 @@
                             {!! Form::open(['route'=>['admins.store'],'method'=>'POST','class'=>'form-horizontal form-label-left ','novalidate','files'=>true]) !!}
 
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="">{{trans('backend.user_name')}} <span
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="">{{trans('backend.name_ofAdmin')}} <span
                                     >*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
@@ -122,7 +123,21 @@
                                             type="file">
                                 </div>
                             </div>
-
+                            {{--
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="">{{trans('backend.role')}} <span
+                                    >*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select class="form-control select2" multiple="multiple"
+                                            data-placeholder="{{trans('backend.role')}}"
+                                            name="roles[]" style="width: 100%;"  required>
+                                        @foreach($roles as $data)
+                                            <option value="{{$data->id}}">{{$data->name}}</option>
+                                        @endforeach
+                                    </select>                                </div>
+                            </div>
+                            --}}
                                 <div class="form-group">
                                     <div class="col-md-6 col-md-offset-3">
                                         <button id="send" type="submit" class="btn btn-success">{{trans('backend.save')}}</button>

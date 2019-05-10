@@ -24,19 +24,26 @@ class SearchController extends Controller
 
     public function search_view(Request $request)
     {
-
-        $units=Unit::where('activation_admin','active')->where('title','LIKE','%'.$request->title.'%')->get();
+      //$units = $this->searchOperation($request)->get();
+        $search_title=$request->title;
+        //dd($units);
         $city=City::all();
         $state=State::all();
-
-        return view('frontend.pages.search',compact('units','city','state'));
+        return view('frontend.pages.search',compact('search_title','city','state'));
     }
 
     public function advanced_search(Request $request)
     {
-        $units=Unit::where('activation_admin','active');
-        if ($request->title != null)
+        $units = $this->searchOperation($request)->get();
+        return UnitCollection::collection($units) ;
+    }
 
+    public function searchOperation(Request $request) {
+
+        $units=Unit::where('activation_admin','active')->whereHas('realtor', function ($query) {
+            $query->where('verification',true);
+        });
+        if ($request->title != null)
             $units -> where('title','LIKE','%'.$request->title.'%');
         if ($request->status != null)
             $units->where('status', $request->status);
@@ -50,7 +57,6 @@ class SearchController extends Controller
             $units->where('rooms','>=', $request->bedrooms_from);
         if ($request->bedrooms_to != null)
             $units->where('rooms','<=', $request->bedrooms_to);
-
         if ($request->floor_from != null)
             $units->where('floor','>=', $request->floor_from);
         if ($request->floor_to != null)
@@ -64,9 +70,10 @@ class SearchController extends Controller
         if ($request->area_to != null)
             $units->where('area','<=', $request->area_to);
 
+        $units->orderBy('created_at','desc');
+        $units->skip($request->offset_id)->take(10);
 
-        return UnitCollection::collection($units->get()) ;
-
+        return $units;
     }
     public  function  unit_details($id)
     {

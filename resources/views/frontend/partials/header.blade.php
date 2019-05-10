@@ -8,7 +8,9 @@
 @endphp
 <head>
     <meta charset="utf-8">
-    <title>Win Win Website</title>
+    <link rel="icon" type="image/x-icon" href="{{asset('logo.png')}}">
+
+    <title>@yield('page_title') | win-win </title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @if($lang=='ar')
@@ -31,9 +33,30 @@
     <link rel="stylesheet" href="{{asset('frontend')}}/css/uploadfile.css">
     <link rel="stylesheet" href="{{asset('frontend')}}/css/lightbox.css">
     <link rel="stylesheet" href="{{asset('frontend')}}/css/public-css.css">
+    <link href="https://cdn.jsdelivr.net/npm/dropify@0.2.2/dist/css/dropify.min.css" rel="stylesheet">
+
     @yield('styles')
   
     <style type="text/css">
+
+
+
+        .badge1 {
+            position:relative;
+        }
+        .badge1[data-badge]:after {
+            content:attr(data-badge);
+            position:absolute;
+            top:-10px;
+            right:-10px;
+            font-size:.7em;
+            background:#cf000f;
+            color:white;
+            width:18px;height:18px;
+            text-align:center;
+            line-height:18px;
+            border-radius:50%;
+        }
          /* Start by setting display:none to make this hidden.
    Then we position it in relation to the viewport window
    with position:fixed. Width, height, top and left speak
@@ -64,6 +87,9 @@ body.loading .modal {
 body.loading .modal {
     display: block;
 }
+        .left-section ul li {
+            border-bottom: 1px solid #f7f7f7;
+        }
     </style>
 </head>
 

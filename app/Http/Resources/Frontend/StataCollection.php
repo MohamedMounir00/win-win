@@ -16,11 +16,11 @@ class StataCollection extends JsonResource
      */
     public function toArray($request)
     {
-        $lang = LaravelLocalization::getCurrentLocale();
+        $lang = isset($request->lang)?$request->lang:'ar';
 
         return [
             'id'=>$this->id,
-        'state'=>unserialize($this->name)[$lang],
+             'state'=>unserialize($this->name)[$lang],
 
         ];
     }

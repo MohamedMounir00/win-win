@@ -9,6 +9,10 @@
 namespace App\Helper;
 
 use App\AppSetting;
+use App\Chat;
+use App\ContactUs;
+use App\Conversation;
+use App\ReportAdmin;
 use App\Unit;
 use App\User;
 use Illuminate\Support\Facades\File;
@@ -17,7 +21,6 @@ use Illuminate\Support\Facades\Mail;
 
 class Helper
 {
-
 
     public static function UploadImge($request,$path,$input)
     {
@@ -70,6 +73,24 @@ public static function UpdateImage($request,$path,$input,$model)
     {
         return AppSetting::where('key',$data)->first();
     }
+
+    public  static  function count_message()
+    {
+        return ContactUs::where('seen',false)->count();
+    }
+    public  static  function count_report()
+    {
+        return ReportAdmin::where('seen',false)->count();
+    }
+    public static function count_unseen_message()
+   {
+       $count = Conversation::whereHas('messages', function($q){
+           $q->where('receiver_id',auth()->user()->id)->where('seen',false);
+       })->count();
+     return $count;
+
+   }
+
 
 }
 

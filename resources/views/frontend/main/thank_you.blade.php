@@ -8,7 +8,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Win Win Website</title>
+    <title>{{trans('frontend.Thank_You')}}|win-win</title>
 
 
     @if($lang=='ar')

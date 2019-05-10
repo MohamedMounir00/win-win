@@ -26,11 +26,12 @@ class AdminsRequest extends FormRequest
         return [
             //
             'name'=>'required|min:3|max:25',
-            'email',
             'password'=>'required|min:3|max:25',
             'city_id'=>'required',
             'state_id'=>'required',
             'email'=>'required|email|max:255|unique:users',
+          //  'roles' => 'required'
+
 
 
         ];

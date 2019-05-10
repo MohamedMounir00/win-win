@@ -122,6 +122,24 @@ return[
     'insta'=>'insta',
     'desc_web_ar'=>'dedcription home ar',
     'desc_web_en'=>'description home en',
+    'get_message'=>' message controller ',
+    'report_send'=>'sendr report',
+    'report_in'=>'Broker provided in the report',
+    'name_admin'=>'Personnel Management ',
+    'name_ofAdmin'=>'Name of Director',
+    'max_price'=>'The highest price of the unit',
+    'min_price'=>'Lowest price for the unit',
+    'units_active_count'=>'Number of active units',
+    'units_Notactive_count'=>'Number of units not active',
+    'user_Notactive_count'=>'Number of customers not activated',
+    'user_active_count'=>'Number of clients involved',
+    'lastclient'=>'Newest customers added',
+    'lastcomment'=>'The latest Rating',
+    'lastreport'=>'Latest report',
+    'home'=>'Home'
+
+
+
 
 
 

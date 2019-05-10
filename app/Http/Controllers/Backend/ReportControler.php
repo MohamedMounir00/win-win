@@ -134,19 +134,21 @@ class ReportControler extends Controller
             })
 
             ->addColumn('name', function ($data) {
-                return'<a href="' . route('realtor.show', $data->user_id) . '">'.$data->realtor->name.'</a>';
+                return'<a href="' . route('realtor.show', $data->user_id) . '">'.$data->user->name.'</a>';
             })
             ->addColumn('email', function ($data) {
-                return'<a href="' . route('realtor.show', $data->user_id) . '">'.$data->realtor->email.'</a>';
+                return'<a href="' . route('realtor.show', $data->user_id) . '">'.$data->user->email.'</a>';
             })
             ->addColumn('phone', function ($data) {
-                return $data->realtor->phone;
+                return $data->user->phone;
             })
             ->addColumn('report', function ($data) {
                 return $data->report ;
             })
-
-            ->rawColumns(['action', 'name','email','report','phone'])
+            ->addColumn('realtor', function ($data) {
+                return'<a href="' . route('realtor.show', $data->realtor_id) . '">'.$data->realtor->name.'</a>';
+            })
+            ->rawColumns(['action', 'name','email','report','phone','realtor'])
             ->make(true);
     }
 

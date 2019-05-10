@@ -1,5 +1,6 @@
 
 @extends('frontend.layouts.app')
+@section('page_title' , trans('frontend.unit_details'))
 
 @section('content')
 
@@ -24,8 +25,8 @@
                             <img class="img-fluid img-thumbnail rounded-circle" src="https://www.mycustomer.com/sites/all/modules/custom/sm_pp_user_profile/img/default-user.png" alt="">
 
                         @endif
-                        <h2 class="text-truncate"><a href="{{route('get_profile_view',$unit->user_id)}}">{{$unit->realtor->name}}</a></h2>
-                        <span class="text-truncate">{{$unit->realtor->email}}</span>
+                        <h2 style="word-break: break-word;"><a href="{{route('get_profile_view',$unit->user_id)}}">{{$unit->realtor->name}}</a></h2>
+                        <!-- <span style="word-break: break-word;">{{$unit->realtor->email}}</span> -->
                             @if($unit->realtor->realtor)
 
                             <p>{{$unit->realtor->realtor->bio}}</p>
@@ -90,12 +91,12 @@
                         <div class="latest-units">
                         <div class="container">
                             <div class="row">
-                                <div class="col-md-6">
-                                      <p class="unit-intro">{{$unit->title}}</p>
+                                <div class="col-md-8">
+                                      <p style="word-break: break-word;" class="unit-intro">{{$unit->title}}</p>
                                 </div>
 
-                                <div class="col-md-6">
-                                      <p class="unit-intro"> {{unserialize($unit->unit_type->name)[$lang]}}</p>
+                                <div class="col-md-4">
+                                      <p style="word-break: break-word;" class="unit-intro"> {{unserialize($unit->unit_type->name)[$lang]}}</p>
                                 </div>
                             </div>
                             </div>
@@ -264,7 +265,8 @@
 
                                                 <div class="col-xl-3 col-md-6 col-sm-12">
                                                     <div class="state">
-                                                        <span>{{$unit->price}} {{trans('frontend.L_E')}} </span>
+                                                        <span>{{$unit->price}} </span>
+                                                        <span class="d-block">{{trans('frontend.L_E')}} </span>
                                                         <p > {{trans('frontend.Price')}}</p>
                                                     </div>
                                                 </div>
@@ -279,18 +281,27 @@
                         <div class="row no-gutters">
                             <div class="col-sm-12">
                                 <h2>{{trans('frontend.Description')}}</h2>
-                                <p>{{$unit->desc}}</p>
+                                <p style="word-break: break-word;">{{$unit->desc}}</p>
                             </div>
                         </div>
                     </div>
                                 </div>
                             </div>
                         </div> 
-
+                     @if($unit->user_id==auth()->user()->id)
                         <!-- Latest Unites -->
+                        <div class="action-btn">
+                            <div class="container">
+                                <div class="row no-gutters">
+                            <div class="containEdit">
+                            <a href="{{route('edit-unit',$unit->id)}}" class="btn my-btn edit-button"> <i  class="fa fa-pencil" aria-hidden="true"></i>{{trans('frontend.edit-your-unit')}} </a>
+                            </div>
 
+                                </div>
+                            </div>
+                        </div>
                        
-                        
+                        @endif
                     </div>
                 </div>
 
@@ -303,3 +314,7 @@
 
 
 @endsection
+
+
+
+

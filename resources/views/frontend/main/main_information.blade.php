@@ -10,7 +10,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Win Win Website</title>
+    <title>{{trans('frontend.Main_Information')}}|win-win</title>
 
 
     @if($lang=='ar')
@@ -118,7 +118,7 @@
                                 <div class="col-lg-6 col-md-12">
                                     <label> {{trans('frontend.City')}}</label>
                                     <select name="city_id" class="form-control" required>
-                                        <option disabled selected>Please Select City</option>
+                                        <option value="">{{trans('frontend.select_city')}}</option>
                                         @foreach($city as $c)
                                             <option value="{{$c->id}}" >{{unserialize($c->name)[ $lang]}}</option>
 
@@ -137,7 +137,7 @@
 
 
                                 </div>
-                                <div class="click-btn">
+                                <div class="text-center click-btn">
                                     <div class="container">
                                         <button type="submit" class="my-btn btn btn-primary">{{trans('frontend.Next')}}</button>
                                     </div>
@@ -193,7 +193,9 @@
                     url: '{{url('api/state_by_id')}}',
                     method: 'post',
                     data: {
-                        city_id : city
+                        city_id : city,
+                        lang : '{{LaravelLocalization::getCurrentLocale()}}'
+
                     },
                     beforeSend: function () {
                         $('.spinner').show();

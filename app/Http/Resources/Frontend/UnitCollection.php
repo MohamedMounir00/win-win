@@ -44,7 +44,7 @@ class UnitCollection extends JsonResource
             $payment_method=trans('frontend.Instalment');
             else
                 $payment_method= null;
-        return [
+            return [
             'id'=>$this->id,
             'title'=>$this->title,
             'desc'=>$this->desc,
@@ -53,7 +53,7 @@ class UnitCollection extends JsonResource
             'phone'=>$this->realtor->phone,
             'type'=>unserialize($this->unit_type->name)[$lang],
             'rooms'=>$this->rooms,
-            'price'=>isset($this->price)?($lang=='ar')?$this->price.'جنيه  ':$this->price.' L.E ':null,
+            'price'=>isset($this->price)?$this->price:null,
             'floor'=>$this->floor,
             'area'=>$this->area,
             'bathroom'=>$this->bathroom,
@@ -67,7 +67,8 @@ class UnitCollection extends JsonResource
             'url'=>route('details',$this->id),
             'storge'=>StorgeCollection::collection($this->storge),
             'activation'=>$this->activation_user,
-          'lang'=>$lang
+            'lang'=>$lang,
+                'route_update'=>route('edit-unit-page',$this->id)
         ];
     }
 }

@@ -1,4 +1,5 @@
 @extends('backend.layouts.app')
+@section('page_title' , trans('backend.get_settings'))
 
 @section('content')
 
@@ -51,6 +52,8 @@
                                         {{trans('backend.about_us_en')}}
                                 @elseif($setting->key=='contact_us')
                                         {{trans('backend.contact_us')}}
+                                    @elseif($setting->key=='email')
+                                        {{trans('backend.email')}}
                                     @elseif($setting->key=='facebook')
                                         {{trans('backend.facebook')}}
                                     @elseif($setting->key=='google')
@@ -67,10 +70,10 @@
                                 </div>
                             </th>
                             <td>
-                                @if($setting->key=='about_us_ar'||$setting->key=='about_us_en'||$setting->key=='contact_us'||$setting->key=='desc_web_ar'||$setting->key=='desc_web_en')
+                                @if($setting->key=='about_us_ar'||$setting->key=='about_us_en'||$setting->key=='desc_web_ar'||$setting->key=='desc_web_en')
                                 <div class="col-md-6 col-sm-6 col-xs-12">
 
-                                        <textarea name="{{ $setting->key }}" class="form-control form-control-line" rows="5" required >{{ $setting->value  }}</textarea>
+                                        <textarea name="{{ $setting->key }}" class="form-control col-md-7 col-xs-12" rows="5" required >{{ $setting->value  }}</textarea>
 
                                 </div>
                                     @else
@@ -100,7 +103,7 @@
 
         </div>
     </div>
-    
+
 
 
 
@@ -108,9 +111,18 @@
 
 @section('scripts')
 
+    <script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
 
-
-
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .then( editor => {
+                console.log( editor );
+            } )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
 
 
 @endsection
