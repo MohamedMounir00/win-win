@@ -38,6 +38,8 @@
     <link href="https://cdn.jsdelivr.net/npm/dropify@0.2.2/dist/css/dropify.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
     <link href="{{asset('vendors')}}/select2/dist/css/select2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('frontend')}}/css/lightbox.css">
+
     <!-- starrr -->
 
     <!-- Custom Theme Style -->

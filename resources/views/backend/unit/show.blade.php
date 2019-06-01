@@ -31,7 +31,7 @@
 
                             <div class="product_gallery">
                                 @foreach($data->storge as $item)
-                                    <a> <img src="{{url($item->url)}}" alt="..."/> </a>
+                                    <a href="{{url($item->url)}}" data-lightbox="image-1"> <img src="{{url($item->url)}}" alt="..."/> </a>
                                 @endforeach
 
                             </div>
@@ -40,7 +40,17 @@
                         <div class="col-md-6 col-sm-5 col-xs-12" style="border:0px solid #e5e5e5;">
 
                             <h3 style="padding-bottom: 10px;" class="prod_title">{{$data->title}}</h3>
-
+                            <div class="">
+                                <div class="product_price">
+                                    <h1 class="price" style="font-size:25px;">
+                                        @if($data->price==null)
+                                            {{trans('backend.without')}}
+                                        @else
+                                            {{trans('backend.currency')}} {{$data->price}}</h1>
+                                    @endif
+                                    <br>
+                                </div>
+                            </div>
                             <p>{{$data->desc}}</p>
                             <br>
 
@@ -87,7 +97,7 @@
                                 <h2><small>{{trans('backend.unit_details')}}</small></h2>
                                 <ul class="list-inline prod_size">
                                     <li>
-                                        <div class=" well text-center">
+                                        <div class=" well text-center ">
                                             <h3 style="font-size:20px;">{{ trans('backend.bathroom') }}</h3>
                                             @if($data->bathroom==null)
                                                 {{trans('backend.without')}}
@@ -189,9 +199,9 @@
 
                             <div class="col-md-12">
                                @if($data->activation_admin=='active')
-                                <a href="{{route('unit.active',$data->id)}}" class="btn btn-danger ">{{trans('backend.not_active')}}</a>
+                                <a href="{{route('unit.active',$data->id)}}" class="btn btn-danger ">{{trans('backend.not_activation')}}</a>
                                 @else
-                                <a href="{{route('unit.active',$data->id)}}" class="btn btn-primary ">{{trans('backend.active')}}</a>
+                                <a href="{{route('unit.active',$data->id)}}" class="btn btn-primary ">{{trans('backend.activation')}}</a>
                                    @endif
                             </div>
 
@@ -222,21 +232,11 @@
 
                             </div>
 
-                            <div class="">
-                                <div class="product_price">
-                                    <h1 class="price" style="font-size:25px;">
-                                        @if($data->price==null)
-                                            {{trans('backend.without')}}
-                                        @else
-                                        {{trans('backend.currency')}} {{$data->price}}</h1>
-                                    @endif
-                                    <br>
-                                </div>
-                            </div>
-                    </div>
+
                 </div>
             </div>
         </div>
+    </div>
     </div>
     </div>
 

@@ -138,7 +138,10 @@ return[
     'lastclient'=>'احدث العملاء المضافه',
     'lastcomment'=>'احدث التقيمات',
     'lastreport'=>'احدث التقرير',
-    'home'=>'الرئيسيه'
+    'home'=>'الرئيسيه',
+    'not_activation'=>'غير مفعل',
+    'activation'=>' مفعل',
+    'website'=>'الموقع الخارجى'
 
 
 

@@ -126,7 +126,11 @@
     <div class="container">
         <h1 class="mainHead">Win Win</h1>
         <p class="lead">
-         {{trans('frontend.desc_home1')}} . <br> {{trans('frontend.desc_home2')}}
+            @if($lang=='ar')
+                {{\App\Helper\Helper::get_setting('desc_web_ar')->value}}
+            @else
+                {{\App\Helper\Helper::get_setting('desc_web_en')->value}}
+            @endif
         </p>
         @if(!Auth::check())
         <a style="font-weight: bold;width: 190px;margin: auto;"  href="{{route('register')}}" class="my-btn btn btn-primary btn-block" >{{trans('frontend.register')}}</a>

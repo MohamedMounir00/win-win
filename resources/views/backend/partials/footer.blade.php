@@ -73,6 +73,8 @@
         }
     });
 </script>
+<script src="{{asset('frontend')}}/js/lightbox.js"></script>
+
 @include('sweet::alert')
 
 @yield('scripts')

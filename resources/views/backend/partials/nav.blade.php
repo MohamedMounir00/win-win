@@ -46,6 +46,17 @@
 
 
             </ul>
+            <ul class="nav navbar-nav navbar-left">
+                <li class="dropdown" style=" margin-left: 30px">
+
+
+                    <a class="dropdown-toggle waves-effect waves-light"  href="{{url('/home')}}">{{trans('backend.website')}}
+                        {{-- <div class="notify"><span class="heartbit"></span><span class="point"></span></div> --}}
+                    </a>
+                </li>
+
+            </ul>
+
         </nav>
     </div>
 </div>

@@ -63,7 +63,7 @@
                     { data: 'image', name: 'image' } ,
                     { data: 'email', name: 'email' },
                     { data: 'phone', name: 'phone' },
-                    { data: 'verification', name: 'verification' },
+                    { data: 'active', name: 'active' },
                     { data: 'city', name: 'city' },
                     { data: 'state', name: 'state' },
                     { data: 'created_at', name: 'created_at' },
@@ -133,6 +133,31 @@
                     return false;
                 }
             })
+
+        })
+    </script>
+    <script>
+        $('#table1').on('click', '.btn-active[data-remote]', function (e) {
+            e.preventDefault();
+            ;
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            var url = $(this).data('remote');
+
+
+
+            $.ajax({
+                url: url,
+                type: 'DELETE',
+                dataType: 'json',
+                data: {method: '_DELETE', submit: true}
+            }).always(function (data) {
+                $('#table1').DataTable().draw(false);
+            });
 
         })
     </script>

@@ -28,6 +28,8 @@
                         <th>{{trans('backend.city')}}</th>
                         <th>{{trans('backend.state_unit')}}</th>
                         <th>{{trans('backend.date')}}</th>
+                        <th>{{trans('backend.active')}}</th>
+
                         <th>{{trans('backend.action')}}</th>
 
                     </tr>
@@ -61,6 +63,8 @@
 
                     { data: 'city', name: 'city' },
                     { data: 'state', name: 'state' },
+                    { data: 'active', name: 'active' } ,
+
                     { data: 'created_at', name: 'created_at' },
 
                     {data: 'action', name: 'action', orderable: false, searchable: false},
@@ -128,6 +132,31 @@
                     return false;
                 }
             })
+
+        })
+    </script>
+    <script>
+        $('#table1').on('click', '.btn-active[data-remote]', function (e) {
+            e.preventDefault();
+            ;
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            var url = $(this).data('remote');
+
+
+
+            $.ajax({
+                url: url,
+                type: 'DELETE',
+                dataType: 'json',
+                data: {method: '_DELETE', submit: true}
+            }).always(function (data) {
+                $('#table1').DataTable().draw(false);
+            });
 
         })
     </script>

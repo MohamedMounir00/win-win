@@ -136,7 +136,11 @@ return[
     'lastclient'=>'Newest customers added',
     'lastcomment'=>'The latest Rating',
     'lastreport'=>'Latest report',
-    'home'=>'Home'
+    'home'=>'Home',
+    'not_activation'=>'not activation',
+    'activation'=>' activation',
+    'website'=>'Website'
+
 
 
 

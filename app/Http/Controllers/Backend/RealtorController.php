@@ -158,6 +158,25 @@ class RealtorController extends Controller
         ]);
     }
 
+    public function activetion(Request $request, $id)
+    {
+        $data = User::findOrFail($id);
+        if ($data->verification==true)
+        {
+            $data->verification=false;
+
+        }
+        else
+        {
+            $data->verification=true;
+
+
+        }
+        $data->save();
+        return response()->json([
+            'success' => 'user has been update successfully!'
+        ]);
+    }
 
 
 
@@ -174,6 +193,22 @@ class RealtorController extends Controller
     
                 ';
             })
+            ->addColumn('active', function ($data) {
+                if ($data->verification==false)
+                {
+                    return '
+              <button class="btn btn-active btn btn-round  btn-danger" data-remote="realtor/activetion/' . $data->id . '">'.trans('backend.not_activation').'</button>
+    
+                ';
+                }
+                else{
+                    return '
+              <button class="btn btn-active btn btn-round  btn-success" data-remote="realtor/activetion/' . $data->id . '">'.trans('backend.activation').'</button>
+    
+                ';
+                }
+            })
+
             ->addColumn('state', function ($data) {
                 return unserialize($data->state->name)[LaravelLocalization::getCurrentLocale()];
 
@@ -191,17 +226,14 @@ class RealtorController extends Controller
 
             })
             ->addColumn('company_name', function ($data) {
-                return $data->realtor->company_name;
+                return'<a href="' . route('realtor.show', $data->id) . '">'.$data->realtor->company_name.'</a>';
 
             })
-            ->addColumn('verification', function ($data) {
-                if ($data->verification==1)
-                  return trans('backend.active_client');
-                else
-                return trans('backend.disactive');
-            })
 
-            ->rawColumns(['action', 'state','city','image','company_name','verification'])
+            ->addColumn('name', function ($data) {
+                return'<a href="' . route('realtor.show', $data->id) . '">'.$data->name.'</a>';
+            })
+            ->rawColumns(['action', 'state','city','image','company_name','active','name'])
             ->make(true);
     }
 

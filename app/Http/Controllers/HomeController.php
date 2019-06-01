@@ -42,8 +42,8 @@ class HomeController extends Controller
         $units_Notactive_count = Unit::where('activation_admin','not_active')->count();
         $user_active_count = User::where('verification',true)->count();
         $user_Notactive_count = User::where('verification',false)->count();
-        $units_max = Unit::max('price');
-        $units_min = Unit::min('price');
+        $units_max = Unit::get()->max('price');
+        $units_min = Unit::get()->min('price');
         $lastUser = User::where('verification',false)->orderByDesc('created_at')->take(5)->get();
         $lastcomment= Rating::where('type','user')->orderByDesc('created_at')->take(5)->get();
         $lastreport= ReportAdmin::where('seen',false)->orderByDesc('created_at')->take(5)->get();

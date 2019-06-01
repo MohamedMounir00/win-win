@@ -124,6 +124,25 @@ class UnitsController extends Controller
         return back();
 
     }
+    public function activetion(Request $request, $id)
+    {
+        $data = Unit::findOrFail($id);
+        if ($data->activation_admin=='active')
+        {
+            $data->activation_admin='not_active';
+
+        }
+        else
+        {
+            $data->activation_admin='active';
+
+
+        }
+        $data->save();
+        return response()->json([
+            'success' => 'unit has been update successfully!'
+        ]);
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -157,6 +176,21 @@ class UnitsController extends Controller
     
                 ';
             })
+            ->addColumn('active', function ($data) {
+                if ($data->activation_admin=='not_active')
+                {
+                    return '
+              <button class="btn btn-active btn btn-round  btn-danger" data-remote="unit/activetion/' . $data->id . '">'.trans('backend.not_activation').'</button>
+    
+                ';
+                }
+                else{
+                    return '
+              <button class="btn btn-active btn btn-round  btn-success" data-remote="unit/activetion/' . $data->id . '">'.trans('backend.activation').'</button>
+    
+                ';
+                }
+            })
             ->addColumn('state', function ($data) {
                 if ($data->state_id==null)
                     return 'لم يتم اختيار منطقه بعد';
@@ -180,8 +214,10 @@ class UnitsController extends Controller
                 return'<a href="' . route('realtor.show', $data->user_id) . '">'.$data->realtor->name.'</a>';
             })
 
-
-            ->rawColumns(['action', 'state','city','type','realtor'])
+            ->addColumn('title', function ($data) {
+                return'<a href="' . route('unit.show', $data->id) . '">'.$data->title.'</a>';
+            })
+            ->rawColumns(['action', 'state','city','type','realtor','title','active'])
             ->make(true);
     }
     public function getNotActive()
@@ -195,6 +231,21 @@ class UnitsController extends Controller
               <button class="btn btn-delete btn btn-round  btn-danger" data-remote="unit/' . $data->id . '"><i class="fa fa-remove"></i>'.trans('backend.delete').'</button>
     
                 ';
+            })
+            ->addColumn('active', function ($data) {
+                if ($data->activation_admin=='not_active')
+                {
+                    return '
+              <button class="btn btn-active btn btn-round  btn-danger" data-remote="unit/activetion/' . $data->id . '">'.trans('backend.not_activation').'</button>
+    
+                ';
+                }
+                else{
+                    return '
+              <button class="btn btn-active btn btn-round  btn-success" data-remote="unit/activetion/' . $data->id . '">'.trans('backend.activation').'</button>
+    
+                ';
+                }
             })
             ->addColumn('state', function ($data) {
                 if ($data->state_id==null)
@@ -219,8 +270,10 @@ class UnitsController extends Controller
                 return'<a href="' . route('realtor.show', $data->user_id) . '">'.$data->realtor->name.'</a>';
             })
 
-
-            ->rawColumns(['action', 'state','city','type','realtor'])
+            ->addColumn('title', function ($data) {
+                return'<a href="' . route('unit.show', $data->id) . '">'.$data->title.'</a>';
+            })
+            ->rawColumns(['action', 'state','city','type','realtor','title','active'])
             ->make(true);
     }
     public function get_unit_user($id,$status)
@@ -242,6 +295,21 @@ class UnitsController extends Controller
                 return unserialize($data->state->name)[LaravelLocalization::getCurrentLocale()];
 
             })
+            ->addColumn('active', function ($data) {
+                if ($data->activation_admin=='not_active')
+                {
+                    return '
+              <button class="btn btn-active btn btn-round  btn-danger" data-remote="/admin/unit/activetion/' . $data->id . '">'.trans('backend.not_activation').'</button>
+    
+                ';
+                }
+                else{
+                    return '
+              <button class="btn btn-active btn btn-round  btn-success" data-remote="/admin/unit/activetion/' . $data->id . '">'.trans('backend.activation').'</button>
+    
+                ';
+                }
+            })
             ->addColumn('city', function ($data) {
                 if ($data->city_id==null)
                     return 'لم يتم اختيار مدينه بعد';
@@ -257,9 +325,11 @@ class UnitsController extends Controller
             ->addColumn('realtor', function ($data) {
                 return'<a href="' . route('realtor.show', $data->user_id) . '">'.$data->realtor->name.'</a>';
             })
+            ->addColumn('title', function ($data) {
+                return'<a href="' . route('unit.show', $data->id) . '">'.$data->title.'</a>';
+            })
 
-
-            ->rawColumns(['action', 'state','city','type','realtor'])
+            ->rawColumns(['action', 'state','city','type','realtor','title','active'])
             ->make(true);
     }
 

@@ -111,6 +111,8 @@ Route::group([
         //////////////////////////////// realtor////////////
         Route::get('realtor/get_realtor','Backend\RealtorController@getAnyDate')->name('realtor.get_realtor');
         Route::resource('realtor','Backend\RealtorController');
+        Route::delete('realtor/activetion/{id}','Backend\RealtorController@activetion')->name('realtor.activetion');
+
         /////////////////////////////////////////////////////////////admins
         Route::get('admins/get_admins','Backend\AdminsController@getAnyDate')->name('admins.get_admins');
         Route::resource('admins','Backend\AdminsController');
@@ -121,6 +123,7 @@ Route::group([
         Route::get('unit_not_active','Backend\UnitsController@unit_not_active')->name('unit_not_active');
         Route::get('get_not_active','Backend\UnitsController@getNotActive')->name('get_not_active');
         Route::get('unit/active/{id}','Backend\UnitsController@active')->name('unit.active');
+        Route::delete('unit/activetion/{id}','Backend\UnitsController@activetion')->name('unit.activetion');
         Route::get('get_unit_user_view/{id}/{status}','Backend\UnitsController@get_unit_user_view')->name('get_unit_user_view');
         Route::get('get_unit_user/{id}/{status}','Backend\UnitsController@get_unit_user')->name('get_unit_user');
         /////////////////////////////////////////////////////////setting
