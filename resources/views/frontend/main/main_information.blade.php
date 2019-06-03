@@ -30,7 +30,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="{{asset('frontend')}}/css/fakeLoader.min.css">
     <link href="https://cdn.jsdelivr.net/npm/dropify@0.2.2/dist/css/dropify.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="{{asset('frontend')}}/css/custom.css">
+        <link rel="stylesheet" href="{{asset('frontend')}}/css/public-css.css">
 
 </head>
 

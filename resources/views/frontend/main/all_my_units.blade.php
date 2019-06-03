@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="{{asset('frontend')}}/css/fakeLoader.min.css">
     <link rel="stylesheet" href="{{asset('frontend')}}/css/dropify.css">
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,500,700,900" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('frontend')}}/css/custom.css">
+    <link rel="stylesheet" href="{{asset('frontend')}}/css/public-css.css">
 
 </head>
 <!-- Page Loading -->

@@ -85,24 +85,20 @@
                                 @endif
                             <p style="word-break: break-word;">{{$user->realtor->bio}}</p>
                         <hr>
-                        <div class="manager-info">
-                            <h2>{{trans('frontend.name')}}</h2>
-                            <span>{{$user->name}}</span>
-                        </div>
-                        <hr>
                         <div class="adress">
                             <div class="row no-gutters">
                                 <div class="col-md-6 col-sm-6">
                                     <div class="last state">
-                                        <p>{{unserialize($user->city->name)[$lang]}}</p>
                                         <span>{{trans('frontend.City')}}</span>
+
+                                        <p>{{unserialize($user->city->name)[$lang]}}</p>
                                     </div>
 
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <div class=" state">
-                                        <p>{{unserialize($user->state->name)[$lang]}}</p>
                                         <span>{{trans('frontend.State')}}</span>
+                                        <p>{{unserialize($user->state->name)[$lang]}}</p>
                                     </div>
 
                                 </div>
@@ -389,9 +385,11 @@ $(document).ready(function () {
     loadMoreData();
 
     // this functions for change status of units
-    $('#data-container').on('click', '.available-button', function() {
-        changeStatusUnit($(this).attr('activation'), $(this).attr('unit-id'), this)
+    $('#data-container').on('click', '.available-button', function(event) {
+        event.stopPropagation();
+        changeStatusUnit($(this).attr('activation'), $(this).attr('unit-id'), this);
     });
+
 
     function changeStatusUnit(current_status, unit_id, item) {
         $.ajax({
@@ -418,16 +416,16 @@ $(document).ready(function () {
     function appendActivationButtons(id, activationBtn) {
 
         if (activationBtn == "active") {
-                return  '      <a href="#" class="download available-button active" unit-id="'+id+'" activation="not_active" data-toggle="tooltip" title="{{trans('frontend.not_active_unit')}}">'+
-                                                '<i class="fa fa-times"></i>'+
-                            '      </a>';
-            }
+            return  '      <a href="#" class="download available-button active" unit-id="'+id+'" activation="not_active" data-toggle="tooltip" title="{{trans('frontend.not_active_unit')}}">'+
+                                            '<i class="fa fa-times"></i>'+
+                        '      </a>';
+        }
 
-            if (activationBtn == "not_active") {
-                 return  '      <a href="#" class="download available-button not_active" unit-id="'+id+'" activation="active" data-toggle="tooltip" title="{{trans('frontend.active_unit')}}">'+
-                                                '<i class="fa fa-check"></i>'+
-                                '      </a>';
-            } 
+        if (activationBtn == "not_active") {
+             return  '      <a href="#" class="download available-button not_active" unit-id="'+id+'" activation="active" data-toggle="tooltip" title="{{trans('frontend.active_unit')}}">'+
+                                            '<i class="fa fa-check"></i>'+
+                            '      </a>';
+        }
     }
 
     // Function To Get 10 Rating Data From Database 
@@ -456,7 +454,7 @@ $(document).ready(function () {
                     } 
 
                     var html = '<div class="latest-units"> <div class="row no-gutters"> <div class="col-md-3"> <div class="unit-img"> <img class="img-fluid rounded-circle" src="'+imgUrl+'" alt=""> </div> </div> <div class="col-md-6"> <div  class="unit-description"> <h2 style="word-break: break-word;"><a class="text-decoration-none" href="'+value.url+'"> '+value.title+'</a></h2> <p>'+value.date+'</p> <span><i class="fa fa-gear"></i> '+value.type+'</span> <span style="margin-right:40px"><i class="fa fa-map-marker"></i> '+value.type+'</span> </div> </div> <div class="col-md-3"> <div class="price"> <span>'+value.price+'</span> '+appendActivationButtons(value)+'<p>'+value.string_prics+'</p> </div> </div> </div></div>';
-                        $('#data-container').append(printUnitCard(value.id, imgUrl, value.type, value.price, value.activation,value.title,value.date,value.url, value.state));
+                        $('#data-container').append(printUnitCard(value.id, imgUrl, value.type, value.price, value.activation,value.title,value.date,value.url, value.city + ' - ' + value.state, value.userimage, value.user_url));
                         offset ++;
                 });
                 if (data.data.length == 0) {
@@ -534,16 +532,16 @@ $(document).ready(function () {
         });
     }
 
-
+    function formatNumber(num) {
+        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    }
     // Pring Unit Card Function .......
 
-    function printUnitCard(id, imageUrl, unitType, unitPrice, activationBtn, unitTitle, unitDate, detailsUrl, detailState) {
-        var price = ""
-        var activation = ""
+    function printUnitCard(id, imageUrl, unitType, unitPrice, activationBtn, unitTitle, unitDate, detailsUrl, detailState, userImage, userURL) {
+        var price = "";
+        var activation = "";
         if (unitPrice != null) {
-            price  = '<label class="price">'+
-                '        <span>'+unitPrice+'</span>'+
-                '      </label>';
+            price  = formatNumber(unitPrice) + ' {{trans('frontend.L_E')}}';
         }
         if (unitTitle != null) {
             unitTitle = unitTitle.slice(0, 100)
@@ -552,42 +550,24 @@ $(document).ready(function () {
            activation = appendActivationButtons(id, activationBtn)
             
         }
-        return '<div class="food">'+
-'    <div class="cover" style="background-image: url('+imageUrl+')">'+
-'      <label>'+
-'        <span>'+unitType+'</span>'+
-'      </label>'+
-      price +
-'      <label class="right">'+
-'        <span>'+detailState+'</span>'+
-'      </label>'+
-    activation+
-'    </div>'+
-'    <div class="info">'+
-'      <a href="'+detailsUrl+'" class="recipe">'+
-'        <i class="fa fa-info-circle">'+
+        return '<div class="row unit-item" onclick="(window.location = \''+detailsUrl+'\')">'+
+        '                    <div class="col-md-3 img" style="background-image: url('+imageUrl+')">'+
+        '                    </div>'+
+        '                    <div class="col-md-9 content">'+
+        '                        <a class="title" href="#">'+unitTitle.substr(1, 44)+'</a>'+
+        '                        <span class="price float-right">'+price+' </span>'+
+            activation+
+        '                        <p class="breadcrumbs">'+unitType+'</p>'+
 
-'        </i>'+
-'        <span>{{trans('frontend.details')}}</span>'+
-'      </a>'+
-'      <div class="contentt">'+
-'            <div class="container">'+
-'                <div class="row">'+
-'                    '+
-'                    <div class="col-md-9 col-sm-9">'+
-'                        <div class="date">'+
-'                            <span class="date-string">'+unitTitle+'</span>'+
-'                            <span class="date-num">'+unitDate+'</span>'+
-'                        </div>'+
-''+
-'                        '+
-'                    </div>'+
-'                </div>'+
-'            </div>'+
-'      </div>'+
-'    </div>'+
-'  </div>';
+        '                        <hr>'+
+        '                        <p class="time ">'+unitDate+'</p>'+
+        '                        <p class="location">'+detailState+'</p>'+
+        '                        <span class="company-logo"><a href="'+userURL+'"><img height="43" src="'+userImage+'"/></a></span>'+
+        '                    </div>'+
+        '                </div>';
     }
+
+
 });
 </script>
 

@@ -29,6 +29,7 @@
 
 
     <link rel="stylesheet" href="{{asset('frontend')}}/css/fakeLoader.min.css">
+    <link rel="stylesheet" href="{{asset('frontend')}}/css/public-css.css">
 
 </head>
 
@@ -158,8 +159,7 @@
                     <div data-tilt class="deal-section">
                         <i class="sell-i fa fa-hand-paper-o"></i>
                         <h3>{{trans('frontend.register')}}</h3>
-                        <p>                              {{trans('frontend.desc_lorm')}}
-                        </p>
+                        <p class="lead c-black">{{trans('frontend.desc_lorm')}}</p>
                     </div>
                 </a>
             </div>
@@ -169,8 +169,7 @@
                     <div data-tilt class="deal-section">
                         <i class="fa fa-road"></i>
                         <h3>{{trans('frontend.add-unit')}}</h3>
-                        <p class="lead">                              {{trans('frontend.desc_lorm')}}
-                        </p>
+                        <p class="lead c-black">{{trans('frontend.desc_lorm')}}</p>
                     </div>
                 </a>
             </div>
@@ -181,8 +180,7 @@
                     <div data-tilt class="deal-section">
                         <i class="fa fa-home"></i>
                         <h3>{{trans('frontend.verify_account')}}</h3>
-                        <p class="lead">                              {{trans('frontend.desc_lorm')}}
-                        </p>
+                        <p class="lead c-black"> {{trans('frontend.desc_lorm')}}</p>
                     </div>
                 </a>
             </div>

@@ -1,12 +1,20 @@
 
 
 body {
-     word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+
 }
 @media (min-width: 992px) { 
   .nav-item {
     margin: auto;
   } 
+}
+
+
+
+.no-padding {
+    padding: 0 !important;
 }
 
 .add-new-unit .add-new-info form .show-images .row {
@@ -33,9 +41,13 @@ body {
 .download.available-button {
     text-align: center;
     color: #fff;
-    line-height: 11px;
-    font-size: 25px;
-    padding-top: 10px;
+    font-size: 22px;
+    position: absolute;
+    top: 68px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    line-height: 37px;
 }
 
 .download.available-button.active {
@@ -93,10 +105,11 @@ body {
 /* unit details */
 
 p.unit-intro-location {
-    margin: auto;
+    margin: 0px 5px;
     background: #378ae1;
     color: #fff;
     padding: 3px 13px;
+    margin-top: 5px;
 }
 
 p.unit-intro-time {
@@ -114,4 +127,274 @@ p.unit-intro-time {
   top: 0;
   height: 25vh;
 
+}
+
+.c-black {
+    color: #000 !important;
+}
+
+.bg-black {
+    color: #000 !important;
+}
+
+
+/*   Main Information page  */
+.info form label ,
+.info form p,
+.info form input,
+.info form select,
+.info form textarea {
+    color: #000 !important;
+}
+
+.info form input,
+.info form select,
+.info form textarea {
+    font-size: 18px !important;
+}
+
+.info form .form-row {
+    margin-bottom: 35px;
+}
+
+
+/* all units page */
+.all-main-info .info .navs-section .content .section-content p,
+.all-main-info .info .navs-section .navs-title h2{
+    color: #000;
+}
+
+.all-main-info .info .navs-section .navs-subtitle {
+    color: #545871;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.all-main-info .details .details-title h2 {
+    color: #545871;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.all-main-info .details .unit-title span,
+.all-main-info .details .description h2{
+    color: #545871;
+}
+
+.all-main-info .details .user-data p {
+    color: #545871;
+    font-size: 20px;
+}
+
+.all-main-info .details .user-data h2,
+.all-main-info .details .description p{
+    color: #545871;
+    font-size: 16px;
+}
+
+/* Search page */
+
+.search-page .serch-form-title {
+    color: #545871;
+    font-size: 20px;
+}
+
+
+/* unit details page */
+.display-page .user-info p {
+    color: #545871;
+    font-size: 16px;
+}
+
+.display-page .user-info .adress .state p {
+    color: #545871;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.display-page .user-info .adress .state span {
+    color: #000;
+
+}
+
+.display-page .latest-units .description p {
+    color: #545871;
+    font-size: 20px;
+}
+
+.display-page p.unit-intro-location i {
+    padding: 2px;
+}
+
+.display-page .unit-details-price {
+    color: #546794;
+    padding: 10px 20px;
+    background: #f7f6f6;
+    border-radius: 4px;
+}
+
+
+.display-page .unit-details-price span {
+    font-weight: bold;
+    font-size: 22px;
+}
+.display-page .latest-units .units-galary-title {
+    line-height: 12px;
+}
+.display-page .latest-units .units-galary .show-images {
+    margin-top: 0px !important;
+}
+
+@media (max-width: 767px) {
+    .unit-details-price {
+        float: none !important;
+    }
+}
+
+.display-page hr {
+    margin-bottom: .5rem !important;
+}
+
+
+/* navbar */
+.navbar .dropdown .user-profile-img {
+    width: 35px;
+    height: 35px;
+}
+
+.navbar .nav-link {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+/* Update profile */
+
+.add-new-unit .add-new-info form p,
+.add-new-unit .add-new-info form label,
+.add-new-unit .add-new-info form input,
+.add-new-unit .add-new-info form select,
+.add-new-unit .add-new-info form textarea {
+    color: #000;
+}
+
+.add-new-unit .add-new-info form input,
+.add-new-unit .add-new-info form select,
+.add-new-unit .add-new-info form textarea {
+    font-size: 15px !important;
+}
+
+.add-new-unit .add-new-info form .form-control {
+    padding: 8px 5px !important;
+}
+
+.changing-password-title {
+    margin-top: 40px;
+}
+
+.changing-password-title h2 {
+    color: #545871;
+    font-size: 18px;
+    font-weight: bold;
+    margin: auto;
+}
+
+.changing-password-title hr {
+    width: 60px;
+    height: 2px;
+    background-color: #545871;
+    margin: 8px 0px 4px 0px;
+    border-radius: 3px;
+}
+
+.changing-password-title span {
+    font-size: 12px;
+    font-weight: 500;
+    color: #626262;
+}
+
+
+/* user profile page */
+.user-profile .contact-heading {
+    font-weight: bold;
+    color: #545871;
+    text-shadow: 1px 1px #ddd;
+}
+
+.user-profile .contact-info ul li,
+.user-profile .address p {
+    color: #545871;
+}
+
+.user-profile .user-info p,
+.user-profile .user-info .manager-info span,
+.user-profile .user-info .adress .state p {
+    color: #000;
+}
+
+.user-profile .user-info .adress .state p {
+    color: #545871;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.when-no-rating,
+.user-profile .latest-rate .block .comment p{
+    color: #545871;
+    font-weight: bold;
+}
+
+
+
+/* Unit Item Style Like Olx */
+
+.unit-item {
+    margin: 15px 0px;
+    background-color: white;
+    padding: 0px;
+    border-radius: 5px;
+    transition: box-shadow 0.5s ease;
+    box-shadow: 0 3px 5px #EEEEEE;
+}
+
+.unit-item:hover {
+    box-shadow: 0 3px 10px 3px #cccccc;
+    cursor: pointer;
+}
+
+.unit-item hr {
+    margin-bottom: 5px;
+}
+.unit-item .img {
+    height: 174px;
+    background-color: #eee;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 0px;
+}
+
+.unit-item .content {
+    padding: 10px;
+}
+
+.unit-item .time,
+.unit-item .location {
+    margin: 0;
+}
+
+.unit-item .breadcrumbs {
+    margin-bottom: 58px;
+    font-size: 12px;
+}
+
+
+.download.available-button {
+    box-shadow: 0 3px 5px #EEEEEE;
+    transition: box-shadow 0.5s ease;
+}
+
+.download.available-button:hover {
+    box-shadow: 0 3px 10px 3px #cccccc;
 }

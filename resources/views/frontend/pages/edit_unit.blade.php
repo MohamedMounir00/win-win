@@ -44,7 +44,7 @@
                                 <div class="col-xl-6 col-lg-12 col-sm-12">
                                     <div class="upload-image">
                                         <i id="profileImage" class="fa fa-camera" aria-hidden="true"></i>
-                                        <input id="imageUpload" type="file" name="image" placeholder="Photo"  capture>
+                                        <input id="imageUpload" type="file" name="image" placeholder="Photo"  capture multiple>
                                         <p>{{trans('frontend.upload_image_unit')}}<span> {{trans('frontend.upload_max')}}</span></p>
                                     </div>
                                 </div>
@@ -312,11 +312,12 @@
                 if (current_photos >= max_photos) {
                     return swal("{{trans('frontend.you_can_upload')}}")
                 }
+                console.log(checkPhotosCount());
                 if (checkPhotosCount() >= 8)
                     return swal('{{trans('frontend.you_can_upload_image_more')}}');
 
                 var form_data = new FormData();
-                form_data.append('image', img.files[0]);
+                form_data.append('image', img);
                 form_data.append('_token', '{{csrf_token()}}');
 
                 $.ajax({
@@ -326,9 +327,11 @@
                     contentType: false,
                     processData: false,
                     success: function (data) {
-                        if (current_photos >= max_photos) {
+                        if (current_photos >= max_photos) 
                             return swal("{{trans('frontend.you_can_upload')}}")
-                        }
+
+                        if (checkPhotosCount() >= 8)
+                            return swal('{{trans('frontend.you_can_upload_image_more')}}');
                         photosArray.push(data.id);
                         imageContainer.fadeIn("slow");
                         $('.show-images').children().append('<div class="col-sm-6 col-md-4 col-lg-3"><a  href="{{url('')}}/'+data.url+'" data-lightbox="image-1"><img class="img-fluid img-thumbnail" src="{{url('')}}/'+data.url+'" alt=""><button id="remove_photo" class="btn btn-danger" image-id="'+data.id+'"><i class="fa fa-close"></i></button></a></div>');
@@ -372,7 +375,11 @@
 
             $('#imageUpload').change(function () {
                 if ($(this).val() != '') {
-                    upload(this);
+                    var files = $("#imageUpload")[0].files;
+                    for (var i = 0; i < files.length; i++)
+                    {
+                        upload(files[i]);
+                    }
                 }
             });
 

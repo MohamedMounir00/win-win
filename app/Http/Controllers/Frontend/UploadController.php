@@ -25,7 +25,13 @@ class UploadController extends Controller
 
         //Upload Images One After the Order into folder
         $img = Image::make($image->getRealPath());
-        $watermark = Image::make(public_path('/frontend/images/logo.png'));
+        $watermark = Image::make(public_path('/frontend/images/watermark-logo.png'));
+        // resize watermark width keep height auto
+        $resizePercentage = 25;//70% less then an actual image (play with this value)
+        $watermarkSize = $img->height() / 3; //half of the image size
+        $watermark->resize(null, $watermarkSize, function ($constraint) {
+            $constraint->aspectRatio();
+        });
         $img->insert($watermark, 'bottom-right');
         $img->save(public_path($destinationPath).'/'.$fileName);
         //$move = $image->move($destinationPath, $fileName);

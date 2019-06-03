@@ -30,6 +30,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="{{asset('frontend')}}/css/fakeLoader.min.css">
     <link rel="stylesheet" href="{{asset('frontend')}}/css/dropify.css">
+    <link rel="stylesheet" href="{{asset('frontend')}}/css/public-css.css">
 
     <style>
         .transition {
@@ -363,7 +364,7 @@
             }
 
             var form_data = new FormData();
-            form_data.append('image', img.files[0]);
+            form_data.append('image', img);
             form_data.append('_token', '{{csrf_token()}}');
 
             $.ajax({
@@ -408,7 +409,11 @@
 
         $('#imageUpload').change(function () {
             if ($(this).val() != '') {
-                upload(this);
+                var files = $("#imageUpload")[0].files;
+                for (var i = 0; i < files.length; i++)
+                {
+                    upload(files[i]);
+                }
             }
         });
 

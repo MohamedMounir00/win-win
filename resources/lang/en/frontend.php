@@ -129,10 +129,13 @@ return [
 
     'not_active_unit'=>'Disactive Unit',
     'active_unit'=>'Active',
-    'you_can_upload_image_more'=>'Sorry, you can not add more than 8 photos'
+    'you_can_upload_image_more'=>'Sorry, you can not add more than 8 photos',
 
 
 
+
+    'change_password_title' => 'Change Password',
+    'change_password_title_description' => 'If you do not want to change your password, you can leave the Password field and the Confirm Password field blank.',
 
 
 

@@ -68,14 +68,7 @@
                                 <label>{{trans('frontend.Email')}}</label>
                                 <input type="email"  name="email"  required class="form-control"  value="{{$user->email}}">
                             </div>
-                            <div class="col-lg-6 col-md-12">
-                                <label> {{trans('frontend.Password')}} </label>
-                                <input type="password"  name="password" class="form-control" >
-                            </div>
-                            <div class="col-lg-6 col-md-12">
-                                <label> {{trans('frontend.Confirm_Password')}}</label>
-                                <input type="text" name="password_confirmation" class="form-control">
-                            </div>
+
                             <div class="col-lg-6 col-md-12">
                                 <label>{{trans('frontend.Phone')}}</label>
                                 <input type="number"  name="phone" class="form-control" required value="{{$user->phone}}">
@@ -120,12 +113,31 @@
                                     </select>
                                 </div>
                             </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label> {{trans('frontend.Company_Bio')}}</label>
+                                    <textarea class="form-control" required name="bio" placeholder="Enter Your Bio Of Your company">{{$user->realtor->bio}}</textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="changing-password-title">
+                                    <h2>{{trans('frontend.change_password_title')}}</h2>
+                                    <hr>
+                                    <span>{{trans('frontend.change_password_title_description')}}</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <label> {{trans('frontend.Password')}} </label>
+                                <input type="password"  name="password" class="form-control" >
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <label> {{trans('frontend.Confirm_Password')}}</label>
+                                <input type="text" name="password_confirmation" class="form-control">
+                            </div>
                         </div>
 
-                            <div class="form-group">
-                                <label> {{trans('frontend.Company_Bio')}}</label>
-                                <textarea class="form-control" required name="bio" placeholder="Enter Your Bio Of Your company">{{$user->realtor->bio}}</textarea>
-                            </div>
+
                         <div class="text-center click-btn">
                             <div class="container">
                                 <button type="submit" class=" my-btn btn btn-primary">{{trans('backend.update')}}</button>

@@ -3000,7 +3000,7 @@ footer .copr-right .title, footer .copr-right .copyRight {
 .unit-intro { 
   color: #3787E0;
     font-size: 20px;
-    margin-bottom: 0;
+    margin-bottom: 8px;
     font-weight: 500;
 }
 .content {
@@ -4043,5 +4043,18 @@ height: 150px; }
 
 p.unit-intro-location,
 p.unit-intro-time {
-  float: left;
+  float: right;
+}
+
+
+.unit-item .company-logo {
+
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
+
+.download.available-button {
+    left: 10px;
 }

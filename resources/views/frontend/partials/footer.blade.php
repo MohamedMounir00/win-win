@@ -13,7 +13,7 @@
                         <div class="col-md-12">
 
                             <h2>{{trans('frontend.About_Us')}}</h2>
-                            <div class="about-para">
+                            <div class="about-para c-black">
                               @if($lang=='ar')
                                   {{\App\Helper\Helper::get_setting('about_us_ar')->value}}
                                   @else
@@ -72,13 +72,13 @@
             <div class="row">
                 <div class="col-md-12 col-lg-7">
                     <div class="title">
-                        <p>Tel : 01212112212 - Fax : 01222122122</p>
-                        <p>Nasr city , Cairo , Egypt</p>
+                        <p></p>
+                        <p></p>
                     </div>
                 </div>
-                <div class="col-md-12 col-lg-5">
+                <div class="col-md-12 col-lg-5 ">
                     <div class="copyRight">
-                        <span>&copy; Real Estate | All Right Reserved | By Sprints</span>
+                        <span class="float-right">&copy; Real Estate | All Right Reserved | By Sprints</span>
                     </div>
                 </div>
             </div>

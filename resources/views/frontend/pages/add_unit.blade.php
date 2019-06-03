@@ -82,7 +82,7 @@
                                 <div class="col-xl-6 col-lg-12 col-sm-12">
                                     <div class="upload-image">
                                         <i id="profileImage" class="fa fa-camera" aria-hidden="true"></i>
-                                        <input id="imageUpload" type="file" name="image" placeholder="Photo"  capture>
+                                        <input id="imageUpload" type="file" name="image" placeholder="Photo"  capture multiple>
                                         <p>{{trans('frontend.upload_image_unit')}}<span> {{trans('frontend.upload_max')}}</span></p>
                                     </div>
                                 </div>
@@ -331,7 +331,7 @@
                 }
 
                 var form_data = new FormData();
-                form_data.append('image', img.files[0]);
+                form_data.append('image', img);
                 form_data.append('_token', '{{csrf_token()}}');
 
                 $.ajax({
@@ -378,7 +378,11 @@
 
             $('#imageUpload').change(function () {
                 if ($(this).val() != '') {
-                    upload(this);
+                    var files = $("#imageUpload")[0].files;
+                    for (var i = 0; i < files.length; i++)
+                    {
+                        upload(files[i]);
+                    }
                 }
             });
 
