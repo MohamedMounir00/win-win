@@ -7,6 +7,7 @@ return[
     'not_permission'=>'You do not have access to this page',
     'update_done'=>'Profile successfully edited',
     'can_not_add_more'=>'You can not add more than 10 units',
+    'no_permission'=>'You do not have authority',
 
 
 
