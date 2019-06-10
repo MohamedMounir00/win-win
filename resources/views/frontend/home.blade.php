@@ -17,7 +17,7 @@
                     {{\App\Helper\Helper::get_setting('desc_web_en')->value}}
                 @endif
             </p>
-            {!! Form::open(['route'=>['search-form'],'method'=>'POST','class'=>'form-inline','novalidate','files'=>true]) !!}
+            {!! Form::open(['route'=>['search-form'],'method'=>'POST','class'=>'form-inline','novalidate']) !!}
 
                 <input type="search" name="title" class="form-control" placeholder="{{trans('frontend.search')}}">
                 <button type="submit" class="my-btn btn btn-primary">{{trans('frontend.search')}}</button>

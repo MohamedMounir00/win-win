@@ -556,7 +556,7 @@ $(document).ready(function () {
         '                    <div class="col-md-9 content">'+
         '                        <a class="title" href="#">'+unitTitle.substr(1, 44)+'</a>'+
         '                        <span class="price float-right">'+price+' </span>'+
-            activation+
+           @if(auth()->user()->id==$user->id) activation @endIf+
         '                        <p class="breadcrumbs">'+unitType+'</p>'+
 
         '                        <hr>'+

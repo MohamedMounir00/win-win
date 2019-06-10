@@ -27,32 +27,33 @@ class UserController extends Controller
 {
     //
     //first step register
-    public function first_step_register(FirstRegisterStep $request){
+    public function first_step_register(FirstRegisterStep $request)
+    {
 
-        $user=  User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'register'=>'first_step',
-            'verification'=>0,
-            'image'       => Helper::UploadImge($request,'uploads/avatars/','image'),
-            'city_id'=>$request->city_id,
-            'state_id'=>$request->state_id,
+            'register' => 'first_step',
+            'verification' => 0,
+            'image' => Helper::UploadImge($request, 'uploads/avatars/', 'image'),
+            'city_id' => $request->city_id,
+            'state_id' => $request->state_id,
         ]);
         Realtor::create([
             'company_name' => $request->company_name,
-            'user_id'=>$user->id
+            'user_id' => $user->id
 
         ]);
         $client = \Laravel\Passport\Client::where('password_client', 1)->first();
 
         $request->request->add([
-            'grant_type'    => 'password',
-            'client_id'     => $client->id,
+            'grant_type' => 'password',
+            'client_id' => $client->id,
             'client_secret' => $client->secret,
-            'username'      => $user['email'],
-            'password'      => $user['password'],
-            'scope'         => null,
+            'username' => $user['email'],
+            'password' => $user['password'],
+            'scope' => null,
         ]);
 
         // Fire off the internal request.
@@ -62,49 +63,49 @@ class UserController extends Controller
         );
 
         //return \Route::dispatch($proxy);
-        $user['token']    = $user->createToken('MyApp')->accessToken;
+        $user['token'] = $user->createToken('MyApp')->accessToken;
         return new LoginCollection($user);
     }
+
     //second step register
-    public function second_step_register(SecondRegisterStep $request){
+    public function second_step_register(SecondRegisterStep $request)
+    {
 
-        $lang= $request->lang;
-
-
-
-                if(auth()->user()->register=='second_step')
-                    return (new StatusCollection(false, trans('api.first_registrt', [], $lang)))->response()
-                        ->setStatusCode(400);
-
-                $user= User::findOrFail(auth()->user()->id);
-
-                $user->update([
-                    'phone'=>$request->phone,
-                    'register'=>'second_step'
-                ]);
-                $user->realtor->update([
-                    'bio'=>$request->bio,
-                    'phone1'=>$request->phone1,
-                    'phone2'=>$request->phone2,
-                    'phone3'=>$request->phone3,
-                    'address'=>$request->address,
-                ]);
-                return (new StatusCollection(true, trans('api.register_done', [], $lang)))->response()
-                    ->setStatusCode(201);
+        $lang = $request->lang;
 
 
+        if (auth()->user()->register == 'second_step')
+            return (new StatusCollection(false, trans('api.first_registrt', [], $lang)))->response()
+                ->setStatusCode(400);
+
+        $user = User::findOrFail(auth()->user()->id);
+
+        $user->update([
+            'phone' => $request->phone,
+            'register' => 'second_step'
+        ]);
+        $user->realtor->update([
+            'bio' => $request->bio,
+            'phone1' => $request->phone1,
+            'phone2' => $request->phone2,
+            'phone3' => $request->phone3,
+            'address' => $request->address,
+        ]);
+        return (new StatusCollection(true, trans('api.register_done', [], $lang)))->response()
+            ->setStatusCode(201);
 
 
-        }
+    }
+
     public function login(Request $request)
     {
-        $lang= $request->lang;
+        $lang = $request->lang;
 
         $request->validate([
             'email' => 'required',
             'password' => 'required'
         ]);
-        $user =User::where('email', $request->email)->first();
+        $user = User::where('email', $request->email)->first();
         if (!$user) {
             return (new StatusCollection(false, trans('api.login_false', [], $lang)))->response()
                 ->setStatusCode(401);
@@ -134,12 +135,14 @@ class UserController extends Controller
             return new LoginCollection($user);
         } else
             return (new StatusCollection(false, trans('api.login_false', [], $lang)))->response()
-                ->setStatusCode(401);      }
-                ////any  profile by id
+                ->setStatusCode(401);
+    }
+
+    ////any  profile by id
     public function profile(Request $request)
     {
-        $id =$request->user_id;
-        $lang =$request->lang;
+        $id = $request->user_id;
+        $lang = $request->lang;
         $user = User::findOrFail($id);
         if ($user->realtor)
             return new UserCollection($user);
@@ -147,51 +150,51 @@ class UserController extends Controller
             return (new StatusCollection(false, trans('api.not_permission', [], $lang)))->response()
                 ->setStatusCode(400);
     }
-          // get my profile by auth
+
+    // get my profile by auth
     public function edit_profile_data(Request $request)
     {
-        $lang =$request->lang;
+        $lang = $request->lang;
 
         if (auth()->user()->realtor) {
 
             $id = auth()->user()->id;
             $user = User::findOrFail($id);
             return new ProfileCollection($user);
-        }
-        else
+        } else
             return (new StatusCollection(false, trans('api.not_permission', [], $lang)))->response()
                 ->setStatusCode(400);
     }
+
     ///////////update profile by auth
     public function updatet_profile(UpdateProfileRequest $request)
     {
-        $lang= $request->lang;
+        $lang = $request->lang;
 
-        $id= auth()->user()->id;
-        $user=User::findOrFail($id);
-        $user->name        = $request->name;
-        $user->email       = $request->email;
-        $user->phone       = $request->phone;
-        $user->image       = Helper::UpdateImage($request,'uploads/avatars/','image',$user->image);
-        $user->state_id    = $request->state_id;
-        $user->city_id     = $request->city_id;
+        $id = auth()->user()->id;
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->image = Helper::UpdateImage($request, 'uploads/avatars/', 'image', $user->image);
+        $user->state_id = $request->state_id;
+        $user->city_id = $request->city_id;
 
         if (isset($request->password))
             $user->password = bcrypt($request->password);
         $user->save();
         $user->realtor->update([
-            'bio'         =>$request->bio,
-            'phone1'      =>$request->phone1,
-            'phone2'      =>$request->phone2,
-            'phone3'      =>$request->phone3,
-            'address'     =>$request->address,
-            'company_name'=>$request->company_name,
+            'bio' => $request->bio,
+            'phone1' => $request->phone1,
+            'phone2' => $request->phone2,
+            'phone3' => $request->phone3,
+            'address' => $request->address,
+            'company_name' => $request->company_name,
         ]);
         return (new StatusCollection(true, trans('api.update_done', [], $lang)))->response()
             ->setStatusCode(201);
 
     }
-
 
 
 }
