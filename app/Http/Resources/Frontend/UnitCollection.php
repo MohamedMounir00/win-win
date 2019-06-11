@@ -45,6 +45,7 @@ class UnitCollection extends JsonResource
             $payment_method=trans('frontend.Instalment');
             else
                 $payment_method= null;
+
             return [
             'id'=>$this->id,
             'title'=>$this->title,

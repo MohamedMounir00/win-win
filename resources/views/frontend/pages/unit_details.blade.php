@@ -5,9 +5,7 @@
 @section('content')
 
     @php
-
         $lang = LaravelLocalization::getCurrentLocale();
-
     @endphp
 
 
