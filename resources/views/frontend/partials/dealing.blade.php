@@ -12,6 +12,7 @@
 
             @foreach($users as $image)
                 <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+
                     <div class="tile">
                         @if(!Auth::check()||auth()->user()->verification==0)
 
@@ -33,8 +34,10 @@
 
                             @endif
                         <div class="text">
-                            <h1 class="animate-text">{{ substr($image->realtor->company_name,0,60)}}</h1>
-                            <p class="animate-text">{{$image->phone}}</p>
+                            <a href="{{route('get_profile_view',$image->id)}}" style="color: #FFF;text-decoration: none">
+                                <h1 class="animate-text">{{ substr($image->realtor->company_name,0,60)}}</h1>
+                                <p class="animate-text">{{$image->phone}}</p>
+                            </a>
                             <a href="{{route('get_profile_view',$image->id)}}" class="dots">
                                 <span></span>
                                 <span></span>
@@ -42,6 +45,8 @@
                             </a>
                         </div>
                     </div>
+
+
                 </div>
 
                 @endif

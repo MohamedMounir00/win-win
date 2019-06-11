@@ -133,7 +133,7 @@
                             </div>
                             <div class="col-lg-6 col-md-12">
                                 <label> {{trans('frontend.Confirm_Password')}}</label>
-                                <input type="text" name="password_confirmation" class="form-control">
+                                <input type="password" name="password_confirmation" class="form-control">
                             </div>
                         </div>
 

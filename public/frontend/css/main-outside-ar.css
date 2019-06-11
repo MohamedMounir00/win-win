@@ -2821,7 +2821,7 @@ footer .copr-right .title, footer .copr-right .copyRight {
 .display-page .latest-units h2 {
   color: #545871;
   font-size: 18px;
-  margin-bottom: 0;
+  margin-bottom: 25PX;
   letter-spacing: 1px;
   position: relative;
   font-weight: 700; }
@@ -4057,4 +4057,11 @@ p.unit-intro-time {
 
 .download.available-button {
     left: 10px;
+}
+
+.dropify-wrapper {
+  height: 200px !important;
+}
+.dropify-render {
+  height: 183px;
 }
