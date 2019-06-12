@@ -21,7 +21,7 @@ class SearchController extends Controller
         $this->middleware('NotActive')->except('advanced_search');
 
     }
-
+     /// search view
     public function search_view(Request $request)
     {
       //$units = $this->searchOperation($request)->get();
@@ -37,7 +37,6 @@ class SearchController extends Controller
         $units = $this->searchOperation($request)->get();
         return UnitCollection::collection($units) ;
     }
-
     public function searchOperation(Request $request) {
 
         $units=Unit::where('activation_admin','active')->where('activation_user','active')->whereHas('realtor', function ($query) {

@@ -100,7 +100,6 @@ class StatsController extends Controller
             Alert::success(trans('backend.updateFash'))->persistent("Close");
         return redirect()->route('state.index');
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -118,9 +117,6 @@ class StatsController extends Controller
             'success' => 'Record has been deleted successfully!'
         ]);
     }
-
-
-
 
     public function getAnyDate()
     {

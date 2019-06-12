@@ -21,13 +21,13 @@ class MainProfileController extends Controller
     public function __construct()
     {
 
-
+        /// middleware for  active user
         $this->middleware('NotActive')->except('get_all_comment');
         $this->middleware('auth')->except('get_all_comment');
 
     }
 
-
+    /// get view  profile
     public function profile($id)
     {
         $user = User::findOrFail($id);
@@ -56,8 +56,7 @@ class MainProfileController extends Controller
            return redirect()->route('home');
 
     }
-
-
+    /// addRating in page profile realtor
     public function addRating(Request $request)
     {
 
@@ -86,7 +85,7 @@ class MainProfileController extends Controller
             }
         }
     }
-
+    ///  send report  to admin  in realtor in profile page
     public function  add_report(Request $request)
     {
        $report= ReportAdmin::create([
@@ -100,7 +99,6 @@ class MainProfileController extends Controller
         return redirect()->back();
 
     }
-
     ///////get comment by offset and user_id
     public function get_all_comment(Request $request)
     {
@@ -110,7 +108,7 @@ class MainProfileController extends Controller
         $comment= Rating::where('realtor_id',$user_id)->where('type', 'user')->skip($offset)->take(10)->get();
         return response()->json(['data'=>$comment]);
     }
-
+    ///// comment  page  from profile page user
     public function get_all_comment_view($id)
     {
         $rating = Rating::where('realtor_id', $id)->where('type', 'admin')->get();
@@ -120,7 +118,7 @@ class MainProfileController extends Controller
         $user = User::findOrFail($id);
         return view('frontend.pages.all_comment',compact('id','user', 'rating_time', 'rating_time_user'));
     }
-
+    /// page update profile
     public function edit_profile()
     {
         if (auth()->user()->realtor) {
@@ -134,7 +132,7 @@ class MainProfileController extends Controller
             return redirect()->route('home');
 
     }
-
+    ///  update profile
     public function updatet_profile(UpdateProfileRequest $request)
     {
         $id= auth()->user()->id;

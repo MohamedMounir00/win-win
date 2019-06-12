@@ -130,8 +130,7 @@ class TypeUnitController extends Controller
     }
 
 
-
-
+    /// get   type unit
     public function getAnyDate()
     {
         $data = Type_estate::all();

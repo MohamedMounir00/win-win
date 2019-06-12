@@ -36,7 +36,7 @@ class UploadController extends Controller
         $img->insert($watermark, 'bottom-right');
         $img->save(public_path($destinationPath).'/'.$fileName);
         //$move = $image->move($destinationPath, $fileName);
-        $path=$destinationPath.'/'.$fileName;
+        $path=$destinationPath.$fileName;
         $image=imageModel::create([
             'url'=>$path
         ]);

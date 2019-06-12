@@ -23,9 +23,7 @@ class MainUnitController extends Controller
         $this->middleware('NotActive');
 
     }
-
-
-
+    /// get data for  add unit
     public function get_data_view()
     {
 
@@ -39,7 +37,6 @@ class MainUnitController extends Controller
         else
             return redirect()->route('home');
     }
-
     ///add unit
     public function AddUnit(AddUnitRequest $request)
     {
@@ -69,7 +66,7 @@ class MainUnitController extends Controller
         return redirect()->route('get_data_view');
 
     }
-
+    // edit unit view inside page   after active  user
     public function edit_unit_wiew($id)
     {
         if(auth()->user()->realtor)
@@ -88,6 +85,7 @@ class MainUnitController extends Controller
         return redirect()->route('home');
 
     }
+    // update unit inside page after active user
     public function UpdateUnit(AddUnitRequest $request,$id)
     {
         $photos_del = [];

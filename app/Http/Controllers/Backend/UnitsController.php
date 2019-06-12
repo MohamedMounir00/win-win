@@ -32,8 +32,6 @@ class UnitsController extends Controller
         return view('backend.unit.get_unit_user_view',compact('id','status'));
     }
 
-
-
     /**
      * Show the form for creating a new resource.
      *
@@ -57,8 +55,6 @@ class UnitsController extends Controller
 
 
     }
-
-
 
     /**
      * Display the specified resource.
@@ -160,10 +156,7 @@ class UnitsController extends Controller
             'success' => 'Record has been deleted successfully!'
         ]);
     }
-
-
-
-
+    /// get all unit    to yjra data table
     public function getAnyDate()
     {
         $data = Unit::get();
@@ -220,6 +213,7 @@ class UnitsController extends Controller
             ->rawColumns(['action', 'state','city','type','realtor','title','active'])
             ->make(true);
     }
+    /// get unit not active
     public function getNotActive()
     {
         $data = Unit::where('activation_admin','not_active')->get();
@@ -276,6 +270,7 @@ class UnitsController extends Controller
             ->rawColumns(['action', 'state','city','type','realtor','title','active'])
             ->make(true);
     }
+    // get unit active or not active  for user
     public function get_unit_user($id,$status)
     {
         $data = Unit::where('user_id',$id)->where('activation_admin',$status)->get();
