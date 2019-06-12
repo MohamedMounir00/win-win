@@ -9,6 +9,7 @@ return[
     'can_not_add_more'=>'You can not add more than 10 units',
     'no_permission'=>'You do not have authority',
 
+    'can_not_rating'=>'Sorry, you can not add more than one rating',
 
 
 ];

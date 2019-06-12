@@ -105,7 +105,7 @@ class UnitsController extends Controller
             ->setStatusCode(400);
 
     }
-    ///////get units by offset and user_id
+     ///////get units by offset and user_id
     public function get_all_units(Request $request)
     {
 
@@ -249,6 +249,12 @@ class UnitsController extends Controller
         $units->skip($request->offset_id)->take(10);
 
         return $units;
+    }
+    // get last 10 units
+    public  function last_units()
+    {
+        $last_units = Unit::where('user_id', auth()->user()->id)->latest()->take(10)->get();
+        return UnitCollection::collection($last_units);
     }
 }
 

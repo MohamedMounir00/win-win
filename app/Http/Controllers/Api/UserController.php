@@ -66,7 +66,6 @@ class UserController extends Controller
         $user['token'] = $user->createToken('MyApp')->accessToken;
         return new LoginCollection($user);
     }
-
     //second step register
     public function second_step_register(SecondRegisterStep $request)
     {
@@ -91,12 +90,12 @@ class UserController extends Controller
             'phone3' => $request->phone3,
             'address' => $request->address,
         ]);
-        return (new StatusCollection(true, trans('api.register_done', [], $lang)))->response()
+        return (new StatusCollection(true, trans('api.register_done', [], $lang),'second_step'))->response()
             ->setStatusCode(201);
 
 
     }
-
+    //// login
     public function login(Request $request)
     {
         $lang = $request->lang;
@@ -137,7 +136,6 @@ class UserController extends Controller
             return (new StatusCollection(false, trans('api.login_false', [], $lang)))->response()
                 ->setStatusCode(401);
     }
-
     ////any  profile by id
     public function profile(Request $request)
     {
@@ -150,7 +148,6 @@ class UserController extends Controller
             return (new StatusCollection(false, trans('api.not_permission', [], $lang)))->response()
                 ->setStatusCode(400);
     }
-
     // get my profile by auth
     public function edit_profile_data(Request $request)
     {
@@ -165,7 +162,6 @@ class UserController extends Controller
             return (new StatusCollection(false, trans('api.not_permission', [], $lang)))->response()
                 ->setStatusCode(400);
     }
-
     ///////////update profile by auth
     public function updatet_profile(UpdateProfileRequest $request)
     {
@@ -195,6 +191,18 @@ class UserController extends Controller
             ->setStatusCode(201);
 
     }
+    /// upload image profile
+    public  function  upload_image_profile(Request $request)
+ {
+     $lang = $request->lang;
 
+     $id = auth()->user()->id;
+     $user = User::findOrFail($id);
+     $user->image = Helper::UpdateImage($request, 'uploads/avatars/', 'image', $user->image);
+     $user->save();
+     $url= url($user->image);
+     return (new StatusCollection(true, trans('api.update_done', [], $lang),$url))->response()
+         ->setStatusCode(201);
+ }
 
 }

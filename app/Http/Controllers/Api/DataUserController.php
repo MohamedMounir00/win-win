@@ -11,7 +11,7 @@ use App\Http\Controllers\Controller;
 
 class DataUserController extends Controller
 {
-    //
+    // cites
     public function  get_cites(Request $request)
     {
         $city= City::all();
