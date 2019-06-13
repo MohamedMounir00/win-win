@@ -1,6 +1,43 @@
 @extends('backend.layouts.app')
 @section('page_title' , trans('backend.unit_details'))
+@section('styles')
+    <style>
 
+        .product_gallery a {
+            height: 150px !important;
+            width: 150px !important;
+        }
+
+        .product_gallery a img {
+            height: 100% !important;
+            width: 100% !important;
+            margin-top: 0px !important
+        }
+
+        .product_price {
+            min-height: 150px;
+        }
+
+        .product_price {
+            padding: 60px 0;
+        }
+
+        .tile-stats {
+            text-align: center;
+            color: #0f0f0f;
+        }
+
+        .tile-stats h5{
+            font-weight: 100;
+            font-size: 18px;
+        }
+
+        .tile-stats p{
+            font-weight: bold;
+            font-size: 20px;
+        }
+    </style>
+    @endsection
 @section('content')
     @php
         $lang= Mcamara\LaravelLocalization\Facades\LaravelLocalization::getCurrentLocale()
@@ -16,33 +53,31 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>{{trans('backend.unit_details')}}</h2>
+                        <h2 style="color: #0f0f0f">{{$data->title}}</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li>
-                                <a class="collapse-link"> <i class="fa fa-chevron-up"></i> </a>
+                                @if($data->activation_admin=='active')
+                                    <a href="{{route('unit.active',$data->id)}}"
+                                       class="btn btn-danger ">{{trans('backend.not_activation')}}</a>
+                                @else
+                                    <a href="{{route('unit.active',$data->id)}}"
+                                       class="btn btn-primary ">{{trans('backend.activation')}}</a>
+                                @endif
                             </li>
 
                         </ul>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
+                        <div class="row">
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 
-                        <div class="col-md-6 col-sm-7 col-xs-12">
-
-                            <div class="product_gallery">
-                                @foreach($data->storge as $item)
-                                    <a href="{{url($item->url)}}" data-lightbox="image-1"> <img src="{{url($item->url)}}" alt="..."/> </a>
-                                @endforeach
+                                <p class="lead" style="color: #0f0f0f;">{{$data->desc}}</p>
 
                             </div>
-                        </div>
-
-                        <div class="col-md-6 col-sm-5 col-xs-12" style="border:0px solid #e5e5e5;">
-
-                            <h3 style="padding-bottom: 10px;" class="prod_title">{{$data->title}}</h3>
-                            <div class="">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                 <div class="product_price">
-                                    <h1 class="price" style="font-size:25px;">
+                                    <h1 class="price" style="font-size:25px; text-align: center; font-weight: bold">
                                         @if($data->price==null)
                                             {{trans('backend.without')}}
                                         @else
@@ -51,193 +86,166 @@
                                     <br>
                                 </div>
                             </div>
-                            <p>{{$data->desc}}</p>
-                            <br>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 
-                            <div style="margin:0 2px;" class="well col-md-3">
-                                <h2 style="font-size:20px;">{{trans('backend.type')}}</h2>
-                                <ul class="list-inline prod_color">
-                                    <li>
-                                        <p>{{unserialize($data->unit_type->name)[$lang]}}</p>
-                                    </li>
+                                <div class="product_gallery">
+                                    @foreach($data->storge as $item)
+                                        <a href="{{url($item->url)}}" data-lightbox="image-1"> <img
+                                                    src="{{url($item->url)}}" alt="..." /> </a>
+                                    @endforeach
 
-
-                                </ul>
+                                </div>
                             </div>
-                            <div style="margin:0 2px;" class="well  col-md-3">
-                                <h2 style="font-size:20px;">{{trans('backend.city')}}</h2>
-                                <ul class="list-inline prod_color">
-                                    <li>
+                            <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
+                                <div class="well profile_view">
+                                    <div class="col-sm-12"  onclick="location.href='{{ route('realtor.show', $data->user_id)}}'">
+                                        <div class="left col-xs-7">
+                                            <h2>{{$data->realtor->name}}</h2>
+                                            <ul class="list-unstyled">
+                                                <li><i class="fa fa-building"></i> {{$data->realtor->email}} </li>
+                                                <li><i class="fa fa-phone"></i> {{$data->realtor->phone}} </li>
+                                            </ul>
+                                        </div>
+                                        <div class="right col-xs-5 text-center">
+                                            @if($data->realtor->image==null)
+                                                <img src="https://www.mycustomer.com/sites/all/modules/custom/sm_pp_user_profile/img/default-user.png" alt="" class="img-circle img-responsive">
+
+                                            @else
+                                                <img src="{{url($data->realtor->image)}}" alt="" class="img-circle img-responsive">
+
+                                                @endIf
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div style="border:0px solid #e5e5e5;">
+                            <h3 style="padding-bottom: 10px;" class="prod_title">{{trans('backend.unit_details')}}</h3>
+
+                                <div class="animated flipInY col-md-4 col-sm-12">
+                                    <div class="tile-stats">
+                                        <h5 style="text-align: center ;font-weight: bold" >{{trans('backend.type')}}</h5>
+                                        <p style="text-align: center">{{unserialize($data->unit_type->name)[$lang]}}</p>
+                                    </div>
+                                </div>
+                                <div class="animated flipInY col-md-4 col-sm-12">
+                                    <div class="tile-stats">
+                                        <h5 style="text-align: center ;font-weight: bold">{{trans('backend.city')}}</h5>
                                         @if($data->city_id==null)
-                                            <p>{{trans('backend.without')}}</p>
+                                            <p style="text-align: center">{{trans('backend.without')}}</p>
                                         @else
-                                        <p>{{unserialize($data->city->name)[$lang]}}</p>
-                                        @endif
+                                            <p style="text-align: center">{{unserialize($data->city->name)[$lang]}}</p>
+                                        @endif                                    </div>
+                                </div>
 
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div style="margin:0 2px;" class="well  col-md-3">
-                                <h2 style="font-size:20px;">{{trans('backend.state')}}</h2>
-                                <ul class="list-inline prod_color">
-                                    <li>
-
+                                <div class="animated flipInY col-md-4 col-sm-12">
+                                    <div class="tile-stats">
+                                        <h5 style="text-align: center ;font-weight: bold">{{trans('backend.state')}}</h5>
                                         @if($data->state_id==null)
-                                            <p>{{trans('backend.without')}}</p>
+                                            <p style="text-align: center">{{trans('backend.without')}}</p>
                                         @else
-                                        <p>{{unserialize($data->state->name)[$lang]}}</p>
-                                            @endif
-                                    </li>
-
-
-                                </ul>
-                            </div>
-                            <div class=" col-md-12">
-                                <h2><small>{{trans('backend.unit_details')}}</small></h2>
-                                <ul class="list-inline prod_size">
-                                    <li>
-                                        <div class=" well text-center ">
-                                            <h3 style="font-size:20px;">{{ trans('backend.bathroom') }}</h3>
-                                            @if($data->bathroom==null)
-                                                {{trans('backend.without')}}
-                                            @else
-                                            {{ $data->bathroom }}
-                                                @endif
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class=" well text-center">
-                                            <h3 style="font-size:20px;">{{ trans('backend.area') }}</h3>
-                                            @if($data->area==null)
-                                                {{trans('backend.without')}}
-                                            @else
-                                            {{ $data->area }}
-                                            @endif
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class=" well text-center">
-                                            <h3 style="font-size:20px;">{{ trans('backend.status') }}</h3>
-
+                                            <p style="text-align: center">{{unserialize($data->state->name)[$lang]}}</p>
+                                        @endif                                    </div>
+                                </div>
+                                <div class="animated flipInY col-md-4 col-sm-12">
+                                    <div class="tile-stats">
+                                        <h5 style="text-align: center ;font-weight: bold">{{trans('backend.bathroom')}}</h5>
+                                        @if($data->bathroom==null)
+                                            <p style="text-align: center"> {{trans('backend.without')}}</p>
+                                        @else
+                                            <p style="text-align: center">   {{ $data->bathroom }}</p>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="animated flipInY col-md-4 col-sm-12">
+                                    <div class="tile-stats">
+                                        <h5 style="text-align: center ;font-weight: bold">{{trans('backend.area')}}</h5>
+                                        @if($data->area==null)
+                                            <p style="text-align: center">  {{trans('backend.without')}}</p>
+                                        @else
+                                            <p style="text-align: center">  {{ $data->area }}</p>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="animated flipInY col-md-4 col-sm-12">
+                                    <div class="tile-stats">
+                                        <h5 style="text-align: center ;font-weight: bold">{{trans('backend.status')}}</h5>
                                         @if($data->status=='sale')
-                                                {{ trans('backend.sale') }}
-                                                @elseif($data->status=='rent')
-                                                {{ trans('backend.rent') }}
-                                                @else
-                                                    {{ trans('backend.without') }}
-                                            @endif
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class=" well text-center">
-                                            <h3 style="font-size:20px;">{{ trans('backend.bathroom') }}</h3>
-                                            @if($data->bathroom==null)
-                                                {{trans('backend.without')}}
-                                            @else
-                                            {{ $data->bathroom }}
-                                                @endif
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class=" well text-center">
-                                            <h3 style="font-size:20px;">{{ trans('backend.payment_method') }}</h3>
-                                            @if($data->payment_method=='cash')
-                                                {{ trans('backend.cash') }}
+                                            <p style="text-align: center"> {{ trans('backend.sale') }}</p>
+                                        @elseif($data->status=='rent')
+                                            <p style="text-align: center"> {{ trans('backend.rent') }}</p>
+                                        @else
+                                            <p style="text-align: center"> {{ trans('backend.without') }}</p>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="animated flipInY col-md-4 col-sm-12">
+                                    <div class="tile-stats">
+                                        <h5 style="text-align: center ;font-weight: bold">{{trans('backend.payment_method')}}</h5>
+                                        @if($data->payment_method=='cash')
+                                            <p style="text-align: center">{{ trans('backend.cash') }}</p>
 
-                                            @elseif($data->payment_method=='installments')
-                                                {{ trans('backend.installments') }}
-                                                @else
-                                                {{ trans('backend.without') }}
+                                        @elseif($data->payment_method=='installments')
+                                            <p style="text-align: center">{{ trans('backend.installments') }}</p>
+                                        @else
+                                            <p style="text-align: center">   {{ trans('backend.without') }}</p>
 
 
-                                            @endif
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="animated flipInY col-md-4 col-sm-12">
+                                    <div class="tile-stats">
+                                        <h5 style="text-align: center ;font-weight: bold">{{trans('backend.rooms')}}</h5>
+                                        @if($data->rooms==null)
+                                            <p style="text-align: center">  {{trans('backend.without')}}</p>
+                                        @else
+                                            <p style="text-align: center"> {{ $data->rooms }}</p>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="animated flipInY col-md-4 col-sm-12">
+                                    <div class="tile-stats">
+                                        <h5 style="text-align: center ;font-weight: bold">{{trans('backend.floor')}}</h5>
+                                        @if($data->floor==null)
+                                            <p style="text-align: center">  {{trans('backend.without')}}</p>
+                                        @else
+                                            <p style="text-align: center">    {{ $data->floor }}</p>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="animated flipInY col-md-4 col-sm-12">
+                                    <div class="tile-stats">
+                                        <h5 style="text-align: center ;font-weight: bold">{{trans('backend.finishing')}}</h5>
+                                        @if($data->finishing=='yes')
+                                            <p style="text-align: center">{{ trans('backend.yes') }}</p>
+                                        @elseif($data->finishing=='no')
+                                            <p style="text-align: center">   {{ trans('backend.no') }}</p>
+                                        @else
+                                            <p style="text-align: center"> {{ trans('backend.without') }}</p>
+
+                                        @endif
+                                    </div>
+                                </div>
 
 
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class=" well text-center">
-                                            <h3 style="font-size:20px;">{{ trans('backend.rooms') }}</h3>
-                                            @if($data->rooms==null)
-                                                {{trans('backend.without')}}
-                                            @else
-                                            {{ $data->rooms }}
-                                            @endif
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class=" well text-center">
-                                            <h3 style="font-size:20px;">{{ trans('backend.floor') }}</h3>
-                                            @if($data->floor==null)
-                                                {{trans('backend.without')}}
-                                            @else
-                                            {{ $data->floor }}
-                                                @endif
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class=" well text-center">
-                                            <h3 style="font-size:20px;">{{ trans('backend.finishing') }}</h3>
-                                           @if($data->finishing=='yes')
-                                                {{ trans('backend.yes') }}
-                                               @elseif($data->finishing=='no')
-                                                {{ trans('backend.no') }}
-                                               @else
-                                                {{ trans('backend.without') }}
-
-                                            @endif
 
 
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <br>
 
 
-                            <div class="col-md-12">
-                               @if($data->activation_admin=='active')
-                                <a href="{{route('unit.active',$data->id)}}" class="btn btn-danger ">{{trans('backend.not_activation')}}</a>
-                                @else
-                                <a href="{{route('unit.active',$data->id)}}" class="btn btn-primary ">{{trans('backend.activation')}}</a>
-                                   @endif
-                            </div>
 
 
-                            <br>
-                            <div class="row">
-
-                                <ul class="list-inline prod_size pull-right">
-
-                                    <h2>
-                                        {{trans('backend.realtor_details')}}
-                                    </h2>
-                                    <li>
-
-                                        <a href="{{ route('realtor.show', $data->user_id)}}"> <span>{{$data->realtor->name}}</span></a>
-                                    </li>
-                                    <br>
-                                    <li>
-                                        <span>{{$data->realtor->email}}</span>
-                                    </li>
-                                    <br>
-                                    <li>
-                                        <span>{{$data->realtor->phone}}</span>
-                                    </li>
-
-                                </ul>
 
 
-                            </div>
-
-
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
     </div>
 
 @endsection

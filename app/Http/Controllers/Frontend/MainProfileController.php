@@ -49,8 +49,10 @@ class MainProfileController extends Controller
            $rating_time_user = floatval($rating2->avg('rating_stars'));
            //get 3 rating
            $rating_10= Rating::where('realtor_id', $id)->orderByDesc('created_at')->take(3)->get();
+           $count_active_unit= Unit::where('user_id',$id)->where('activation_admin', 'active')->where('activation_user', 'active')->count();
+           $count_not_active_unit= Unit::where('user_id',$id)->where('activation_admin', 'not_active')->count();
 
-           return view('frontend.pages.profile', compact('user', 'rating_time', 'rating_time_user', 'rating2', 'ratingcount', 'ratingme','rating_10'));
+           return view('frontend.pages.profile', compact('user', 'rating_time', 'rating_time_user', 'rating2', 'ratingcount', 'ratingme','rating_10','count_active_unit','count_not_active_unit'));
        }
        else
            return redirect()->route('home');

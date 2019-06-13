@@ -136,6 +136,12 @@ return [
 
     'change_password_title' => 'Change Password',
     'change_password_title_description' => 'If you do not want to change your password, you can leave the Password field and the Confirm Password field blank.',
+    'count_active_unit'=>'Units available',
+    'count_not_active_unit'=>'Units  Not available',
+    'ground'=>'ground',
+    'bizment'=>'Bizment',
+    'roof'=>'Roof',
+    'select_floor'=>'Select Floor'
 
 
 

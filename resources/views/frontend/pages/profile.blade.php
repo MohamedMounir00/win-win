@@ -104,6 +104,30 @@
                                 </div>
                             </div>
                         </div>
+                                    <hr>
+                                    <div class="adress">
+                                        <div class="row no-gutters">
+                                            @if(auth()->user()->id==$user->id)
+
+                                            <div class="col-md-6 col-sm-6">
+                                                <div class="last state">
+                                                    <span>{{trans('frontend.count_not_active_unit')}}</span>
+
+                                                    <p>{{$count_not_active_unit}}</p>
+                                                </div>
+
+                                            </div>
+                                            @endif
+                                            <div class="col-md-6 col-sm-6">
+                                                <div class=" state">
+                                                    <span>{{trans('frontend.count_active_unit')}}</span>
+
+                                                    <p>{{$count_active_unit}}</p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
                         <hr>
                         <div class="site-rating">
                             <span class="titl">{{trans('frontend.reating_site')}}</span>
@@ -393,7 +417,7 @@ $(document).ready(function () {
 
     function changeStatusUnit(current_status, unit_id, item) {
         $.ajax({
-            url: '{{url('api/change_status')}}',
+            url: '{{url('api/change_status_fo')}}',
             method: 'post',
             data: {
                 activation: current_status,
@@ -552,17 +576,17 @@ $(document).ready(function () {
             
         }
         @endIf
-        return '<div class="row unit-item" onclick="(window.location = \''+detailsUrl+'\')">'+
-        '                    <div class="col-md-3 img" style="background-image: url('+imageUrl+')">'+
+        return '<div class="row unit-item" >'+
+        '                    <div class="col-md-3 img" style="background-image: url('+imageUrl+')" onclick="(window.location = \''+detailsUrl+'\')">'+
         '                    </div>'+
         '                    <div class="col-md-9 content">'+
-        '                        <a class="title" href="#">'+unitTitle.substr(1, 44)+'</a>'+
-        '                        <span class="price float-right">'+price+' </span>'+activation+
-        '                        <p class="breadcrumbs">'+unitType+'</p>'+
+        '                        <a class="title" href="#"onclick="(window.location = \''+detailsUrl+'\')">'+unitTitle.substr(0, 44)+'</a>'+
+        '                        <span class="price float-right" onclick="(window.location = \''+detailsUrl+'\')">'+price+' </span>'+activation+
+        '                        <p class="breadcrumbs"onclick="(window.location = \''+detailsUrl+'\')">'+unitType+'</p>'+
 
         '                        <hr>'+
-        '                        <p class="time ">'+unitDate+'</p>'+
-        '                        <p class="location">'+detailState+'</p>'+
+        '                        <p class="time "onclick="(window.location = \''+detailsUrl+'\')">'+unitDate+'</p>'+
+        '                        <p class="location"onclick="(window.location = \''+detailsUrl+'\')">'+detailState+'</p>'+
         '                        <span class="company-logo"><a href="'+userURL+'"><img height="43" src="'+userImage+'"/></a></span>'+
         '                    </div>'+
         '                </div>';

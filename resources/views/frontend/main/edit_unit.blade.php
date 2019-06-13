@@ -225,7 +225,14 @@
                                 <div class="col-lg-6 col-sm-12 transition floor">
                                     <div class="form-group ">
                                         <label for="my-input"> {{trans('frontend.Floor')}}</label>
-                                        <input min="1" id="my-input" class="form-control" type="number" name="floor" value="{{$unit->floor}}" >
+                                        <select name="floor" class="form-control" >
+
+                                            @foreach(\App\Helper\Helper::floor() as $c)
+                                                <option value="{{$c}}"  {{ ($unit->floor == $c ? "selected":"") }}>{{$c}}</option>
+
+
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
 

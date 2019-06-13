@@ -50,4 +50,8 @@ class User extends Authenticatable
     {
         return $this->belongsTo(State::class,'state_id')->withTrashed();
     }
+    public  function  active_units(){
+        return $this->hasMany(Unit::class)->where('activation_admin', 'active')->where('activation_user', 'active');
+
+    }
 }

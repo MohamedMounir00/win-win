@@ -122,7 +122,7 @@ class AddUnitController extends Controller
         if (auth()->user()->id == $user_id)
             $units = Unit::where('user_id', $user_id)->skip($offset)->take(10)->get();
         else
-            $units= Unit::where('user_id',$user_id)->where('activation_admin', 'active')->where('activation_user', 'active')->skip($offset)->take(10)->get();
+            $units= Unit::where('user_id',$user_id)->where('activation_admin', 'active')->where('activation_user', 'active')->orderBy('created_at', 'desc')->skip($offset)->take(10)->get();
         return  UnitCollection::collection($units);
     }
     public function get_unit_edit_view($id)

@@ -434,7 +434,7 @@
         function changeStatusUnit() {
             var current_status = $('.available-button').attr('id');
             $.ajax({
-                url: '{{url('api/change_status')}}',
+                url: '{{url('api/change_status_fo')}}',
                 method: 'post',
                 data: {
                     activation: current_status,

@@ -23,7 +23,7 @@ return[
     'categoriesOfProduct'=>'الاقسام الخاصه بالمنتجات',
     'price'=>'السعر',
     'ask_delete'=>' هل تريد الحذف',
-
+   'footer'=>'سبرنتس للبرمجيات',
 
 ////////////////////////////////data table
  "No_data_available_in_table"=>"لا توجد بيانات متاحة في الجدول",
@@ -42,8 +42,8 @@ return[
 
     'processing'=>'قيد التنفيذ',
     ///////////////////////////////
-'type_unit_controller'=>'التحكم فى نوع العقارات',
-'type_unit'=>' نوع العقارات',
+    'type_unit_controller'=>'التحكم فى نوع العقارات',
+    'type_unit'=>' نوع العقارات',
     'delete'=>'حذف',
     'type_unit_update'=>'تعديل نوع العقار',
     'type_unit_create'=>'انشاء نوع العقار',

@@ -1,5 +1,5 @@
 @php
-    $users=  App\User::where('verification',1)->whereHas('realtor', function ($q) {})->take(8)->get();
+    $users=  App\User::withCount('active_units')->where('verification',1)->whereHas('realtor', function ($q) {})->take(8)->get();
     $lang = LaravelLocalization::getCurrentLocale();
 
 @endphp
@@ -37,9 +37,10 @@
                             <a href="{{route('get_profile_view',$image->id)}}" style="color: #FFF;text-decoration: none">
                                 <h1 class="animate-text">{{ substr($image->realtor->company_name,0,60)}}</h1>
                                 <p class="animate-text">{{$image->phone}}</p>
+                                <p class="animate-text">   {{trans('frontend.count_active_unit')}} : <strong>{{$image->active_units_count}}</strong> </p>
                             </a>
                             <a href="{{route('get_profile_view',$image->id)}}" class="dots">
-                                <span></span>
+                                <span> </span>
                                 <span></span>
                                 <span></span>
                             </a>

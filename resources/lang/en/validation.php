@@ -184,6 +184,7 @@ return [
         'title'=>'title',
         'company_name'=>'company name ',
         'photos'=>' photos foe units',
+        'image'=>'images'
 
 
 

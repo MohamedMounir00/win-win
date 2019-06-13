@@ -119,7 +119,7 @@
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <label> {{trans('frontend.City')}}</label>
-                                    <select name="city_id" class="form-control" required>
+                                    <select name="city_id" class="form-control" required  style="padding: 1px">
                                         <option value="">{{trans('frontend.select_city')}}</option>
                                         @foreach($city as $c)
                                             <option value="{{$c->id}}" >{{unserialize($c->name)[ $lang]}}</option>
@@ -132,7 +132,7 @@
 
                                     <div class="form-group">
                                         <label> {{trans('frontend.State')}}</label>
-                                        <select  name="state_id" class="form-control " required>
+                                        <select  name="state_id" class="form-control " required style="padding: 1px">
 
                                         </select>
                                     </div>

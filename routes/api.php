@@ -13,7 +13,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::post('/change_status', 'Frontend\AddUnitController@change_status')->name('change_status');
+Route::post('/change_status_fo', 'Frontend\AddUnitController@change_status')->name('change_status');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

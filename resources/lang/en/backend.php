@@ -25,6 +25,7 @@ return[
     'English'=>'English',
     'price'=>' Price',
     'ask_delete'=>'Are you sure?',
+    'state_controller'=>' Area control ',
 
     //////////////////////////////data table ///
     "No_data_available_in_table"=>"No data available in table",

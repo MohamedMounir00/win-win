@@ -43,7 +43,7 @@ class SearchController extends Controller
             $query->where('verification','1');
         });
         if ($request->title != null)
-            $units -> where('title','LIKE','%'.$request->title.'%');
+            $units -> where('title','LIKE','%'.$request->title.'%')->orWhere('desc','LIKE','%'.$request->title.'%');
         if ($request->status != null)
             $units->where('status', $request->status);
         if ($request->finishing != null)
