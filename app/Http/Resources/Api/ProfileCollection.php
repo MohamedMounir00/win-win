@@ -20,6 +20,7 @@ class ProfileCollection extends JsonResource
         return [
             'user_id'=>$this->id,
             'name'=>$this->name,
+            'email'=>$this->email,
             'verification'=>$this->verification,
             'register'=>$this->register,
             'image'=>($this->image!='')?url($this->image):'',
