@@ -148,7 +148,7 @@
                                     <div class="form-group ">
 
                                         <label>{{trans('frontend.City')}}</label>
-                                        <select name="city_id" class="form-control" >
+                                        <select name="city_id" class="form-control" style="padding: 1px" >
                                             <option value="">{{trans('frontend.select_city')}}</option>
                                             @foreach($city as $c)
                                                 <option value="{{$c->id}}"  {{ (old("city_id") == $c->id ? "selected":"") }}>{{unserialize($c->name)[ $lang]}}</option>
@@ -163,7 +163,7 @@
                                     <div class="form-group ">
 
                                         <label>{{trans('frontend.State')}}</label>
-                                        <select  name="state_id" class="form-control " >
+                                        <select  name="state_id" class="form-control " style="padding: 1px" >
                                         </select>
                                     </div>
                                 </div>
