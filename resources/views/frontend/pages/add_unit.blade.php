@@ -102,7 +102,7 @@
                                 <div class="col-sm-12">
                                     <div class="form-group transition">
                                         <label> {{trans('frontend.Select_Type')}} </label>
-                                        <select  name="type_id" class="form-control " required>
+                                        <select  name="type_id" class="form-control " required style="padding: 1px" >
                                             <option value="">{{trans('frontend.select_type')}}</option>
 
                                             @foreach($type as $t)
@@ -191,7 +191,7 @@
                                 <div class="col-lg-6 col-sm-12 transition floor">
                                     <div class="form-group ">
                                         <label for="my-input"> {{trans('frontend.Floor')}}</label>
-                                        <select name="floor" class="form-control" >
+                                        <select name="floor" class="form-control" style="padding: 1px"  >
                                             <option value="">{{trans('frontend.select_floor')}}</option>
                                             @foreach(\App\Helper\Helper::floor() as $c)
                                                 <option value="{{$c}}"  {{ (old("floor") == $c ? "selected":"") }}>{{$c}}</option>
