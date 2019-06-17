@@ -27,6 +27,7 @@ Route::post('/first_step_register','Api\UserController@first_step_register');
 Route::get('/get_questions/{id}', 'Api\DataUserController@getInputByType');
 Route::get('/get_data_for_unit', 'Api\DataUserController@get_data_for_unit');
 Route::get('/get_cites', 'Api\DataUserController@get_cites');
+Route::get('/floor', 'Api\DataUserController@floor');
 Route::post('/state_by_id', 'Frontend\UserController@stateByid')->name('stateByid');
 /// login
 Route::post('/login','Api\UserController@login');
