@@ -30,6 +30,8 @@ class UpdateProfileRequest extends FormRequest
             'bio'=>'required',
             'phone' => 'required|min:11',
             'address'=>'required',
+            'state_id'=>'required',
+            'city_id'=>'required',
             'company_name'=>'required',
         ];
     }
