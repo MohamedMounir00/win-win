@@ -69,7 +69,8 @@ class UnitCollection extends JsonResource
             'lang'=>$lang,
             /////// realtor data
             'user_id'=>$this->user_id,
-            'username'=>$this->realtor->name,
+            'username'=>$this->realtor->company_name,
+            'bio'=>$this->realtor->bio,
             'userimage'=> ($this->realtor->image!='') ? url($this->realtor->image) : '',
             'phone'=>$this->realtor->phone,
             'rating_users'=>$rating_users,

@@ -23,7 +23,7 @@ class UploadController extends Controller
     //upload image for webservices
      public function upload_api(UploadRequest $request){
         $image=$this->image($request);
-        $url=$image->url;
+        $url=url($image->url);
         return response()->json(['status'=>true,'id'=>$image->id,'url'=>$url]);
     }
     // function upload for all
