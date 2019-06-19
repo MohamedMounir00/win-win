@@ -53,11 +53,11 @@ Route::middleware(['auth:api'])->group(function () {
     Route::post('/advanced_search', 'Api\UnitsController@advanced_search')->name('advanced_search');
     Route::get('/last_units', 'Api\UnitsController@last_units')->name('last_units');
     /// section chat
-    Route::post('/send-message', 'Api\Chatcontroller@send_message')->name('send-message');
-    Route::post('/get-messages', 'Api\Chatcontroller@get_message')->name('get-messages');
-    Route::post('/get-conversation', 'Api\Chatcontroller@get_conversation')->name('get-conversation');
-    Route::post('/get-unseen-conversation', 'Api\Chatcontroller@get_conversationunseen')->name('get-unseen-conversation');
-    Route::get('/count-message', 'Api\Chatcontroller@count_message')->name('count-message');
+    Route::post('/send-message', 'Api\ChatController@send_message')->name('send-message');
+    Route::post('/get-messages', 'Api\ChatController@get_message')->name('get-messages');
+    Route::post('/get-conversation', 'Api\ChatController@get_conversation')->name('get-conversation');
+    Route::post('/get-unseen-conversation', 'Api\ChatController@get_conversationunseen')->name('get-unseen-conversation');
+    Route::get('/count-message', 'Api\ChatController@count_message')->name('count-message');
     ////// section setting
     Route::get('/get-mediators', 'Api\HomePageController@mediators')->name('get-mediators');
     Route::post('/get_any_settings', 'Api\HomePageController@get_any_settings')->name('get_any_settings');
