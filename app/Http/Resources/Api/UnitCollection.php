@@ -74,7 +74,9 @@ class UnitCollection extends JsonResource
             'userimage'=> ($this->realtor->image!='') ? url($this->realtor->image) : '',
             'phone'=>$this->realtor->phone,
             'rating_users'=>$rating_users,
-            'rating_admins'=>$rating_admins
+            'rating_admins'=>$rating_admins,
+              'city_id'=>$this->city_id,
+            'state_id'=>$this->state_id,
         ];
     }
 }

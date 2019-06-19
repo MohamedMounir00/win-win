@@ -25,6 +25,8 @@ class ProfileCollection extends JsonResource
             'register'=>$this->register,
             'image'=>($this->image!='')?url($this->image):'',
             'city'=>unserialize($this->city->name)[$lang],
+            'city_id'=>$this->city_id,
+            'state_id'=>$this->state_id,
             'state'=>unserialize($this->state->name)[$lang],
             'bio'=>$this->realtor->bio,
             'phone'=>$this->phone,
