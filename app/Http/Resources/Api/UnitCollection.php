@@ -53,6 +53,7 @@ class UnitCollection extends JsonResource
             'title'=>$this->title,
             'desc'=>$this->desc,
             'type'=>unserialize($this->unit_type->name)[$lang],
+            'type_id'=>$this->type_id,
             'rooms'=>$this->rooms,
             'price'=>isset($this->price)?$this->price:null,
             'floor'=>$this->floor,
