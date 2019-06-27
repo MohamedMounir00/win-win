@@ -332,7 +332,7 @@
 
 
 
-            var myvar = '<div class="row unit-item" onclick="(window.location = \''+detailsUrl+'\')">'+
+            var myvar = ' <div class="row unit-item" onclick="(window.location = \''+detailsUrl+'\')">'+
                 '                    <div class="col-md-3 img" style="background-image: url('+imageUrl+')">'+
                 '                    </div>'+
                 '                    <div class="col-md-9 content">'+

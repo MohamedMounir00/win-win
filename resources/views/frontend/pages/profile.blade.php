@@ -576,8 +576,8 @@ $(document).ready(function () {
             
         }
         @endIf
-        return '<div class="row unit-item" >'+
-        '                    <div class="col-md-3 img" style="background-image: url('+imageUrl+')" onclick="(window.location = \''+detailsUrl+'\')">'+
+        return '<div class="row unit-item" onclick="(window.location = \''+detailsUrl+'\')">'+
+        '                   <div class="col-md-3 img" style="background-image: url('+imageUrl+')" onclick="(window.location = \''+detailsUrl+'\')">'+
         '                    </div>'+
         '                    <div class="col-md-9 content">'+
         '                        <a class="title" href="'+detailsUrl+'" onclick="(window.location = \''+detailsUrl+'\')">'+unitTitle.substr(0, 44)+'</a>'+
@@ -589,7 +589,7 @@ $(document).ready(function () {
         '                        <p class="location"onclick="(window.location = \''+detailsUrl+'\')">'+detailState+'</p>'+
         '                        <span class="company-logo"><a href="'+userURL+'"><img height="43" src="'+userImage+'"/></a></span>'+
         '                    </div>'+
-        '                </div>';
+        '                 </div>';
     }
 
 
