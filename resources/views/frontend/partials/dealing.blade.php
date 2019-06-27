@@ -1,5 +1,5 @@
 @php
-    $users=  App\User::withCount('active_units')->where('verification',1)->whereHas('realtor', function ($q) {})->take(8)->get();
+    $users=  App\User::withCount('active_units')->where('verification',1)->whereHas('realtor', function ($q) {})->orderBy('active_units_count','desc')->take(8)->get();
     $lang = LaravelLocalization::getCurrentLocale();
 
 @endphp
