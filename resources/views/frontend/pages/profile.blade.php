@@ -580,7 +580,7 @@ $(document).ready(function () {
         '                    <div class="col-md-3 img" style="background-image: url('+imageUrl+')" onclick="(window.location = \''+detailsUrl+'\')">'+
         '                    </div>'+
         '                    <div class="col-md-9 content">'+
-        '                        <a class="title" href="#"onclick="(window.location = \''+detailsUrl+'\')">'+unitTitle.substr(0, 44)+'</a>'+
+        '                        <a class="title" href="'+detailsUrl+'" onclick="(window.location = \''+detailsUrl+'\')">'+unitTitle.substr(0, 44)+'</a>'+
         '                        <span class="price float-right" onclick="(window.location = \''+detailsUrl+'\')">'+price+' </span>'+activation+
         '                        <p class="breadcrumbs"onclick="(window.location = \''+detailsUrl+'\')">'+unitType+'</p>'+
 

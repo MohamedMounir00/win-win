@@ -336,7 +336,7 @@
                 '                    <div class="col-md-3 img" style="background-image: url('+imageUrl+')">'+
                 '                    </div>'+
                 '                    <div class="col-md-9 content">'+
-                '                        <a class="title" href="#">'+unitTitle.substr(0, 44)+'</a>'+
+                '                        <a class="title" href="'+detailsUrl+'">'+unitTitle.substr(0, 44)+'</a>'+
                 '                        <span class="price float-right">'+price+' </span>'+
                 '                        <p class="breadcrumbs">'+unitType+'</p>'+
                 '                        <hr>'+
