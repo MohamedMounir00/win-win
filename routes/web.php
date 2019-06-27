@@ -16,6 +16,7 @@
 Route::group(['middleware' => ['web']], function () {
 
     Route::post('/advanced_search', 'Frontend\SearchController@advanced_search')->name('advanced_search');
+    Route::post('/choose_image', 'Frontend\SearchController@choose_image')->name('choose_image');
     Route::post('/upload', 'Frontend\UploadController@Upload')->name('upload');
     Route::post('/get_all_units', 'Frontend\AddUnitController@get_all_units')->name('get_all_units');
     Route::post('/get_all_comment', 'Frontend\MainProfileController@get_all_comment')->name('get_all_comment');

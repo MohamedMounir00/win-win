@@ -6,6 +6,7 @@ use App\City;
 use App\Http\Resources\Frontend\UnitCollection;
 use App\Rating;
 use App\State;
+use App\Type_estate;
 use App\Unit;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,8 +18,8 @@ class SearchController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth')->except('advanced_search');
-        $this->middleware('NotActive')->except('advanced_search');
+        $this->middleware('auth')->except('advanced_search','choose_image');
+        $this->middleware('NotActive')->except('advanced_search','choose_image');
 
     }
      /// search view
@@ -29,7 +30,8 @@ class SearchController extends Controller
         //dd($units);
         $city=City::all();
         $state=State::all();
-        return view('frontend.pages.search',compact('search_title','city','state'));
+        $type = Type_estate::all();
+        return view('frontend.pages.search',compact('search_title','city','state','type'));
     }
 
     public function advanced_search(Request $request)
@@ -50,6 +52,8 @@ class SearchController extends Controller
             $units->where('finishing', $request->finishing);
         if ($request->city != null)
             $units->where('city_id', $request->city);
+        if ($request->type_id != null)
+            $units->where('type_id', $request->city);
         if ($request->state != null)
             $units->where('state_id', $request->state);
         if ($request->bedrooms_from != null)
@@ -84,5 +88,14 @@ class SearchController extends Controller
         $rating_time_user=floatval($rating2->avg('rating_stars'));
         return view('frontend.pages.unit_details',compact('unit','rating_time','rating_time_user'));
     }
+public  function choose_image(Request $request)
+{
+    $id_image=$request->image_id;
+    $id_unit=$request->unit_id;
+    $unit= Unit::find($id_unit);
+    $unit->image_id=$id_image;
+    $unit->save();
+    return response()->json(['status'=>true]);
 
+}
 }

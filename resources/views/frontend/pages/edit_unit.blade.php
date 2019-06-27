@@ -60,6 +60,7 @@
                                             <div class="col-sm-6 col-md-4 col-lg-3">
                                                 <a  href="{{url($item->url)}}" data-lightbox="image-1"><img class="img-fluid img-thumbnail boxImg" src="{{url($item->url)}}" alt=""></a>
                                                 <button id="remove_photo" class="btn btn-danger" image-id="{{$item->id}}"><i class="fa fa-close"></i></button>
+                                                <button type="button" id="change-image" class="btn btn-success" image-id="{{$item->id}}" unit-id="{{$unit->id}}"><i class="fa fa-check"></i></button>
                                             </div>
                                         @endforeach
                                         </div>
@@ -265,7 +266,27 @@
 
 @section('scripts')
 
+<script>
+    $('.show-images').on('click', '#change-image',function() {
 
+          var image_id=  $(this).attr('image-id')
+          var unit_id=  $(this).attr('unit-id')
+            makePostRequest("{{route('choose_image')}}", {image_id,unit_id}, "post", "json");
+        });
+
+    function makePostRequest(url, data, dataType,) {
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data,
+
+            dataType: 'json',
+            success: function(data) {
+                swal('تم اختيار الصور بنجاح');
+            }
+        })
+    }
+</script>
 
     <script>
         $(document).ready(function() {

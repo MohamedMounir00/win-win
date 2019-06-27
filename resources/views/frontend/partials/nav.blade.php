@@ -8,7 +8,7 @@
         <div class="container">
             <!-- Logo -->
             <a class="navbar-brand" href="{{url('/home')}}">
-                <img src="{{asset('frontend')}}/images/logo.png" alt="">
+                <img src="{{asset('frontend')}}/images/logooo.png" alt="">
             </a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Frontend;
 
+use App\Image;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -15,7 +16,7 @@ class UnitCollection extends JsonResource
      * @return array
      */
     public function toArray($request)
-    {
+    { $image = Image::find($this->image_id);
         $lang = isset($request->lang)?$request->lang:'ar';
         \Carbon\Carbon::setLocale($lang);
 
@@ -71,7 +72,8 @@ class UnitCollection extends JsonResource
             'storge'=>StorgeCollection::collection($this->storge),
             'activation'=>$this->activation_user,
             'lang'=>$lang,
-                'route_update'=>route('edit-unit-page',$this->id)
+                'route_update'=>route('edit-unit-page',$this->id),
+             'default_image'=>url($image->url),
         ];
     }
 }

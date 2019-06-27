@@ -474,7 +474,8 @@ $(document).ready(function () {
                     // var imgUrl = value.storge[0].url
                     var imgUrl = '{{url('frontend/images/no-photo.png')}}';
                     if (value.storge.length > 0) {
-                        imgUrl = value.storge[0].url
+                        imgUrl = value.default_image
+                            //value.storge[0].url
                     } 
 
                     var html = '<div class="latest-units"> <div class="row no-gutters"> <div class="col-md-3"> <div class="unit-img"> <img class="img-fluid rounded-circle" src="'+imgUrl+'" alt=""> </div> </div> <div class="col-md-6"> <div  class="unit-description"> <h2 style="word-break: break-word;"><a class="text-decoration-none" href="'+value.url+'"> '+value.title+'</a></h2> <p>'+value.date+'</p> <span><i class="fa fa-gear"></i> '+value.type+'</span> <span style="margin-right:40px"><i class="fa fa-map-marker"></i> '+value.type+'</span> </div> </div> <div class="col-md-3"> <div class="price"> <span>'+value.price+'</span> '+appendActivationButtons(value)+'<p>'+value.string_prics+'</p> </div> </div> </div></div>';

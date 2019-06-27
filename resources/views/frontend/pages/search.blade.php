@@ -35,6 +35,18 @@
                             <label class="custom-control-label" for="customCheck2"> {{trans('frontend.Rent')}}</label>
                         </div>
                     </div>
+                    <div class="col-sm-12">
+                        <div class="form-group transition">
+                            <label> {{trans('frontend.Select_Type')}} </label>
+                            <select  name="type_id" class="form-control " required style="padding: 1px" >
+                                <option value="">{{trans('frontend.select_type')}}</option>
+
+                                @foreach($type as $t)
+                                    <option value="{{$t->id}}" {{ (old("type_id") == $t->id ? "selected":"") }}>{{unserialize($t->name)[$lang]}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
 
                     <div class="city-select">
                         <label>{{trans('frontend.City')}}</label>
@@ -53,6 +65,18 @@
                         <select  name="state" class="form-control custom-select" >
                             <option value="">{{trans('frontend.State')}}</option>
                         </select>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group transition">
+                            <label> {{trans('frontend.Select_Type')}} </label>
+                            <select  name="type_id" class="form-control " required style="padding: 1px" >
+                                <option value="">{{trans('frontend.select_type')}}</option>
+
+                                @foreach($type as $t)
+                                    <option value="{{$t->id}}" {{ (old("type_id") == $t->id ? "selected":"") }}>{{unserialize($t->name)[$lang]}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
 
                     <div class="bedrooms">
@@ -202,12 +226,13 @@
                 $("input[name=area_to]").val(),
                 $("input[name=price_from]").val(),
                 $("input[name=price_to]").val(),
+                $("input[name=type_id]").val(),
                 offset_count
             );
         }
         function searchEngine(string="", legend = "",finishing = "", city = "", state = "", bedrooms_from = "",
                               bedrooms_to = "",  floor_from = "", floor_to = "", area_from = "",
-                              area_to = "", price_from = "", price_to = "", offset = "") {
+                              area_to = "", price_from = "", price_to = "", offset = "",type_id="") {
             $.ajax({
                 url: '{{route('advanced_search')}}',
                 method: 'post',
@@ -227,6 +252,7 @@
                     price_from      : price_from,
                     price_to        : price_to,
                     offset_id       : offset,
+                    type_id       : type_id,
                 },
                 beforeSend: function () {
                     $('.spinner').show();
@@ -249,7 +275,8 @@
                         // var imgUrl = value.storge[0].url
                     var imgUrl = '{{url('frontend/images/no-photo.png')}}'
                     if (value.storge.length > 0) {
-                        imgUrl = value.storge[0].url
+                        imgUrl = value.default_image
+                          //  value.storge[0].url
                     }
                         $('#result').append(printUnitCard(imgUrl, value.type, value.price, value.activation,value.title,value.date,value.url, value.city + ' - ' + value.state, value.userimage, value.user_url));
                         current_offset++;

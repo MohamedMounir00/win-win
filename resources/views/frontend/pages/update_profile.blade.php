@@ -203,6 +203,8 @@ dropdown.append($('<option>', {value: value.id,text: value.state}, '</option>'))
 }
 
 });
+
+
 </script>
 
     </script><script src="https://cdn.jsdelivr.net/npm/dropify@0.2.2/dist/js/dropify.min.js"></script>

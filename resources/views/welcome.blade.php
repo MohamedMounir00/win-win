@@ -125,7 +125,8 @@
 
 <section class="intro text-center">
     <div class="container">
-        <h1 class="mainHead">Win Win</h1>
+        <img class="img-fluid" src="{{asset('frontend')}}/images/logo.png">
+        <!-- <h1 class="mainHead">Win Win</h1> -->
         <p class="lead">
             @if($lang=='ar')
                 {{\App\Helper\Helper::get_setting('desc_web_ar')->value}}

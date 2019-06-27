@@ -25,7 +25,7 @@ return [
     'Mobile_number'=>'رقم الموبايل ',
     'Phone'=>'رقم التليفون ',
     'Company_Bio'=>'نبذه مختصره عن الشركه',
-    'Street_Address'=>'عنوان الشارع',
+    'Street_Address'=>'عنوان ',
     'complete'=>'إستكمال البيانات',
     'right_way'=>'أنت فى الطريق الصحيح',
     'Add_Your_Units'=>'أضف الوحدات الخاصة بك',

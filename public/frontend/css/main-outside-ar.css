@@ -17,6 +17,9 @@
 .navbar .navbar-brand {
   color: #3787e0b3;
   font-weight: 700; }
+  .navbar .navbar-brand img {
+    width: 135px
+  }
 .navbar .navbar-toggler {
   padding: 5px;
   width: 30px;
@@ -72,17 +75,21 @@
 
 /* Start Global Styles */
 body {
-  word-break: break-all;
+/*  background-image: url(../images/homeee.png);
+*/  word-break: break-all;
   background-color: #f7f7f7;
   font-family: 'Tajawal', sans-serif;
-  background-image: url(../images/homeee.png);
-  background-repeat: repeat-y;
-  background-position: top right; }
+  }
+ 
 
 /* End Global Styles */
 /* Start Introduction Section */
 .intro {
   padding: 50px; }
+  .intro img {
+    height: 200px;
+    margin-bottom: 20px
+  }
 .intro h1 {
   font-weight: 800;
   font-size: 150px;
@@ -2468,9 +2475,26 @@ color: #FFF;}
 
 /* End Dealing Section */
 footer {
-  border-top: 1px solid #e9e9ef; }
+  border-top: 1px solid #e9e9ef; 
+  background-image: url(../images/homeeee.png);
+  background-repeat: no-repeat;
+  background-size: 70% 76%;
+  background-position: top right
+}
+@media (max-width: 575.98px) { 
+footer {
+  background-size: 100% 50%;
+ }
+}
+@media (min-width: 768px) and (max-width: 991.98px) { 
+  footer {
+    background-size: 100% 50%;
+  }
+ }
+
 @media (max-width: 767.98px) {
   footer {
+    background-size: 100% 50%;
     text-align: center; } }
 footer .about {
   padding: 30px 0; }
@@ -4064,4 +4088,8 @@ p.unit-intro-time {
 }
 .dropify-render {
   height: 183px;
+}
+
+li {
+  list-style: none;
 }
