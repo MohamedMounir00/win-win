@@ -59,8 +59,11 @@
                                         @foreach($unit->storge as $item)
                                             <div class="col-sm-6 col-md-4 col-lg-3">
                                                 <a  href="{{url($item->url)}}" data-lightbox="image-1"><img class="img-fluid img-thumbnail boxImg" src="{{url($item->url)}}" alt=""></a>
+
                                                 <button id="remove_photo" class="btn btn-danger" image-id="{{$item->id}}"><i class="fa fa-close"></i></button>
+                                               @if($item->id!=$unit->image_id)
                                                 <button type="button" id="change-image" class="btn btn-success" image-id="{{$item->id}}" unit-id="{{$unit->id}}"><i class="fa fa-check"></i></button>
+                                           @endIf
                                             </div>
                                         @endforeach
                                         </div>
@@ -283,6 +286,7 @@
             dataType: 'json',
             success: function(data) {
                 swal('تم اختيار الصور بنجاح');
+               location.reload();
             }
         })
     }
