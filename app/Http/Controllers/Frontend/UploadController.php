@@ -45,7 +45,7 @@ class UploadController extends Controller
          $watermark->resize(null, $watermarkSize, function ($constraint) {
              $constraint->aspectRatio();
          });
-         $img->insert($watermark, 'bottom-right');
+         $img->insert($watermark, 'bottom-left');
          $img->save(public_path($destinationPath).'/'.$fileName);
          //$move = $image->move($destinationPath, $fileName);
          $path=$destinationPath.$fileName;
