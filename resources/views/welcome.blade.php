@@ -125,7 +125,7 @@
 
 <section class="intro text-center">
     <div class="container">
-        <img class="img-fluid" src="{{asset('frontend')}}/images/logo.png">
+        <img class="img-fluid" src="{{asset('frontend')}}/images/logooo.png">
         <!-- <h1 class="mainHead">Win Win</h1> -->
         <p class="lead">
             @if($lang=='ar')

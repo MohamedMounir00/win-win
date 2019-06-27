@@ -9,7 +9,7 @@
     @endphp
     <section class="intro text-center">
         <div class="container">
-            <img class="img-fluid"  src="{{asset('frontend')}}/images/logo.png">
+            <img class="img-fluid"  src="{{asset('frontend')}}/images/logooo.png">
             <p class="lead">
                 @if($lang=='ar')
                     {{\App\Helper\Helper::get_setting('desc_web_ar')->value}}
