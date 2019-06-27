@@ -101,7 +101,7 @@ body {
 .intro p {
   letter-spacing: 1px;
   line-height: 35px;
-  font-size: 17px;
+  font-size: 22px;
   margin-bottom: 50px;
   color: #333; }
 @media (max-width: 575.98px) {
@@ -2390,9 +2390,10 @@ color: #FFF;}
 .intro p {
   letter-spacing: 1px;
   line-height: 35px;
-  font-size: 17px;
+  font-size: 22px;
   margin-bottom: 50px;
-  color: #333; }
+  color: #000;
+  font-weight: bold; }
 @media (max-width: 575.98px) {
   .intro p {
     font-size: 15px; } }

@@ -66,9 +66,11 @@ class AddUnitController extends Controller
     $unit->city_id = $request->city_id;
     $unit->state_id = $request->state_id;
     $unit->user_id = auth()->user()->id;
-    $unit->save();
     $photos = explode(',', $request->photos);
-    if ($request->photos != null)
+    $unit->image_id=$photos[0];
+        $unit->save();
+
+        if ($request->photos != null)
         $unit->storge()->sync($photos);
     if ($unit)
         Alert::success(trans('frontend.add_unit_sucess'))->persistent(trans('frontend.close'));
