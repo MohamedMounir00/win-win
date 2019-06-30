@@ -62,7 +62,7 @@
 
                                                 <button id="remove_photo" class="btn btn-danger" image-id="{{$item->id}}"><i class="fa fa-close"></i></button>
                                                @if($item->id!=$unit->image_id)
-                                                <button type="button" id="change-image" class="btn btn-success" image-id="{{$item->id}}" unit-id="{{$unit->id}}"><i class="fa fa-check"></i></button>
+                                                    <button type="button" id="change-image" class="btn btn-success" image-id="{{$item->id}}" unit-id="{{$unit->id}}"><i class="fa fa-check"></i> {{trans('frontend.as_default')}}</button>
                                            @endIf
                                             </div>
                                         @endforeach

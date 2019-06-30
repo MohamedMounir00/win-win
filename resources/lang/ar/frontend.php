@@ -132,6 +132,8 @@ return [
     'ground'=>'ارضى',
     'bizment'=>'بيزمينت',
     'roof'=>'روف',
-    'select_floor'=>'اختر الطابق'
+    'select_floor'=>'اختر الطابق',
+    'chatting'=>'المحادثات ',
+    'as_default'=>'كاصوره افتراضيه'
 
 ];

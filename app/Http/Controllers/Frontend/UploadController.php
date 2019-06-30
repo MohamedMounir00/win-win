@@ -41,7 +41,7 @@ class UploadController extends Controller
          //  $watermark = Image::make(public_path('/frontend/images/logo.png'));
          // resize watermark width keep height auto
          $resizePercentage = 25;//70% less then an actual image (play with this value)
-         $watermarkSize = $img->height() / 3; //half of the image size
+         $watermarkSize = $img->height() / 4; //half of the image size
          $watermark->resize(null, $watermarkSize, function ($constraint) {
              $constraint->aspectRatio();
          });

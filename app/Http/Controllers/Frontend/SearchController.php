@@ -40,12 +40,18 @@ class SearchController extends Controller
         return UnitCollection::collection($units) ;
     }
     public function searchOperation(Request $request) {
-
+       $name= $request->title;
         $units=Unit::where('activation_admin','active')->where('activation_user','active')->whereHas('realtor', function ($query) {
             $query->where('verification','1');
         });
         if ($request->title != null)
-            $units -> where('title','LIKE','%'.$request->title.'%')->orWhere('desc','LIKE','%'.$request->title.'%');
+            $units -> where('title','LIKE','%'.$request->title.'%')->orWhere('desc','LIKE','%'.$request->title.'%')
+                ->orWhereHas('realtor', function( $query ) use ( $name ){
+                    $name;
+                    $query->whereHas('realtor', function ($query) use ( $name ) {
+                        $query->where('company_name','LIKE','%'.$name.'%');
+                    });
+            });
         if ($request->status != null)
             $units->where('status', $request->status);
         if ($request->finishing != null)

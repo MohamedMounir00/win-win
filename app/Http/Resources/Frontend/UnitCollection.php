@@ -73,7 +73,7 @@ class UnitCollection extends JsonResource
             'activation'=>$this->activation_user,
             'lang'=>$lang,
                 'route_update'=>route('edit-unit-page',$this->id),
-             'default_image'=>url($image->url),
+            'default_image'=>url($image->url),
         ];
     }
 }

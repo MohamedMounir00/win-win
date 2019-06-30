@@ -8,7 +8,7 @@
         <div class="container">
             <!-- Logo -->
             <a class="navbar-brand" href="{{url('/home')}}">
-                <img src="{{asset('frontend')}}/images/logooo.png" alt="">
+                <img src="{{asset('frontend')}}/images/logo.png" alt="">
             </a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,12 +57,15 @@
                             </div>
                         </li>
 
-                        <li class="nav-item active">
-                            <a href="{{route('chat')}}" class="badge1" data-badge="{{\App\Helper\Helper::count_unseen_message() > 9 ? '9+' : \App\Helper\Helper::count_unseen_message()}}"> <img src="{{url('frontend/images/chatting.png')}} " style="width: 30px"></a>
+                        <li class="nav-item active my-list">
+                            <a style="position: relative;" href="{{route('chat')}}" class="badge1" data-badge="{{\App\Helper\Helper::count_unseen_message() > 9 ? '9+' : \App\Helper\Helper::count_unseen_message()}}">
+                                 <img src="{{url('frontend/images/chatting.png')}} " style="width: 30px"> 
+                                <span style="position: absolute;left: -9px;top: 29px;font-size: 11px;">
+                                    {{trans('frontend.chatting')}}
+                                </span>
+
+                            </a>
                         </li>
-
-
-
 
                     @else
                         <li class="nav-item active">
@@ -86,14 +89,10 @@
 
                     </li>
                         @if(auth()->user()->realtor)
-
-
                         <li class="nav-item active">
                             <a class="nav-link last add-unit-link " href="{{route('get_data_view')}}"><i class="fa fa-plus-circle" aria-hidden="true"></i> {{trans('frontend.add_unit')}}</a>
                         </li>
                         @endif
-
-
 
                 </ul>
             </div>

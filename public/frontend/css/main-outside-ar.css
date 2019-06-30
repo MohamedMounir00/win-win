@@ -90,6 +90,11 @@ body {
     height: 200px;
     margin-bottom: 20px
   }
+  @media (max-width: 575.98px) { 
+  .intro img {
+    height: 100px;
+   }
+ }
 .intro h1 {
   font-weight: 800;
   font-size: 150px;
@@ -1179,7 +1184,8 @@ body {
   color: #545871; }
 @media (max-width: 575.98px) {
   .homepage-all-unites .details .statistics .statt .state {
-    border-bottom: 1px solid #F0F1F7; } }
+    border-bottom: 1px solid #F0F1F7;
+    border-right: 0 !important } }
 @media (max-width: 767.98px) {
   .homepage-all-unites .details .statistics .statt .state {
     border-bottom: 1px solid #F0F1F7; } }
@@ -4094,3 +4100,35 @@ p.unit-intro-time {
 li {
   list-style: none;
 }
+
+
+
+@media (max-width: 575.98px) { 
+  .nav-item {
+  margin-bottom: 10px
+} }
+
+@media (min-width: 576px) and (max-width: 767.98px) { 
+  .nav-item {
+  margin-bottom: 10px
+} }
+
+@media (min-width: 768px) and (max-width: 991.98px) { 
+  .nav-item {
+  margin-bottom: 10px
+} }
+
+#change-image {
+
+  margin-top: 10px;
+  font-family: 'Tajawal', sans-serif !important;
+  background-color: #378ae1 !important;
+  border: 1px solid #378ae1;
+  border-radius: 1px;
+  font-size: 13px;
+  margin-bottom: 5px
+}
+#change-image:focus , #change-image:active {
+  box-shadow: none;
+}
+

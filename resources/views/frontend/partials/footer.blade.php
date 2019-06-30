@@ -78,7 +78,7 @@
                 </div>
                 <div class="col-md-12 col-lg-5 ">
                     <div class="copyRight">
-                        <span class="float-right">&copy; Real Estate | All Right Reserved | By Sprints</span>
+                        <span>&copy; Real Estate | All Right Reserved | By Sprints</span>
                     </div>
                 </div>
             </div>

@@ -141,7 +141,11 @@ return [
     'ground'=>'ground',
     'bizment'=>'Bizment',
     'roof'=>'Roof',
-    'select_floor'=>'Select Floor'
+    'select_floor'=>'Select Floor',
+    'chatting'=>'chatting ',
+    'as_default'=>'as default'
+
+
 
 
 

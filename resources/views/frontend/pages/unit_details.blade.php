@@ -146,11 +146,20 @@
                                             <div class="container">
                                                 <div class="col-md-12">
 
-                                                    <div class="show-images">
-                                                        @foreach($unit->storge as $item)
-                                                            <a  href="{{url($item->url)}}" data-lightbox="image-1"><img class="img-fluid img-thumbnail" src="{{url($item->url)}}" alt=""></a>
-                                                        @endforeach
+                                                    <div class="show-images transition">
+                                                        <div class="row">
+                                                            @foreach($unit->storge as $item)
+                                                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                                            <a href="{{url($item->url)}}" data-lightbox="image-1"><img class="img-fluid img-thumbnail" src="{{url($item->url)}}" alt=""></a>
+                                                        @if(auth()->user()->id==$unit->user_id)
+                                                            @if($item->id!=$unit->image_id)
+                                                                <button type="button" id="change-image" class="btn btn-success" image-id="{{$item->id}}" unit-id="{{$unit->id}}"><i class="fa fa-check"></i> {{trans('frontend.as_default')}}</button>
+                                                            @endIf
+                                                            @endIf
+                                                        </div>
 
+                                                        @endforeach
+                                                        </div>
                                                     </div>
 
                                                 </div>
@@ -160,18 +169,7 @@
                                 @endif
 
 
-                                <div class="description">
-                                    <div class="container">
-                                        <div class="description">
-                                            <div class="row no-gutters">
-                                                <div class="col-sm-12">
-                                                    <h2>{{trans('frontend.Description')}}</h2>
-                                                    <p>{{$unit->desc}}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
 
 
 
@@ -269,8 +267,21 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                <div class="description">
+                                    <div class="container">
+                                        <div class="description">
+                                            <div class="row no-gutters">
+                                                <div class="col-sm-12">
+                                                    <h2>{{trans('frontend.Description')}}</h2>
+                                                    <p>{{$unit->desc}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+
+
                         @if($unit->user_id==auth()->user()->id)
                             <!-- Latest Unites -->
                                 <div class="action-btn">
@@ -299,5 +310,28 @@
 @endsection
 
 
+@section('scripts')
 
+    <script>
+        $('.show-images').on('click', '#change-image',function() {
 
+            var image_id=  $(this).attr('image-id')
+            var unit_id=  $(this).attr('unit-id')
+            makePostRequest("{{route('choose_image')}}", {image_id,unit_id}, "post", "json");
+        });
+
+        function makePostRequest(url, data, dataType,) {
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: data,
+
+                dataType: 'json',
+                success: function(data) {
+                    swal('تم اختيار الصور بنجاح');
+                    location.reload();
+                }
+            })
+        }
+    </script>
+@endsection
