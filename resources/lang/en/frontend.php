@@ -143,7 +143,11 @@ return [
     'roof'=>'Roof',
     'select_floor'=>'Select Floor',
     'chatting'=>'chatting ',
-    'as_default'=>'as default'
+    'as_default'=>'as default',
+        'success_and_addunit'=>'Your account has been successfully registered to benefit from the services of the site and activate your account Please add 5 units at a minimum',
+        'best_company'=>'Best Real Estate Companies',
+
+
 
 
 

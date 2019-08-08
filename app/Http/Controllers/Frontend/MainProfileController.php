@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\City;
 use App\Helper\Helper;
 use App\Http\Requests\Frontend\UpdateProfileRequest;
+use App\Http\Resources\Api\StatusCollection;
 use App\Rating;
 use App\ReportAdmin;
 use App\State;
@@ -22,7 +23,7 @@ class MainProfileController extends Controller
     {
 
         /// middleware for  active user
-        $this->middleware('NotActive')->except('get_all_comment');
+     //   $this->middleware('NotActive')->except('get_all_comment');
         $this->middleware('auth')->except('get_all_comment');
 
     }
@@ -33,6 +34,9 @@ class MainProfileController extends Controller
         $user = User::findOrFail($id);
        if ($user->realtor)
        {
+           if (auth()->user()->id!=$id&&auth()->user()->verification==false)
+               return  redirect()->route('get_profile_view',auth()->user()->id);
+
            // count my rating for this user
 
            $ratingcount = Rating::where('realtor_id', $id)->where('user_id', auth()->user()->id)->where('type', 'user')->count();
@@ -50,9 +54,13 @@ class MainProfileController extends Controller
            //get 3 rating
            $rating_10= Rating::where('realtor_id', $id)->orderByDesc('created_at')->take(3)->get();
            $count_active_unit= Unit::where('user_id',$id)->where('activation_admin', 'active')->where('activation_user', 'active')->count();
-           $count_not_active_unit= Unit::where('user_id',$id)->where('activation_admin', 'not_active')->count();
-
-           return view('frontend.pages.profile', compact('user', 'rating_time', 'rating_time_user', 'rating2', 'ratingcount', 'ratingme','rating_10','count_active_unit','count_not_active_unit'));
+           $count_not_active_unit= Unit::where('user_id',$id)->where('activation_admin', 'not_active')->where('activation_user', 'not_active')->count();
+           $count_active_unit_me= Unit::where('user_id',$id)->where('activation_user', 'active')->count();
+           $count_not_active_unit_me= Unit::where('user_id',$id)->where('activation_user', 'not_active')->count();
+           return view('frontend.pages.profile', compact('user', 'rating_time', 'rating_time_user', 'rating2', 'ratingcount',
+               'ratingme','rating_10',
+               'count_active_unit',
+               'count_not_active_unit','count_active_unit_me','count_not_active_unit_me'));
        }
        else
            return redirect()->route('home');
@@ -124,8 +132,8 @@ class MainProfileController extends Controller
     public function edit_profile()
     {
         if (auth()->user()->realtor) {
-            $city = City::all();
-            $state = State::all();
+            $city = City::orderBy('ordering','asc')->get();
+            $state = State::orderBy('ordering','asc')->get();
             $id = auth()->user()->id;
             $user = User::findOrFail($id);
             return view('frontend.pages.update_profile', compact('user', 'city', 'state'));
@@ -160,6 +168,19 @@ class MainProfileController extends Controller
 
         Alert::success(trans('backend.updateFash'))->persistent(trans('frontend.close'));
         return redirect()->route('get_profile_view',$id);
+    }
+
+    public  function  upload_image_profile(Request $request)
+    {
+        $lang = $request->lang;
+
+        $id = auth()->user()->id;
+        $user = User::findOrFail($id);
+        $user->image = Helper::UpdateImage($request, 'uploads/avatars/', 'image', $user->image);
+        $user->save();
+        $url= url($user->image);
+        return (new StatusCollection(true, trans('api.update_done', [], $lang),$url))->response()
+            ->setStatusCode(201);
     }
 
 

@@ -44,7 +44,7 @@ class CityController extends Controller
     public function store(DataRequest $request)
     {
 
-        $c= City::create(['name' => serialize($request->name)]);
+        $c= City::create(['name' => serialize($request->name),'ordering'=>$request->ordering]);
         if ($c)
             Alert::success(trans('backend.created'))->persistent("Close");
 
@@ -93,7 +93,7 @@ class CityController extends Controller
 
         $data = City::findOrFail($id);
 
-        $data->update(['name' => serialize($request->name)]);
+        $data->update(['name' => serialize($request->name),'ordering'=>$request->ordering]);
 
         if ($data)
             Alert::success(trans('backend.updateFash'))->persistent("Close");
@@ -123,7 +123,7 @@ class CityController extends Controller
 
     public function getAnyDate()
     {
-        $data = City::all();
+        $data = City::orderBy('ordering','asc')->get();
 
         return Datatables::of($data)
             ->addColumn('action', function ($data) {

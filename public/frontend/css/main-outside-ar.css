@@ -92,7 +92,8 @@ body {
   }
   @media (max-width: 575.98px) { 
   .intro img {
-    height: 100px;
+    height: 50%;
+    width: 100%;
    }
  }
 .intro h1 {
@@ -4131,4 +4132,35 @@ li {
 #change-image:focus , #change-image:active {
   box-shadow: none;
 }
+.form-control {
+  box-shadow: none !important;
+}
+
+
+
+.userImage {
+  position: relative;
+}
+.userImage #profileImage {
+  font-size: 20px !important;
+    line-height: 35px;
+  border: 1px solid #f7f7f7;
+  position: absolute;
+  top: -178px;
+left: 90px;
+right: 0;
+margin: auto;
+width: 35px;
+height: 35px;
+text-align: center;
+cursor: pointer;
+background-color: #FFF;
+border-radius: 50%;
+margin-top: 5px;
+font-size: 23px;
+color: #545871;
+}
+.userImage #imageUpload {
+display: none;}
+
 

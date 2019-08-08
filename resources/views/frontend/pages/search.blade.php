@@ -66,18 +66,7 @@
                             <option value="">{{trans('frontend.State')}}</option>
                         </select>
                     </div>
-                    <div class="col-sm-12">
-                        <div class="form-group transition">
-                            <label> {{trans('frontend.Select_Type')}} </label>
-                            <select  name="type_id" class="form-control " required style="padding: 1px" >
-                                <option value="">{{trans('frontend.select_type')}}</option>
-
-                                @foreach($type as $t)
-                                    <option value="{{$t->id}}" {{ (old("type_id") == $t->id ? "selected":"") }}>{{unserialize($t->name)[$lang]}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
+            
 
                     <div class="bedrooms">
                         <label class="title">  {{trans('frontend.rooms')}}</label>
@@ -115,18 +104,18 @@
                     <div class="floor">
                         <label class="title"> {{trans('frontend.Floor')}}</label>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label> {{trans('frontend.from')}}</label>
-                                    <input min="0"  type="number" name="floor_from" class="form-control" >
+                                    <select name="floor" class="form-control" style="padding: 1px"  >
+                                        <option value="">{{trans('frontend.select_floor')}}</option>
+
+                                    @foreach(\App\Helper\Helper::floor() as $c)
+                                            <option value="{{$c}}">{{$c}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>{{trans('frontend.to')}}</label>
-                                    <input min="0"  type="number" name="floor_to"  class="form-control" >
-                                </div>
-                            </div>
+
                         </div>
                     </div>
 
@@ -212,6 +201,7 @@
 
 
         function goSearch(offset_count = '',) {
+            console.log($("input[name=type_id]").val());
             searchEngine(
                 $("input[id=search]").val(),
                 $("input[name=legend]:checked").val(),
@@ -220,14 +210,16 @@
                 $('select[name=state]').val(),
                 $("input[name=bedrooms_from]").val(),
                 $("input[name=bedrooms_to]").val(),
-                $("input[name=floor_from]").val(),
+                $("select[name=floor]").val(),
                 $("input[name=floor_to]").val(),
                 $("input[name=area_from]").val(),
                 $("input[name=area_to]").val(),
                 $("input[name=price_from]").val(),
                 $("input[name=price_to]").val(),
-                $("input[name=type_id]").val(),
-                offset_count
+
+                offset_count,
+                                 $("select[name=type_id]").val()
+
             );
         }
         function searchEngine(string="", legend = "",finishing = "", city = "", state = "", bedrooms_from = "",
@@ -245,7 +237,7 @@
                     state           : state,
                     bedrooms_from   : bedrooms_from,
                     bedrooms_to     : bedrooms_to,
-                    floor_from      : floor_from,
+                    floor      : floor_from,
                     floor_to        : floor_to,
                     area_from       : area_from,
                     area_to         : area_to,

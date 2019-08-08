@@ -3,14 +3,18 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\City;
+use App\Helper\Helper;
 use App\Http\Resources\Api\CityCollection;
+use App\Http\Resources\Api\StatusCollection;
 use App\Http\Resources\Frontend\StataCollection;
+use App\Mail\activeMail;
 use App\State;
 use App\Unit;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Alert;
 
 class UserController extends Controller
 {
@@ -20,7 +24,7 @@ class UserController extends Controller
     public function __construct()
     {
 
-        $this->middleware('active');
+        $this->middleware('active')->except('upload_image_profile');
 
 
 
@@ -37,11 +41,11 @@ class UserController extends Controller
         $request->validate([
             //   'decs'=>'required',
 
-            'bio'=>'required',
+            //'bio'=>'required',
 
-            'phone' => 'min:11',
+          //  'phone' => 'min:11',
 
-            'address'=>'required',
+          ///  'address'=>'required',
 
         ]);
 
@@ -53,7 +57,7 @@ class UserController extends Controller
 
             $user->update([
                 'phone'=>$request->phone,
-                'register'=>'second_step'
+                'register'=>'second_step',
             ]);
             $user->realtor->update([
                 'bio'=>$request->bio,
@@ -62,7 +66,11 @@ class UserController extends Controller
                 'phone3'=>$request->phone3,
                 'address'=>$request->address,
             ]);
-            return redirect()->route('add-unit-page');
+            Helper::mail($user->email,new activeMail());
+            Alert::success(trans('frontend.success_and_addunit'))->persistent(trans('frontend.close'));
+
+            return  redirect()->route('get_profile_view',$user->id);
+
 
         }else{
             return redirect()->route('login');
@@ -84,7 +92,20 @@ class UserController extends Controller
     public function stateByid(Request $request)
     {
         $id=$request->city_id;
-        $state= State::where('city_id',$id)->get();
+        $state= State::where('city_id',$id)->orderBy('ordering','asc')->get();
         return StataCollection::collection($state);
+    }
+
+    public  function  upload_image_profile(Request $request)
+    {
+        $lang = $request->lang;
+
+        $id = auth()->user()->id;
+        $user = User::findOrFail($id);
+        $user->image = Helper::UpdateImage($request, 'uploads/avatars/', 'image', $user->image);
+        $user->save();
+        $url= url($user->image);
+        return (new StatusCollection(true, trans('api.update_done', [], $lang),$url))->response()
+            ->setStatusCode(201);
     }
 }

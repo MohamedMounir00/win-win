@@ -2,6 +2,30 @@
 @section('styles')
 
     <style>
+        .userImage {
+            position: relative;
+        }
+         #profileImage {
+            font-size: 20px !important;
+              line-height: 35px;
+            border: 1px solid #f7f7f7;
+            position: absolute;
+            top: -178px;
+    left: 90px;
+    right: 0;
+    margin: auto;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #FFF;
+    border-radius: 50%;
+    margin-top: 5px;
+    font-size: 23px;
+    color: #545871;
+}
+     #imageUpload {
+    display: none;}
         div.stars {
             display: inline-block;
             text-align: center;
@@ -66,14 +90,59 @@
     <!-- Start Introduction Section -->
     <div class="user-profile">
         <div class="container">
+                       @if(auth()->user()->verification==false && $count_active_unit_me >=5)
+                <div class="alert alert-danger" style="color: #FFF;background-color: #b33939;font-weight: 600;font-size: 18px;">
+                    {{trans('frontend.success_and_addunit_done')}}
+                </div>
+                    @elseif(auth()->user()->verification==false)
+                <div class="alert alert-danger" style="color: #FFF;background-color: #b33939;font-weight: 600;font-size: 18px;">
+                    {{trans('frontend.success_and_addunit')}}
+                </div>
+                @endIf
             <div class="row no-gutters">
                 <div class="col-xl-3 col-lg-4">
                     <div class="user-info text-center">
+                            
                         @if($user->image!=null)
-                        <a  href="{{url($user->image)}}" data-lightbox="image-1">
-                        <img class="img-fluid img-thumbnail rounded-circle" src="{{url($user->image)}}" alt=""></a>
+
+
+
+                         <a  href="{{url($user->image)}}" data-lightbox="image-1">
+
+
+                         <img class="img-fluid img-thumbnail rounded-circle last" src="{{url($user->image)}}" alt="">
+                                @if(auth()->user()->id==$user->id)
+                         <img style="display:none" src="" class="ex img-fluid img-thumbnail rounded-circle" alt="">
+                                                 @endif
+
+                         
+
+                    </a>
+                                                    @if(auth()->user()->id==$user->id)
+
+                    <div class="userImage">
+                        <i id="profileImage" class="fa fa-pencil" aria-hidden="true"></i>
+                        <input id="imageUpload" type='file' name='image' class='form-control' ><br>
+                    </div>
+                                                                      @endif
+
+
                         @else
-                            <img class="img-fluid img-thumbnail rounded-circle" src="https://www.mycustomer.com/sites/all/modules/custom/sm_pp_user_profile/img/default-user.png" alt="">
+
+                        <img class="img-fluid img-thumbnail rounded-circle" src="https://www.mycustomer.com/sites/all/modules/custom/sm_pp_user_profile/img/default-user.png" alt="">  
+                                                                            @if(auth()->user()->id==$user->id)
+
+                        <div class="userImage">
+                            <i id="profileImage" class="fa fa-pencil" aria-hidden="true"></i>
+                            <input id="imageUpload" type='file' name='image' class='form-control' ><br>
+                        </div>
+                                                                                          @endif
+
+                       
+
+                           
+
+
 
                         @endif
                         <h2 style="word-wrap:break-word;">{{$user->realtor->company_name}}</h2>
@@ -113,17 +182,34 @@
                                                 <div class="last state">
                                                     <span>{{trans('frontend.count_not_active_unit')}}</span>
 
+                                                    <p>{{$count_not_active_unit_me}}</p>
+                                                </div>
+
+                                            </div>
+
+                                                <div class="col-md-6 col-sm-6">
+                                                    <div class=" state">
+                                                        <span>{{trans('frontend.count_active_unit')}}</span>
+
+                                                        <p>{{$count_active_unit_me}}</p>
+                                                    </div>
+                                            @else
+                                               <div class="col-md-6 col-sm-6">
+                                                <div class="last state">
+                                                    <span>{{trans('frontend.count_not_active_unit')}}</span>
+
                                                     <p>{{$count_not_active_unit}}</p>
                                                 </div>
 
                                             </div>
-                                            @endif
-                                            <div class="col-md-6 col-sm-6">
-                                                <div class=" state">
-                                                    <span>{{trans('frontend.count_active_unit')}}</span>
+                                                <div class="col-md-6 col-sm-6">
+                                                    <div class=" state">
+                                                        <span>{{trans('frontend.count_active_unit')}}</span>
 
-                                                    <p>{{$count_active_unit}}</p>
-                                                </div>
+                                                        <p>{{$count_active_unit}}</p>
+                                                    </div>
+                                            @endif
+
 
                                             </div>
                                         </div>
@@ -155,12 +241,13 @@
                 </div>
 
                 <div class="col-xl-6 col-lg-8">
+                       
                     <div id="data-container" class="container">
+                       
                         <!-- visitors only can add rating or report -->
                         @if(auth()->user()->id != $user->id)
                             <!-- User Rating box -->
                             <div class="user-rating-box">
-
 
 
                                 <div>
@@ -596,6 +683,35 @@ $(document).ready(function () {
 
 });
 </script>
+<script>
+
+        $('#imageUpload').change(function () {
+         var fd = new FormData();
+             var files = $('#imageUpload')[0].files[0];
+             fd.append('image',files);
+            $.ajax({
+                type:'POST',
+                url: '{{route('upload_image_profile')}}',
+                data:fd,
+                cache:false,
+                contentType: false,
+                processData: false,
+                success:function(data) {
+                    console.log("success");
+                    console.log(data);
+                    $('img.last').remove();
+                    $('.ex').attr("src" , data.data.key)
+                    location.reload(true);
+                   
+                },
+                error: function(data){
+                    console.log("error");
+                    console.log(data);
+                }
+            });
+        })
+  
+    </script>
 
 
 @endsection

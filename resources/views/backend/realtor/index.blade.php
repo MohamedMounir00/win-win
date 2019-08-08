@@ -22,15 +22,13 @@
                 <table id="table1" class="table table-striped table-bordered bulk_action table1">
                     <thead>
                     <tr>
-                        <th>{{trans('backend.name')}}</th>
+                        <th>{{trans('backend.count_unit')}}</th>
                         <th>{{trans('backend.company_name')}}</th>
                         <th>{{trans('backend.image')}}</th>
                         <th>{{trans('backend.email')}}</th>
-                        <th>{{trans('backend.phone')}}</th>
                         <th>{{trans('backend.verification')}}</th>
                         <th>{{trans('backend.city')}}</th>
                         <th>{{trans('backend.state')}}</th>
-                        <th>{{trans('backend.date')}}</th>
                         <th>{{trans('backend.action')}}</th>
 
                     </tr>
@@ -58,15 +56,13 @@
                 serverSide: true,
                 ajax: '{!! route('realtor.get_realtor') !!}',
                 columns: [
-                    { data: 'name', name: 'name' },
+                    { data: 'count', name: 'count' },
                     { data: 'company_name', name: 'company_name' },
                     { data: 'image', name: 'image' } ,
                     { data: 'email', name: 'email' },
-                    { data: 'phone', name: 'phone' },
                     { data: 'active', name: 'active' },
                     { data: 'city', name: 'city' },
                     { data: 'state', name: 'state' },
-                    { data: 'created_at', name: 'created_at' },
 
                     {data: 'action', name: 'action', orderable: false, searchable: false},
 

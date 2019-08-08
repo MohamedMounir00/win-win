@@ -8,7 +8,7 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="icon" type="image/x-icon" href="{{url('frontend/images/logo.png')}}">
+    <link rel="icon" type="image/x-icon" href="{{url('frontend/images/logoooss.png')}}">
 
     <title>{{trans('frontend.Main_Information')}}|win-win</title>
 

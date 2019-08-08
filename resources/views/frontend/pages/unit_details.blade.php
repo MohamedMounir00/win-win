@@ -9,6 +9,13 @@
     @endphp
 
 
+<style>
+    @media (min-width: 768px) {
+        .height-15 {
+            height: 15px;
+        }
+    }
+</style>
 
 
     <div class="container">
@@ -76,6 +83,53 @@
                             @endif
 
                         </div>
+                        
+                                        <div class="">
+                                            <div class="user-profile">
+                                                
+                                            
+                    <h5 class="contact-heading text-uppercase">{{trans('frontend.Contact_Information')}}</h5>
+                    <div class="contact-info">
+                        <span>{{trans('frontend.Mobile')}}</span>
+                        <ul class="list-unstyled">
+                            @if($unit->realtor->phone!=null)
+                            <li class="text-break"><i class="fa fa-mobile"></i> {{$unit->realtor->phone}}</li>
+                            @endif
+                                @if($unit->realtor->realtor->phone1!=null)
+
+                                <li class="text-break"><i class="fa fa-mobile"></i> {{$unit->realtor->realtor->phone1}}</li>
+                                @endif
+
+                        </ul>
+                        <hr>
+                        <span> {{trans('frontend.Phone')}}</span>
+                        <ul class="list-unstyled">
+                            @if($unit->realtor->realtor->phone2!=null)
+
+                            <li class="text-break"><i class="fa fa-phone"></i> {{$unit->realtor->realtor->phone2}}</li>
+                            @endif
+                                @if($unit->realtor->realtor->phone3!=null)
+
+                            <li class="text-break"><i class="fa fa-phone"></i> {{$unit->realtor->realtor->phone3}}</li>
+                                @endif
+                        </ul>
+                        <hr>
+                        <span>{{trans('frontend.Email')}}</span>
+                        <ul class="list-unstyled">
+                            <li style="word-wrap:break-word;" class="text-break"><i class="fa fa-envelope-o"></i> {{$unit->realtor->email}}</li>
+                        </ul>
+                        <hr>
+                        <span>{{trans('frontend.Street_Address')}}</span>
+                        <div class="address">
+                            <i class="fa fa-map-marker"></i>
+                            <p class="text-center text-break"> {{$unit->realtor->realtor->address}} </p>
+                        </div>
+                        
+                    </div>
+
+                   </div>
+                   </div>
+
                     </div>
 
 
@@ -121,13 +175,15 @@
                                 </div>
                                 <hr>
 
-
-                                @if($unit->storge->count() > 0)
-                                    <div class="row">
+                                    <div class="row {{$unit->storge->count() == 0 ? 'height-15' : ''}}">
                                         <div class="col-md-4 units-galary-title">
                                             <br>
                                             <div class="container">
+                                                   @if($unit->storge->count() > 0)
+
                                                 <h2>{{trans('frontend.Unit_Images')}}</h2>
+                                                                                            @endif
+
                                             </div>
                                         </div>
                                         <div class="col-md-8">
@@ -140,6 +196,8 @@
                                     </div>
 
 
+                                @if($unit->storge->count() > 0)
+
 
                                     <div class="units-galary">
                                         <div class="row no-gutters">
@@ -151,11 +209,7 @@
                                                             @foreach($unit->storge as $item)
                                                             <div class="col-sm-6 col-md-4 col-lg-3">
                                                             <a href="{{url($item->url)}}" data-lightbox="image-1"><img class="img-fluid img-thumbnail" src="{{url($item->url)}}" alt=""></a>
-                                                        @if(auth()->user()->id==$unit->user_id)
-                                                            @if($item->id!=$unit->image_id)
-                                                                <button type="button" id="change-image" class="btn btn-success" image-id="{{$item->id}}" unit-id="{{$unit->id}}"><i class="fa fa-check"></i> {{trans('frontend.as_default')}}</button>
-                                                            @endIf
-                                                            @endIf
+                                                  
                                                         </div>
 
                                                         @endforeach
@@ -273,7 +327,9 @@
                                             <div class="row no-gutters">
                                                 <div class="col-sm-12">
                                                     <h2>{{trans('frontend.Description')}}</h2>
-                                                    <p>{{$unit->desc}}</p>
+                                                    <p>
+                                                    {!! nl2br(e($unit->desc)) !!}
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -290,6 +346,18 @@
                                             <div class="containEdit">
                                                 <a href="{{route('edit-unit',$unit->id)}}" class="btn my-btn edit-button"> <i  class="fa fa-pencil" aria-hidden="true"></i>{{trans('frontend.edit-your-unit')}} </a>
                                             </div>
+                                              <div class="containEdit">
+
+                                            {!! Form::open(['route'=>["delete-unit" , $unit->id ]  ]) !!}
+
+                                                {!! method_field('DELETE') !!}
+
+                                                {{ Form::submit(trans('backend.delete'),['class'=>'btn my-btn edit-button btn-danger','style'=>'margin-top: 5px; background-color:red'] )}}
+
+
+                                                {!! Form::close() !!}
+                                            </div>
+
 
                                         </div>
                                     </div>

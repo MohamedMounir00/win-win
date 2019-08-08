@@ -19,7 +19,7 @@ class SearchController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->except('advanced_search','choose_image');
-        $this->middleware('NotActive')->except('advanced_search','choose_image');
+        $this->middleware('NotActive')->except('advanced_search','choose_image','unit_details');
 
     }
      /// search view
@@ -28,8 +28,8 @@ class SearchController extends Controller
       //$units = $this->searchOperation($request)->get();
         $search_title=$request->title;
         //dd($units);
-        $city=City::all();
-        $state=State::all();
+        $city=City::orderBy('ordering','asc')->get();
+        $state=State::orderBy('ordering','asc')->get();
         $type = Type_estate::all();
         return view('frontend.pages.search',compact('search_title','city','state','type'));
     }
@@ -59,17 +59,28 @@ class SearchController extends Controller
         if ($request->city != null)
             $units->where('city_id', $request->city);
         if ($request->type_id != null)
-            $units->where('type_id', $request->city);
+            $units->where('type_id', $request->type_id);
         if ($request->state != null)
             $units->where('state_id', $request->state);
         if ($request->bedrooms_from != null)
             $units->where('rooms','>=', $request->bedrooms_from);
         if ($request->bedrooms_to != null)
             $units->where('rooms','<=', $request->bedrooms_to);
-        if ($request->floor_from != null)
-            $units->where('floor','>=', $request->floor_from);
-        if ($request->floor_to != null)
-            $units->where('floor','<=', $request->floor_to);
+        if ($request->floor != null) {
+            if ($request->floor == 'ارضى' || $request->floor == 'ground') {
+                $units->where('floor', 'ارضى');
+                $units->orWhere('floor', 'ground');
+            }
+            else if ($request->floor == 'بيزمينت' || $request->floor == 'Bizment') {
+                $units->where('floor', 'بيزمينت');
+                $units->orWhere('floor', 'Bizment');
+            }
+            else if ($request->floor == 'روف' || $request->floor == 'Roof') {
+                $units->where('floor', 'روف');
+                $units->orWhere('floor', 'Roof');
+            } else
+                $units->where('floor', $request->floor);
+        }
         if ($request->price_from != null)
             $units->where('price','>=', $request->price_from);
         if ($request->price_to != null)
@@ -87,7 +98,8 @@ class SearchController extends Controller
     public  function  unit_details($id)
     {
         $unit= Unit::findOrFail($id);
-
+        if (auth()->user()->id!=$unit->user_id&&auth()->user()->verification==false)
+            return  redirect()->route('get_profile_view',auth()->user()->id);
         $rating= Rating::where('realtor_id',$unit->user_id)->where('type','admin')->get();
         $rating_time=floatval($rating->avg('rating_stars'));
         $rating2= Rating::where('realtor_id',$unit->user_id)->where('type','user')->get();

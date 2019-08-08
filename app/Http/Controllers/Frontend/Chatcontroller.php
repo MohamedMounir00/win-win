@@ -102,6 +102,7 @@ class Chatcontroller extends Controller
         $conversation=Conversation::where(function ($query) use ($auth) {
             $query->where('sender_id',$auth)->Orwhere('receiver_id',$auth);
         })->orderByDesc('updated_at')->skip($offset)->take(10)->get();
+
         return ConversationCollection::collection($conversation);
 
     }

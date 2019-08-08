@@ -65,3 +65,8 @@ Route::middleware(['auth:api'])->group(function () {
 
 
 });
+
+
+Route::post('save_state','Api\HomePageController@save_state')->name('save_state');
+Route::post('save_city','Api\HomePageController@save_city')->name('save_city');
+

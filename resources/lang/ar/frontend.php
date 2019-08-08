@@ -127,13 +127,17 @@ return [
 
     'change_password_title' => 'تغيير كلمة المرور',
     'change_password_title_description' => 'اذا كنت لاتريد تغيير كلمة المرور فيمكنك ترك حقل كلمة المرور وحقل تاكيد كلمة المرور فارغا.',
-    'count_active_unit'=>    'الوحدات المتاحه      ',
-    'count_not_active_unit'=>'الوحدات الغير المتاحه',
+    'count_active_unit'=>    'الوحدات المفعله     ',
+    'count_not_active_unit'=>'الوحدات الغير مفعله',
     'ground'=>'ارضى',
     'bizment'=>'بيزمينت',
     'roof'=>'روف',
     'select_floor'=>'اختر الطابق',
     'chatting'=>'المحادثات ',
-    'as_default'=>'كاصوره افتراضيه'
+    'as_default'=>'كاصوره رئيسيه',
+        'success_and_addunit'=>'تم تسجيل حسابك بنجاح للاستفاده من خدمات الموقع وتفعيل حسابك برجاء اضافه5 وحدات بحد ادنى',
+'best_company'=>'افضل الشركات العقارية',
+    'success_and_addunit_done'=>'تم اضافه 5 وحدات بنجاح  فى انتظار تفعيل الاداره',
+
 
 ];

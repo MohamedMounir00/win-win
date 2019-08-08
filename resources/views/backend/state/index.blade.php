@@ -49,6 +49,7 @@
     <script>
         $(function() {
             $('#table1').DataTable({
+                "order": [],
                 processing: true,
                 serverSide: true,
                 ajax: '{!! route('state.get_state') !!}',

@@ -91,12 +91,18 @@
 
 
                                 <!-- Show Images Box -->
-                                <div class="col-sm-12">
-                                    <div class="show-images transition">
+                            
 
+                                   <div class="col-sm-12">
+                                    <div class="show-images transition">
+                                        <div class="row">
+                                        </div>
 
                                     </div>
                                 </div>
+
+
+
 
                                 <!--Select Type -->
                                 <div class="col-sm-12">
@@ -112,6 +118,66 @@
                                     </div>
                                 </div>
 
+
+
+
+                                <!-- Chose Legend -->
+                                <div class=" col-sm-12 transition status">
+                                        <div class="form-group">
+                                            <label>{{trans('frontend.status')}} </label>
+    
+                                            <div class="custom-control custom-checkbox custom-control-inline">
+                                                <input type="radio" id="customCheck1"  name="status" value="sale" class="custom-control-input" {{old('status') == 'sale' ? 'checked' : ''}}>
+                                                <label class="custom-control-label" for="customCheck1"> {{trans('frontend.Buy')}}</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox custom-control-inline">
+                                                <input type="radio" id="customCheck2" name="status" value="rent"  class="custom-control-input" {{old('status') == 'rent' ? 'checked' : ''}}>
+                                                <label class="custom-control-label" for="customCheck2"> {{trans('frontend.Rent')}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                    <!--Select City -->
+                                <div class="col-lg-6 col-sm-12 transition city">
+                                        <div class="form-group ">
+    
+                                            <label>{{trans('frontend.City')}}</label>
+                                            <select name="city_id" class="form-control" style="padding: 1px" >
+                                                <option value="">{{trans('frontend.select_city')}}</option>
+                                                @foreach($city as $c)
+                                                    <option value="{{$c->id}}"  {{ (old("city_id") == $c->id ? "selected":"") }}>{{unserialize($c->name)[ $lang]}}</option>
+    
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+    
+    
+    
+    
+    
+    
+    
+                                    <!--Select State -->
+                                    <div class="col-lg-6 col-sm-12 transition state">
+                                        <div class="form-group ">
+    
+                                            <label>{{trans('frontend.State')}}</label>
+                                            <select  name="state_id" class="form-control " style="padding: 1px" >
+                                            </select>
+                                        </div>
+                                    </div>
+    
+
+
+
+
+
+
                                 <!-- Unit Title -->
                                 <div class="col-lg-6 col-sm-12 transition title">
                                     <div class="form-group ">
@@ -126,47 +192,26 @@
 
                                 </div>
 
-                                <!-- Chose Legend -->
-                                <div class=" col-sm-12 transition status">
-                                    <div class="form-group">
-                                        <label>{{trans('frontend.status')}} </label>
 
-                                        <div class="custom-control custom-checkbox custom-control-inline">
-                                            <input type="radio" id="customCheck1"  name="status" value="sale" class="custom-control-input">
-                                            <label class="custom-control-label" for="customCheck1"> {{trans('frontend.Buy')}}</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox custom-control-inline">
-                                            <input type="radio" id="customCheck2" name="status" value="rent"  class="custom-control-input">
-                                            <label class="custom-control-label" for="customCheck2"> {{trans('frontend.Rent')}}</label>
+
+
+
+                                <!-- Area -->
+                                <div class="col-lg-6 col-sm-12 transition area">
+                                        <div class="form-group ">
+                                            <label for="my-input">{{trans('frontend.Area')}}</label>
+                                            <input min="1" id="my-input" class="form-control" type="number"   name="area" value="{{old('area')}}">
                                         </div>
                                     </div>
-                                </div>
+                                
 
 
-                                <!--Select City -->
-                                <div class="col-lg-6 col-sm-12 transition city">
-                                    <div class="form-group ">
 
-                                        <label>{{trans('frontend.City')}}</label>
-                                        <select name="city_id" class="form-control" style="padding: 1px" >
-                                            <option value="">{{trans('frontend.select_city')}}</option>
-                                            @foreach($city as $c)
-                                                <option value="{{$c->id}}"  {{ (old("city_id") == $c->id ? "selected":"") }}>{{unserialize($c->name)[ $lang]}}</option>
 
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
 
-                                <!--Select State -->
-                                <div class="col-lg-6 col-sm-12 transition state">
-                                    <div class="form-group ">
 
-                                        <label>{{trans('frontend.State')}}</label>
-                                        <select  name="state_id" class="form-control " style="padding: 1px" >
-                                        </select>
-                                    </div>
-                                </div>
+
+                            
 
 
                                 <!-- Finishing -->
@@ -174,17 +219,62 @@
                                     <div class="form-group ">
                                         <label>{{trans('frontend.Finishing')}}</label>
                                         <div class="custom-control  custom-checkbox custom-control-inline">
-                                            <input type="radio" id="customRadioInline3" name="finishing"  value="yes" class="custom-control-input">
+                                            <input type="radio" id="customRadioInline3" name="finishing"  value="yes" class="custom-control-input" {{old('finishing') == 'yes' ? 'checked' : ''}}>
                                             <label class="custom-control-label" for="customRadioInline3">{{trans('frontend.yes')}}</label>
 
                                         </div>
                                         <div class="custom-control custom-checkbox custom-control-inline">
-                                            <input type="radio" id="customRadioInline4" name="finishing" value="no" class="custom-control-input">
+                                            <input type="radio" id="customRadioInline4" name="finishing" value="no" class="custom-control-input" {{old('finishing') == 'no' ? 'checked' : ''}}>
                                             <label class="custom-control-label" for="customRadioInline4">{{trans('frontend.no')}}</label>
 
                                         </div>
                                     </div>
                                 </div>
+
+
+
+
+
+
+                                
+
+
+                                <!-- Price  -->
+                                <div class="col-lg-6 col-sm-12 transition price">
+                                        <div class="form-group ">
+                                            <label for="my-input"> {{trans('frontend.Price')}}</label>
+                                            <input min="1" id="my-input" class="form-control" type="number" name="price" value="{{old('price')}}">
+                                        </div>
+                                    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+                                    <!-- payment method -->
+                                    <div class="col-sm-12 transition payment_method">
+                                        <div class="form-group ">
+                                            <label>{{trans('frontend.payment_method')}}</label>
+                                            <div class="custom-control custom-checkbox custom-control-inline">
+                                                <input type="radio" id="customRadioInline5" name="payment_method" value="cash" class="custom-control-input" {{old('payment_method') == 'cash' ? 'checked' : ''}}>
+                                                <label class="custom-control-label" for="customRadioInline5">{{trans('frontend.Cash')}}</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox custom-control-inline">
+                                                <input type="radio" id="customRadioInline6" name="payment_method" value="installments" class="custom-control-input" {{old('payment_method') == 'installments' ? 'checked' : ''}}>
+                                                <label class="custom-control-label" for="customRadioInline6"> {{trans('frontend.Instalment')}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+    
+    
+
+
+
+
+
 
 
                                 <!-- Floor Number -->
@@ -202,6 +292,11 @@
                                 </div>
 
 
+
+
+
+
+
                                 <!-- Number Of Bedrooms -->
                                 <div class="col-lg-6 col-sm-12 transition bathroom">
                                     <div class="form-group ">
@@ -209,6 +304,11 @@
                                         <input min="1" id="my-input" class="form-control" type="number"  name="bathroom" value="{{old('bathroom')}}" >
                                     </div>
                                 </div>
+
+
+
+
+
 
 
 
@@ -221,45 +321,31 @@
                                 </div>
 
 
-                                <!-- Area -->
-                                <div class="col-lg-6 col-sm-12 transition area">
-                                    <div class="form-group ">
-                                        <label for="my-input">{{trans('frontend.Area')}}</label>
-                                        <input min="1" id="my-input" class="form-control" type="number"   name="area" value="{{old('area')}}">
-                                    </div>
-                                </div>
 
 
-                                <!-- Price  -->
-                                <div class="col-lg-6 col-sm-12 transition price">
-                                    <div class="form-group ">
-                                        <label for="my-input"> {{trans('frontend.Price')}}</label>
-                                        <input min="1" id="my-input" class="form-control" type="number" name="price" value="{{old('price')}}">
-                                    </div>
-                                </div>
 
 
-                                <!-- payment method -->
-                                <div class="col-sm-12 transition payment_method">
-                                    <div class="form-group ">
-                                        <label>{{trans('frontend.payment_method')}}</label>
-                                        <div class="custom-control custom-checkbox custom-control-inline">
-                                            <input type="radio" id="customRadioInline5" name="payment_method" value="cash" class="custom-control-input">
-                                            <label class="custom-control-label" for="customRadioInline5">{{trans('frontend.Cash')}}</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox custom-control-inline">
-                                            <input type="radio" id="customRadioInline6" name="payment_method" value="installments" class="custom-control-input">
-                                            <label class="custom-control-label" for="customRadioInline6"> {{trans('frontend.Instalment')}}</label>
-                                        </div>
-                                    </div>
-                                </div>
 
 
+                                
+
+
+
+
+
+
+
+
+
+
+                                <!-- Description -->
                                 <div class="col-sm-12 transition">
                                     <div class="form-group">
 
                                         <label for="">{{trans('frontend.Description')}}</label>
-                                        <textarea name="desc" class="form-control{{ $errors->has('desc') ? ' is-invalid' : '' }}" required >{{old('desc')}}</textarea>
+                                        <textarea name="desc" id="test" class="form-control{{ $errors->has('desc') ? ' is-invalid' : '' }}" required >{{old('desc')}}</textarea>
+                                        
+
                                         @if ($errors->has('desc'))
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('desc') }}</strong>
@@ -267,6 +353,13 @@
                                         @endif
                                     </div>
                                 </div>
+
+
+
+
+
+
+
 
                             </div>
                             <div class="text-center click-btn">
@@ -299,13 +392,15 @@
 
 
     <script>
+
         $(document).ready(function() {
           
+            var oldStateId = '{{old('state_id')}}';
 
         
             hideAllInputs();
-            var max_photos = 8;
-            var current_photos = 0;
+            var max_photos = 9;
+            var current_photos = 1;
             var imageContainer = $('.show-images');
             imageContainer.hide();
             getInputsByType($('select[name=type_id]').val())
@@ -352,7 +447,9 @@
                         }
                         photosArray.push(data.id);
                         imageContainer.fadeIn("slow");
-                        $('.show-images').append('<a  href="{{url('')}}/'+data.url+'" data-lightbox="image-1"><img class="img-fluid img-thumbnail" src="{{url('')}}/'+data.url+'" alt=""></a>');
+                        // $('.show-images').append('<a  href="{{url('')}}/'+data.url+'" data-lightbox="image-1"><img class="img-fluid img-thumbnail" src="{{url('')}}/'+data.url+'" alt=""></a>');
+                                                $('.show-images').children().append('<div class="col-sm-6 col-md-4 col-lg-3"><a  href="{{url('')}}/'+data.url+'" data-lightbox="image-1"><img class="img-fluid img-thumbnail" src="{{url('')}}/'+data.url+'" alt=""><button id="remove_photo" class="btn btn-danger" image-id="'+data.id+'"><i class="fa fa-close"></i></button></a></div>');
+
                         current_photos++;
                     },
                     error: function(data) {
@@ -433,13 +530,28 @@
                             dropdown.empty()
 
                             $.each( data.data, function( key, value ) {
-                                dropdown.append($('<option>', {value: value.id,text: value.state}, '</option>'))
-                                // $('.' + value.name)[1].prop('required',true);
+                                  if (value.id == oldStateId)  {
+                                    dropdown.append($('<option>', {value: value.id,text: value.state}, '</option>').attr("selected",'selected'))
+                                } else {
+                                    dropdown.append($('<option>', {value: value.id,text: value.state}, '</option>'))
+                                }                                // $('.' + value.name)[1].prop('required',true);
                             });
                         }
                     });
                 }
             }
+              // delete image
+            $('.show-images').on('click', '#remove_photo',function() {
+                var $target = $(this).parent().parent();
+                $target.hide('slow', function(){ $target.remove(); });
+                var item = parseInt($(this).attr('image-id')) ;
+                var index = photosArray.indexOf(item);
+                if (index > -1) {
+                    photosArray.splice(index, 1);
+                }
+                return false;
+            });
+
 
         });
     </script>

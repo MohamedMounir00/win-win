@@ -822,7 +822,7 @@ body {
   overflow: hidden; }
 .main-info .tolpit .logo {
   width: 100%;
-  padding: 50px 0 20px 50px; }
+  padding: 50px 0 0 0; }
 @media (max-width: 575.98px) {
   .main-info .tolpit .logo {
     padding-bottom: 0; } }

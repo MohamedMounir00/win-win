@@ -10,7 +10,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use Notifiable ,SoftDeletes,HasApiTokens;
+    use Notifiable ,HasApiTokens;
     use HasRoles;
 
 
@@ -35,11 +35,11 @@ class User extends Authenticatable
 
     public function admins()
     {
-        return $this->hasOne(Admin::class ,'user_id')->withTrashed();
+        return $this->hasOne(Admin::class ,'user_id');
     }
     public function realtor()
     {
-        return $this->hasOne(Realtor::class ,'user_id')->withTrashed();
+        return $this->hasOne(Realtor::class ,'user_id');
     }
 
     public function  city()
@@ -52,6 +52,11 @@ class User extends Authenticatable
     }
     public  function  active_units(){
         return $this->hasMany(Unit::class)->where('activation_admin', 'active')->where('activation_user', 'active');
+
+    }
+    
+      public  function  units(){
+        return $this->hasMany(Unit::class);
 
     }
 }

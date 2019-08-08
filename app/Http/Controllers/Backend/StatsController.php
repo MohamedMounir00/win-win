@@ -44,7 +44,7 @@ class StatsController extends Controller
     public function store(StatsRequest $request)
     {
 
-        $c= State::create(['name' => serialize($request->name),'city_id'=>$request->city_id]);
+        $c= State::create(['name' => serialize($request->name),'city_id'=>$request->city_id,'ordering'=>$request->ordering]);
         if ($c)
             Alert::success(trans('backend.created'))->persistent("Close");
 
@@ -94,7 +94,7 @@ class StatsController extends Controller
 
         $data = State::findOrFail($id);
 
-        $data->update(['name' => serialize($request->name),'city_id'=>$request->city_id]);
+        $data->update(['name' => serialize($request->name),'city_id'=>$request->city_id,'ordering'=>$request->ordering]);
 
         if ($data)
             Alert::success(trans('backend.updateFash'))->persistent("Close");
@@ -120,7 +120,7 @@ class StatsController extends Controller
 
     public function getAnyDate()
     {
-        $data = State::all();
+        $data = State::orderBy('ordering','asc')->get();
 
         return Datatables::of($data)
             ->addColumn('action', function ($data) {

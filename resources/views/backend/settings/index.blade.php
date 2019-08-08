@@ -66,11 +66,33 @@
                                         {{trans('backend.desc_web_en')}}
                                     @elseif($setting->key=='desc_web_ar')
                                         {{trans('backend.desc_web_ar')}}
+                                    @elseif($setting->key=='add_unit_ar')
+                                        {{trans('backend.add_unit_ar')}}
+                                    @elseif($setting->key=='add_unit_en')
+                                        {{trans('backend.add_unit_en')}}
+                                    @elseif($setting->key=='new_user_ar')
+                                        {{trans('backend.new_user_ar')}}
+                                    @elseif($setting->key=='new_user_en')
+                                        {{trans('backend.new_user_en')}}
+
+                                     @elseif($setting->key=='active_user_ar')
+                                        {{trans('backend.active_user_ar')}}
+                                    @elseif($setting->key=='active_user_en')
+                                        {{trans('backend.active_user_en')}}
+
                                 @endif
                                 </div>
                             </th>
                             <td>
-                                @if($setting->key=='about_us_ar'||$setting->key=='about_us_en'||$setting->key=='desc_web_ar'||$setting->key=='desc_web_en')
+                                @if($setting->key=='about_us_ar'||$setting->key=='about_us_en'||$setting->key=='desc_web_ar'
+                                ||$setting->key=='desc_web_en'
+                                ||$setting->key=='add_unit_ar'
+                                ||$setting->key=='add_unit_en'
+                                ||$setting->key=='new_user_ar'
+                                ||$setting->key=='new_user_en'
+                                 ||$setting->key=='active_user_ar'
+                                ||$setting->key=='active_user_en'
+                                )
                                 <div class="col-md-6 col-sm-6 col-xs-12">
 
                                         <textarea name="{{ $setting->key }}" class="form-control col-md-7 col-xs-12" rows="5" required >{{ $setting->value  }}</textarea>

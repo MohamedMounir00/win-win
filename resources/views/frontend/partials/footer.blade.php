@@ -51,7 +51,7 @@
                         <span>{{\App\Helper\Helper::get_setting('email')->value}}</span>
                     </div>
                     <div class="social-media">
-                        <h2  style="margin-bottom:0 !important;">{{trans('frontend.Slocial_Media')}}</h2>
+                        <h2  class="footer-social-media-h2">{{trans('frontend.Slocial_Media')}}</h2>
 
                         <ul class="list-unstyled">
                             <li>  <a target="_blank" href=" {{\App\Helper\Helper::get_setting('facebook')->value}}"><i class="fa fa-facebook"></i></a></li>
@@ -78,7 +78,7 @@
                 </div>
                 <div class="col-md-12 col-lg-5 ">
                     <div class="copyRight">
-                        <span>&copy; Real Estate | All Right Reserved | By Sprints</span>
+                        <span>&copy; Win Win App | All Right Reserved </span>
                     </div>
                 </div>
             </div>

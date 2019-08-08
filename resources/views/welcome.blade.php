@@ -5,10 +5,11 @@
 
     $lang = LaravelLocalization::getCurrentLocale();
 
+
 @endphp
 <head>
     <meta charset="utf-8">
-    <link rel="icon" type="image/x-icon" href="{{url('frontend/images/logo.png')}}">
+    <link rel="icon" type="image/x-icon" href="{{url('frontend/images/logoooss.png')}}">
 
     <title>{{ trans('frontend.home')}}|win-win</title>
 
@@ -40,83 +41,84 @@
 
 
 <!-- Start Header -->
-
-<header>
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <!-- Logo -->
-            <a class="navbar-brand" href="{{url('/')}}">
-                <img src="{{asset('frontend')}}/images/logo.png" alt="">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fa fa-bars"></i>
-            </button>
-            <!-- Navbar Lists -->
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+@if(!Auth::check()||Auth::check()&& auth()->user()->register=='first_step')
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <!-- Logo -->
+                <a class="navbar-brand" href="{{url('/')}}">
+                    <img src="{{asset('frontend')}}/images/logo.png" alt="">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
                 <!-- Navbar Lists -->
-                <ul class="navbar-nav ml-auto">
-                    @if(Auth::check())
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Navbar Lists -->
+                    <ul class="navbar-nav ml-auto">
+                        @if(Auth::check())
 
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link last dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{auth()->user()->name}}
-                                @if(auth()->user()->image==null)
-                                    <img class='img-fluid user-profile-img' src="https://www.mycustomer.com/sites/all/modules/custom/sm_pp_user_profile/img/default-user.png" alt="">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link last dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{auth()->user()->name}}
+                                    @if(auth()->user()->image==null)
+                                        <img class='img-fluid user-profile-img' src="https://www.mycustomer.com/sites/all/modules/custom/sm_pp_user_profile/img/default-user.png" alt="">
 
-                                @else
-                                    <img class='img-fluid user-profile-img' src="{{url(auth()->user()->image)}}" alt="">
+                                    @else
+                                        <img class='img-fluid user-profile-img' src="{{url(auth()->user()->image)}}" alt="">
 
-                                @endif
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ trans('frontend.logout')}}
+                                    @endif
                                 </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
-                        @if(auth()->user()->realtor)
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
 
-                            <li class="nav-item active">
-                                <a class="nav-link last add-unit-link " href="{{route('all-my-unit-page')}}"><i class="fa fa-plus-circle" aria-hidden="true"></i> {{trans('frontend.My_All_Unit')}}</a>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ trans('frontend.logout')}}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
                             </li>
+
+                        @else
+                            <li class="nav-item active">
+                                <a class=" nav-link" href="{{route('login')}}">{{trans('frontend.login')}}</a>
+                            </li>
+
                         @endif
-                       @else
+
+
+
                         <li class="nav-item active">
-                            <a class=" nav-link" href="{{route('login')}}">{{trans('frontend.login')}}</a>
+                            @if($lang=='ar')
+                                <a class="nav-link last"  hreflang="{{ 'en' }}" href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}"> English</a>
+                            @else
+                                <a class="nav-link last"  hreflang="{{ 'ar' }}" href="{{ LaravelLocalization::getLocalizedURL('ar', null, [], true) }}"> العربيه</a>
+                            @endif
+
+
                         </li>
 
-                        @endif
 
 
 
-                    <li class="nav-item active">
-                        @if($lang=='ar')
-                            <a class="nav-link last"  hreflang="{{ 'en' }}" href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}"> English</a>
-                        @else
-                            <a class="nav-link last"  hreflang="{{ 'ar' }}" href="{{ LaravelLocalization::getLocalizedURL('ar', null, [], true) }}"> العربيه</a>
-                        @endif
-
-
-                    </li>
-
-
-
-
-                </ul>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
-</header>
+        </nav>
+    </header>
+@else
+    @include('frontend.partials.nav')
+
+
+@endif
+
+
 
 <!-- End Header -->
 
@@ -125,6 +127,9 @@
 
 <section class="intro text-center">
     <div class="container">
+
+
+
         <img class="img-fluid" src="{{asset('frontend')}}/images/logooo.png">
         <!-- <h1 class="mainHead">Win Win</h1> -->
         <p class="lead">
@@ -135,13 +140,28 @@
             @endif
         </p>
         @if(!Auth::check())
-        <a style="font-weight: bold;width: 190px;margin: auto;"  href="{{route('register')}}" class="my-btn btn btn-primary btn-block" >{{trans('frontend.register')}}</a>
-            @elseif( Auth::check()&& auth()->user()->register=='first_step')
+            <a style="font-weight: bold;width: 190px;margin: auto;"  href="{{route('register')}}" class="my-btn btn btn-primary btn-block" >{{trans('frontend.register')}}</a>
+        @elseif( Auth::check()&& auth()->user()->register=='first_step')
             <a  href="{{route('complete-information-page')}}" class="my-btn btn btn-primary" >{{trans('frontend.complete-information')}}</a>
-          @else
-            <a  href="{{route('add-unit-page')}}" class="my-btn btn btn-primary" >{{trans('frontend.add-unit')}}</a>
+        @else
+         
+            @php
 
+               $count_active_unit_me=App\Unit::where('user_id',auth()->user()->id)->where('activation_user', 'active')->count();
+
+
+             @endphp
+                        @if($count_active_unit_me >=5)
+                <div class="alert alert-danger" style="color: #FFF;background-color: #b33939;font-weight: 600;font-size: 18px;">
+                    {{trans('frontend.success_and_addunit_done')}}
+                </div>
+                    @else
+                <div class="alert alert-danger" style="color: #FFF;background-color: #b33939;font-weight: 600;font-size: 18px;">
+                    {{trans('frontend.success_and_addunit')}}
+                </div>
+                @endIf
         @endif
+        
     </div>
 </section>
 
@@ -160,7 +180,13 @@
                     <div data-tilt class="deal-section">
                         <i class="sell-i fa fa-hand-paper-o"></i>
                         <h3>{{trans('frontend.register')}}</h3>
-                        <p class="lead c-black">{{trans('frontend.desc_lorm')}}</p>
+                        <p class="lead c-black">
+                            @if($lang=='ar')
+                                {{\App\Helper\Helper::get_setting('new_user_ar')->value}}
+                            @else
+                                {{\App\Helper\Helper::get_setting('new_user_en')->value}}
+                            @endif
+                        </p>
                     </div>
                 </a>
             </div>
@@ -170,7 +196,14 @@
                     <div data-tilt class="deal-section">
                         <i class="fa fa-road"></i>
                         <h3>{{trans('frontend.add-unit')}}</h3>
-                        <p class="lead c-black">{{trans('frontend.desc_lorm')}}</p>
+                        <p class="lead c-black">
+
+                            @if($lang=='ar')
+                                {{\App\Helper\Helper::get_setting('add_unit_ar')->value}}
+                            @else
+                                {{\App\Helper\Helper::get_setting('add_unit_en')->value}}
+                            @endif
+                        </p>
                     </div>
                 </a>
             </div>
@@ -181,7 +214,15 @@
                     <div data-tilt class="deal-section">
                         <i class="fa fa-home"></i>
                         <h3>{{trans('frontend.verify_account')}}</h3>
-                        <p class="lead c-black"> {{trans('frontend.desc_lorm')}}</p>
+                        <p class="lead c-black">
+
+                            @if($lang=='ar')
+                                {{\App\Helper\Helper::get_setting('active_user_ar')->value}}
+                            @else
+                                {{\App\Helper\Helper::get_setting('active_user_en')->value}}
+                            @endif
+
+                        </p>
                     </div>
                 </a>
             </div>

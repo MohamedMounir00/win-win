@@ -26,6 +26,8 @@ return[
     'price'=>' Price',
     'ask_delete'=>'Are you sure?',
     'state_controller'=>' Area control ',
+       'ordering'=>'ordering',
+
 
     //////////////////////////////data table ///
     "No_data_available_in_table"=>"No data available in table",
@@ -140,7 +142,16 @@ return[
     'home'=>'Home',
     'not_activation'=>'not activation',
     'activation'=>' activation',
-    'website'=>'Website'
+    'website'=>'Website',
+    'add_unit_ar'=>'Add your unit in Arabic',
+    'new_unit_en'=>'Add your unit in English',
+    'new_user_ar'=>'new register in Arabic',
+    'add_user_en'=>'new register in English',
+    'active_user_ar'=>'active account in Arabic',
+    'active_user_en'=>'active account in English',
+    'count_unit'=>'count units',
+        'edit'=>'edit'
+
 
 
 

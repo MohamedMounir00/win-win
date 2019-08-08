@@ -233,7 +233,10 @@ class RealtorController extends Controller
             ->addColumn('name', function ($data) {
                 return'<a href="' . route('realtor.show', $data->id) . '">'.$data->name.'</a>';
             })
-            ->rawColumns(['action', 'state','city','image','company_name','active','name'])
+            ->addColumn('count', function ($data) {
+                return $data->units->count();
+            })
+            ->rawColumns(['action', 'state','city','image','company_name','active','name','count'])
             ->make(true);
     }
 

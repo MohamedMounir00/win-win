@@ -232,7 +232,7 @@
                                     <div class="form-group">
 
                                         <label for="">{{trans('frontend.Description')}}</label>
-                                        <textarea name="desc" class="form-control{{ $errors->has('desc') ? ' is-invalid' : '' }}" required >{{$unit->desc}}</textarea>
+                                        <textarea name="desc"  id="test" class="form-control{{ $errors->has('desc') ? ' is-invalid' : '' }}" required >{{$unit->desc}}</textarea>
                                         @if ($errors->has('desc'))
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('desc') }}</strong>
@@ -270,6 +270,7 @@
 @section('scripts')
 
 <script>
+
     $('.show-images').on('click', '#change-image',function() {
 
           var image_id=  $(this).attr('image-id')

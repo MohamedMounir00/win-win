@@ -10,6 +10,11 @@ class City extends Model
     //
     use SoftDeletes;
 
-    protected $fillable=['name'];
+    protected $fillable=['name','ordering'];
+public function scopeOrdered($query)
+{
+    return $this->orderBy('ordering', 'asc')->get();
+}
+
 
 }

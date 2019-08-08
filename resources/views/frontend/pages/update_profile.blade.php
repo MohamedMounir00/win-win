@@ -38,7 +38,7 @@
                             </div>
                             {!! Form::open(['route'=>['updatet_profile'],'method'=>'POST','class'=>'form-horizontal form-label-left ', 'id' => 'form','files'=>true]) !!}
                         <div class="form-row">
-                            <div class="col-md-12">
+                        {{--    <div class="col-md-12">
 
                                 <div class="row">
                                 <div class="col-sm-12">
@@ -54,7 +54,7 @@
 
 
                                 </div>
-                            </div>
+                            </div>--}}
 
                             <div class="col-lg-6 col-md-12">
                                 <label>{{trans('frontend.user_name')}}</label>
@@ -62,7 +62,7 @@
                             </div>
                             <div class="col-lg-6 col-md-12">
                                 <label>{{trans('frontend.Company_Name')}}</label>
-                                <input type="text" name="company_name" required class="form-control" value="{{$user->realtor->company_name}}">
+                                <input type="text" name="company_name"  class="form-control" value="{{$user->realtor->company_name}}">
                             </div>
                             <div class="col-lg-6 col-md-12">
                                 <label>{{trans('frontend.Email')}}</label>
@@ -71,23 +71,23 @@
 
                             <div class="col-lg-6 col-md-12">
                                 <label>{{trans('frontend.Phone')}}</label>
-                                <input type="number"  name="phone" class="form-control" required value="{{$user->phone}}">
+                                <input type="text"  name="phone" class="form-control"  value="{{$user->phone}}">
                             </div>
                             <div class="col-lg-6 col-md-12">
                                 <label> {{trans('frontend.Mobile_number')}}</label>
-                                <input type="number" name="phone1" class="form-control" value="{{$user->realtor->phone1}}" >
+                                <input type="text" name="phone1" class="form-control" value="{{$user->realtor->phone1}}" >
                             </div>
                             <div class="col-lg-6 col-md-12">
                                 <label>{{trans('frontend.Phone')}}</label>
-                                <input type="number"  name="phone2" class="form-control" value="{{$user->realtor->phone2}}">
+                                <input type="text"  name="phone2" class="form-control"   value="{{$user->realtor->phone2}}">
                             </div>
                             <div class="col-lg-6 col-md-12">
                                 <label> {{trans('frontend.Mobile_number')}}</label>
-                                <input type="number"  name="phone3" class="form-control" value="{{$user->realtor->phone3}}">
+                                <input type="text"  name="phone3" class="form-control"  value="{{$user->realtor->phone3}}">
                             </div>
                             <div class="col-lg-12 col-md-12">
                                 <label> {{trans('frontend.Street_Address')}}</label>
-                                <input type="text"  name="address" required class="form-control" value="{{$user->realtor->address}}">
+                                <input type="text"  name="address"  class="form-control" value="{{$user->realtor->address}}">
                             </div>
                             <div class="col-lg-6 col-md-12">
                                 <div class="form-group">
@@ -117,7 +117,7 @@
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <label> {{trans('frontend.Company_Bio')}}</label>
-                                    <textarea class="form-control" required name="bio" placeholder="Enter Your Bio Of Your company">{{$user->realtor->bio}}</textarea>
+                                    <textarea class="form-control"  name="bio" placeholder="Enter Your Bio Of Your company">{{$user->realtor->bio}}</textarea>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -129,11 +129,11 @@
                             </div>
                             <div class="col-lg-6 col-md-12">
                                 <label> {{trans('frontend.Password')}} </label>
-                                <input type="password"  name="password" class="form-control" >
+                                <input type="password"  name="password" class="form-control" autocomplete="new-password"  >
                             </div>
                             <div class="col-lg-6 col-md-12">
                                 <label> {{trans('frontend.Confirm_Password')}}</label>
-                                <input type="password" name="password_confirmation" class="form-control">
+                                <input type="password" name="password_confirmation" class="form-control" autocomplete="off">
                             </div>
                         </div>
 

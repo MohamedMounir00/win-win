@@ -27,6 +27,7 @@
                                         <li><a class="{{Request::path() == "$lang/complete-information-page"   ? 'active contact-information-page' : ''}} " href="#">{{trans('frontend.Contact_Information')}}</a></li>
 
                                 @endif
+                                    {{--
                                 @if (Auth::check() && auth()->user()->register=='second_step')
 
                                         <li><a href="{{route('add-unit-page')}}"  class="{{Request::path() == "$lang/add-unit-page"   ? 'active contact-information-page' : ''}} " >{{trans('frontend.Add_Units')}}</a></li>
@@ -42,7 +43,7 @@
                                         <li><a href="#"  class="{{Request::path() == "$lang/thank-you-page"   ? 'active contact-information-page' : ''}} " >{{trans('frontend.Thank_You')}}</a></li>
                                 @endif
 
-
+--}}
                                 <li >
                                         @if($lang=='ar')
                                                 <a   hreflang="{{ 'en' }}" href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}">  {{trans('frontend.English')}}</a>

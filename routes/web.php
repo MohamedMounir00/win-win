@@ -24,6 +24,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/send-message', 'Frontend\Chatcontroller@send_message')->name('send-message');
     Route::post('/get-messages', 'Frontend\Chatcontroller@get_message')->name('get-messages');
     Route::post('/get-conversation', 'Frontend\Chatcontroller@get_conversation')->name('get-conversation');
+        Route::post('/upload_image_profile', 'Frontend\MainProfileController@upload_image_profile')->name('upload_image_profile');
+
 });
 
 
@@ -63,6 +65,8 @@ Route::group([
     ////////////////////////////////////////////////////////////////////////////////// edit unit/////
          Route::get('edit-unit/{id}', 'Frontend\MainUnitController@edit_unit_wiew')->name('edit-unit');
          Route::put('update-unit/{id}', 'Frontend\MainUnitController@UpdateUnit')->name('update-unit');
+         Route::get('edit-unit-admin/{id}', 'Frontend\MainUnitController@edit_unit_wiew2')->name('edit-unit-admin');
+         Route::delete('delete-unit/{id}', 'Frontend\MainUnitController@destroy')->name('delete-unit');
 
        /////////////////////////////////////////// rating
     Route::post('/rating_user', 'Frontend\MainProfileController@addRating')->name('rating_user');

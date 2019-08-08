@@ -64,7 +64,10 @@
                                        class="btn btn-primary ">{{trans('backend.activation')}}</a>
                                 @endif
                             </li>
-
+                          
+                         <li>  <a href="{{route('edit-unit-admin',$data->id)}}"
+                                     class="btn btn-primary ">{{trans('backend.edit')}}</a> </li>
+                                     
                         </ul>
                         <div class="clearfix"></div>
                     </div>

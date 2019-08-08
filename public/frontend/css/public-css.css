@@ -398,3 +398,41 @@ p.unit-intro-time {
 .download.available-button:hover {
     box-shadow: 0 3px 10px 3px #cccccc;
 }
+
+
+.intro p {
+    font-size: 35px !important;
+}
+
+
+footer .about .about-para {
+    font-weight: bold;
+
+    font-size: 16px;
+}
+
+
+footer .social-network b{
+    font-size: 15px;
+}
+
+footer .social-network span{
+    font-size: 15px;
+}
+footer .contact {
+      height: 100%;
+}
+footer .contact h2 {
+    font-size: 32px;
+  
+}
+
+footer .about h2 {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.footer-social-media-h2 {
+    margin-bottom: 0 !important;
+    font-size: 20px !important;
+}

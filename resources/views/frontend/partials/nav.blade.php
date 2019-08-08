@@ -56,6 +56,7 @@
 
                             </div>
                         </li>
+                        @if(auth()->user()->verification==true)
 
                         <li class="nav-item active my-list">
                             <a style="position: relative;" href="{{route('chat')}}" class="badge1" data-badge="{{\App\Helper\Helper::count_unseen_message() > 9 ? '9+' : \App\Helper\Helper::count_unseen_message()}}">
@@ -66,6 +67,7 @@
 
                             </a>
                         </li>
+                        @endif
 
                     @else
                         <li class="nav-item active">

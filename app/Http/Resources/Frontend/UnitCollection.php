@@ -16,7 +16,7 @@ class UnitCollection extends JsonResource
      * @return array
      */
     public function toArray($request)
-    { $image = Image::find($this->image_id);
+    { //$image = Image::find($this->image_id);
         $lang = isset($request->lang)?$request->lang:'ar';
         \Carbon\Carbon::setLocale($lang);
 
@@ -47,6 +47,16 @@ class UnitCollection extends JsonResource
             else
                 $payment_method= null;
 
+           $image_count = $this->storge->count();
+            if ($image_count!=0)
+            {
+                if ($this->image_id == null)
+                $image=$this->storge[0]['url'];
+                else
+                $image = Image::find($this->image_id)['url'];
+
+
+            }
             return [
             'id'=>$this->id,
             'title'=>$this->title,
@@ -73,7 +83,7 @@ class UnitCollection extends JsonResource
             'activation'=>$this->activation_user,
             'lang'=>$lang,
                 'route_update'=>route('edit-unit-page',$this->id),
-            'default_image'=>url($image->url),
+            'default_image'=> ($image_count == 0 ) ? url('frontend/images/no-photo.png') : url($image) ,
         ];
     }
 }

@@ -3,14 +3,14 @@
 @php
 
     $lang = LaravelLocalization::getCurrentLocale();
-    $city=\App\City::all();
-    $state=\App\State::all();
+    $city=\App\City::orderBy('ordering','asc')->get();
+    $state=\App\State::orderBy('ordering','asc')->get();
 
 @endphp
 
 <head>
     <meta charset="utf-8">
-    <link rel="icon" type="image/x-icon" href="{{url('frontend/images/logo.png')}}">
+    <link rel="icon" type="image/x-icon" href="{{url('frontend/images/logoooss.png')}}">
 
     <title>{{trans('frontend.Main_Information')}}|win-win</title>
 

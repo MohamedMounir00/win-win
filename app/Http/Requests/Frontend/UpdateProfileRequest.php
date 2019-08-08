@@ -27,12 +27,8 @@ class UpdateProfileRequest extends FormRequest
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,'  . $this->user()->id,
             'password' => 'nullable|string|min:6|confirmed',
-            'bio'=>'required',
-            'phone' => 'required|min:11',
-            'address'=>'required',
             'state_id'=>'required',
             'city_id'=>'required',
-            'company_name'=>'required',
         ];
     }
 }

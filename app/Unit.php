@@ -20,6 +20,7 @@ class Unit extends Model
         'payment_method',
         'city_id',
         'state_id',
+        'image_id',
         'user_id',];
 
 
@@ -43,6 +44,6 @@ class Unit extends Model
     }
     public function realtor()
     {
-        return $this->belongsTo(User::class ,'user_id')->withTrashed();
+        return $this->belongsTo(User::class ,'user_id');
     }
 }

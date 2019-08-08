@@ -38,8 +38,8 @@ class AddUnitController extends Controller
             return redirect()->route('thank-you-page');
         else {
             $type = Type_estate::all();
-            $city = City::all();
-            $state = State::all();
+            $city = City::orderBy('ordering','asc')->get();
+            $state = State::orderBy('ordering','asc')->get();
             return view('frontend.main.add_unit', compact('type', 'city', 'state'));
         }
     }
@@ -48,7 +48,7 @@ class AddUnitController extends Controller
     public function AddUnit(AddUnitRequest $request)
     {
        $count =Unit::where('user_id',auth()->user()->id)->count();
-         if ($count >=10)
+         if ($count >=5)
     return redirect()->route('thank-you-page');
     else {
     $unit = new Unit();
@@ -136,8 +136,8 @@ class AddUnitController extends Controller
                 return redirect()->route('/');
 
             $type = Type_estate::all();
-            $city = City::all();
-            $state = State::all();
+            $city = City::orderBy('ordering','asc')->get();
+            $state = State::orderBy('ordering','asc')->get();
             return view('frontend.main.edit_unit', compact('type', 'city', 'state','unit'));
         }
 

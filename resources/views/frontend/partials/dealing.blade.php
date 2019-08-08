@@ -5,6 +5,7 @@
 @endphp
 <section class="homepage-deal">
     <div class="container">
+        <h1 class="font-weight-bold"> {{__('frontend.best_company')}} </h1></br>
         <div class="row text-center">
 
 

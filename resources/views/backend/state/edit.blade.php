@@ -69,6 +69,9 @@
                                     @endforeach
 
                                 </div>
+                                
+                                
+                                
                                 <div class="item form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="">{{trans('backend.cities')}} <span
                                         >*</span>
@@ -83,6 +86,14 @@
                                 </div>
 
 
+                                               <div class="item form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">{{trans('backend.ordering')}} <span
+                                                        >*</span>
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <input type="number" id="first-name" maxlength="25"  value="{{$data->ordering}}" name="ordering" required class="form-control col-md-7 col-xs-12">
+                                                    </div>
+                                                </div>
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-3">
                                     <button id="send" type="submit" class="btn btn-success">{{trans('backend.update')}}</button>

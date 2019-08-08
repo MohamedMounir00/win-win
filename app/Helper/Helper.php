@@ -101,6 +101,10 @@ class Helper
         return $floor;
 
     }
+    public static  function  mail($email,$view)
+    {
+        Mail::to($email)->send($view);
 
+    }
 }
 
